@@ -1,9 +1,11 @@
-from django.shortcuts import render
-from.import models,serializers
-from rest_framework import viewsets, permissions
-from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework import viewsets
+from . import models,serializers
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from rest_framework.permissions import AllowAny
+from django.contrib.auth import authenticate
+from django.conf import settings
 
 class CategoriaExtraViewSet(viewsets.ModelViewSet):
     queryset = models.CategoriaExtra.objects.all()
@@ -88,14 +90,20 @@ class ExtraPlatoViewSet(viewsets.ModelViewSet):
     queryset = models.ExtraPlato.objects.all()
     serializer_class = serializers.ExtraPlatoSerializer
 
-class LoginToken(ObtainAuthToken):
-    def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data, context={'request':request})
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        token, created = Token.objects.get_or_create(user=user)
-        return Response({
-            'token': token.key,
-            'user_id': user.pk,
-            'username': user.username
-        })
+
+class LoginView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        """api_key = request.headers.get('x-api-key')
+        if api_key != settings.API_KEY:
+            return Response({"error": "API Key Inválida"}, status=403)"""
+
+        username = request.data.get("username")
+        password = request.data.get("password")
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            token, _ = Token.objects.get_or_create(user=user)
+            return Response({"token": token.key})
+        else:
+            return Response({"error": "Credenciales Inválidas"}, status=400)

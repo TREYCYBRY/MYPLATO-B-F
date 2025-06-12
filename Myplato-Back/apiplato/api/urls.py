@@ -24,5 +24,5 @@ router.register('extraPlato', views.ExtraPlatoViewSet)
 
 urlpatterns = [
     path('',include(router.urls)),
-    path('LoginToken/',views.LoginToken.as_view(),name='LoginToken')
+    path('login/',views.LoginView.as_view(),name='login')
 ] 

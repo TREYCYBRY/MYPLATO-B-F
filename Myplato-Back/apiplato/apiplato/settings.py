@@ -49,7 +49,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication'
     ],
-    'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.IsAuthenticated']
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.IsAuthenticated']
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,9 +69,30 @@ MIDDLEWARE = [
 API_KEY='ChileMarron'
 
 CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:5500',
+    'http://localhost:4200',
 ]
 
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'x-api-key',
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
 ROOT_URLCONF = 'apiplato.urls'
 
 TEMPLATES = [
