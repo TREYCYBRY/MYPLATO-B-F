@@ -6,11 +6,17 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate
 from django.conf import settings
+from rest_framework.decorators import action
+from rest_framework import permissions
+from rest_framework.response import Response
 
 class CategoriaExtraViewSet(viewsets.ModelViewSet):
     queryset = models.CategoriaExtra.objects.all()
     serializer_class = serializers.CategoriaExtraSerializer
 
+class UnidadMedidaViewSet(viewsets.ModelViewSet):
+    queryset = models.UnidadMedida.objects.all()
+    serializer_class = serializers.UnidadMedidaSerializer
 
 class ExtraViewSet(viewsets.ModelViewSet):
     queryset = models.Extra.objects.all()
@@ -107,3 +113,38 @@ class LoginView(APIView):
             return Response({"token": token.key})
         else:
             return Response({"error": "Credenciales Inválidas"}, status=400)
+        
+
+class AlmacenViewSet(viewsets.ModelViewSet):
+    queryset = models.Almacen.objects.all()
+    serializer_class = serializers.AlmacenSerializer
+    permission_classes = [permissions.AllowAny]
+
+class StockComidaViewSet(viewsets.ModelViewSet):
+    queryset = models.StockComida.objects.all()  # <-- ESTA LÍNEA ES NECESARIA
+    serializer_class = serializers.StockComidaSerializer
+
+    @action(detail=False, methods=['get'], url_path='consulta')
+    def consultar_stockC(self, request):
+        extra_id = request.query_params.get('extra_id')
+        almacen_id = request.query_params.get('almacen_id')
+
+        stockC = models.Stock.objects.get(extra_id=extra_id, almacen_id=almacen_id)
+        serializer = serializers.StockSerializer(stockC)
+
+        return Response(serializer.data)
+    
+    
+class StockBebidaViewSet(viewsets.ModelViewSet):
+    queryset = models.StockBebida.objects.all()  # <-- ESTA LÍNEA ES NECESARIA
+    serializer_class = serializers.StockBebidaSerializer
+
+    @action(detail=False, methods=['get'], url_path='consulta')
+    def consultar_stockB(self, request):
+        bebida_id = request.query_params.get('bebida_id')
+        almacen_id = request.query_params.get('almacen_id')
+
+        stockB = models.Stock.objects.get(bebida_id=bebida_id, almacen_id=almacen_id)
+        serializer = serializers.StockSerializer(stockB)
+
+        return Response(serializer.data)

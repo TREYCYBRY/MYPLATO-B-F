@@ -4,8 +4,9 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
+router.register('unidadDeMedida', views.UnidadMedidaViewSet)
 router.register('categoriaExtra', views.CategoriaExtraViewSet)
-router.register('extras', views.ExtraViewSet)
+router.register('extra', views.ExtraViewSet)
 router.register('categoriaPlato', views.CategoriaPlatoViewSet)
 router.register('platos', views.PlatoViewSet)
 router.register('categoriaCliente', views.CategoriaClienteViewSet)
@@ -21,6 +22,10 @@ router.register('pagos', views.PagoViewSet)
 router.register('bebidas', views.BebidaViewSet)
 router.register('bebidaPedido', views.BebidaPedidoViewSet)
 router.register('extraPlato', views.ExtraPlatoViewSet)
+router.register('almacen', views.AlmacenViewSet)
+router.register('stockComida', views.StockComidaViewSet)
+router.register('stockBebida', views.StockBebidaViewSet)
+
 
 urlpatterns = [
     path('',include(router.urls)),
