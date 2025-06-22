@@ -12,17 +12,25 @@ import {CardModule} from 'primeng/card';
 import {MessageModule}from 'primeng/message';
 import {ButtonModule} from 'primeng/button'
 
+
 import { HTTP_INTERCEPTORS,HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from '../service/token.interceptor';
+import { InicioComponent } from './inicio/inicio.component';
 import { LoginComponent } from './login/login.component';
-import { PlatoComponent } from './plato/plato.component';
 
+
+
+import { Menubar } from 'primeng/menubar';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuItem } from 'primeng/api';
+import { PlatoComponent } from './plato/plato.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PlatoComponent
+    InicioComponent,
+    PlatoComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +39,9 @@ import { PlatoComponent } from './plato/plato.component';
     FormsModule,
     CardModule,
     ButtonModule,
-    MessageModule
+    MessageModule,
+    MenubarModule,
+    Menubar,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true},
