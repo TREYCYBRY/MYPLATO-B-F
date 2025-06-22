@@ -9,12 +9,20 @@ class CategoriaExtra(models.Model):
     def __str__ (self):
         return self.nombre
 
+class UnidadMedida(models.Model):
+    unidad = models.CharField(max_length=20)
+    sigla = models.CharField(max_length=5)
+
+    def __str__(self):
+        return f"{self.unidad} ({self.sigla})"
+
 class Extra(models.Model):
     nombre = models.CharField(max_length=50)
     precioporPorcion = models.DecimalField(max_digits=6, decimal_places=2)
     descripcion = models.CharField(max_length=50)
-    cantidad_Disponible= models.IntegerField()
+    #cantidad_Disponible= models.IntegerField()
     idcategoria_extra = models.ForeignKey(CategoriaExtra, on_delete=models.CASCADE)
+    unidad = models.ForeignKey(UnidadMedida, on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):
         return self.nombre
@@ -130,6 +138,7 @@ class Bebida(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=100)
     precio = models.DecimalField(max_digits=6, decimal_places=2)
+    unidad = models.ForeignKey(UnidadMedida, on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):
         return self.nombre
@@ -168,7 +177,6 @@ class UsuarioManager(BaseUserManager):
         return self.create_user(username,email,password,**extra_fields)
     
 class Usuario(AbstractUser):
-
     objects=UsuarioManager()
     
     def __str__(self):
@@ -181,3 +189,26 @@ class ExtraPlato(models.Model):
 
     def __str__(self):
         return f'{self.plato.nombre} - {self.extra.nombre} ({self.cantidadPorciones} porciones)'
+    
+class Almacen(models.Model):
+    nombre = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nombre
+
+class StockComida(models.Model):
+    extra = models.ForeignKey(Extra, on_delete=models.CASCADE)
+    almacen = models.ForeignKey(Almacen, on_delete=models.CASCADE)
+    cantidad = models.PositiveBigIntegerField(default=0)
+
+    class Meta:
+        unique_together = ['extra', 'almacen']
+
+
+class StockBebida(models.Model):
+    bebida = models.ForeignKey(Bebida, on_delete=models.CASCADE)
+    almacen = models.ForeignKey(Almacen, on_delete=models.CASCADE)
+    cantidad = models.PositiveBigIntegerField(default=0)
+
+    class Meta:
+        unique_together = ['bebida', 'almacen']

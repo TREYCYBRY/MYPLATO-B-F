@@ -8,6 +8,11 @@ class CategoriaExtraSerializer(serializers.ModelSerializer):
         model= models.CategoriaExtra
         fields='__all__'
 
+class UnidadMedidaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= models.UnidadMedida
+        fields='__all__'
+
 class ExtraSerializer(serializers.ModelSerializer):
     class Meta:
         model= models.Extra
@@ -77,6 +82,7 @@ class  BebidaSerializer(serializers.ModelSerializer):
     class Meta:
         model= models.Bebida
         fields='__all__'
+
 class  BebidaPedidoSerializer(serializers.ModelSerializer):
     class Meta:
         model= models.BebidaPedido
@@ -86,3 +92,24 @@ class ExtraPlatoSerializer(serializers.ModelSerializer):
     class Meta:
         model= models.ExtraPlato
         fields='__all__'
+
+class AlmacenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= models.Almacen
+        fields='__all__'
+
+class StockComidaSerializer(serializers.ModelSerializer):
+    extra = serializers.PrimaryKeyRelatedField(queryset=models.Extra.objects.all())
+    almacen = serializers.PrimaryKeyRelatedField(queryset=models.Almacen.objects.all())
+
+    class Meta:
+        model = models.StockComida
+        fields = ['extra','almacen','cantidad']
+
+class StockBebidaSerializer(serializers.ModelSerializer):
+    bebida = serializers.PrimaryKeyRelatedField(queryset=models.Bebida.objects.all())
+    almacen = serializers.PrimaryKeyRelatedField(queryset=models.Almacen.objects.all())
+
+    class Meta:
+        model = models.StockBebida
+        fields = ['bebida','almacen','cantidad']
