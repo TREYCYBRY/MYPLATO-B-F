@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,ViewEncapsulation} from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
 
@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   standalone: false,
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
-  providers: [AuthService]
+  styleUrl:'./login.component.css',
+  providers: [AuthService],
 })
 export class LoginComponent {
     constructor(private auth:AuthService,private router:Router){}
@@ -18,7 +18,7 @@ export class LoginComponent {
         this.auth.login(this.username,this.password).subscribe({
           next:(res:any)=>{
             localStorage.setItem('token',res.token);
-            this.router.navigate(['/platos']);
+            this.router.navigate(['/inicio']);
           },
           error:()=>{
             this.error='Usuario y/o contraseña incorrectos';

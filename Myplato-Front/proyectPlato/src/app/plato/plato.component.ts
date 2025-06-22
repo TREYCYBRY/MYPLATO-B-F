@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-plato',
   standalone: false,
   templateUrl: './plato.component.html',
-  styleUrl: './plato.component.css'
+  styleUrl: './plato.component.css',
 })
 export class PlatoComponent {
 
