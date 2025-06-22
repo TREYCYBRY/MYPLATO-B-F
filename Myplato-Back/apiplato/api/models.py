@@ -190,10 +190,6 @@ class ExtraPlato(models.Model):
     def __str__(self):
         return f'{self.plato.nombre} - {self.extra.nombre} ({self.cantidadPorciones} porciones)'
     
-class Area(models.Model):
-    area = models.CharField(max_length=30)
-    imagen = models.ImageField(upload_to='imagenes_areas/', blank=True, null=True)
-
 class Almacen(models.Model):
     nombre = models.CharField(max_length=50)
 

@@ -125,12 +125,12 @@ class StockComidaViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.StockComidaSerializer
 
     @action(detail=False, methods=['get'], url_path='consulta')
-    def consultar_stockC(self, request):
+    def consultar_stockComida(self, request):
         extra_id = request.query_params.get('extra_id')
         almacen_id = request.query_params.get('almacen_id')
 
-        stockC = models.Stock.objects.get(extra_id=extra_id, almacen_id=almacen_id)
-        serializer = serializers.StockSerializer(stockC)
+        stockComida = models.StockComida.objects.get(extra_id=extra_id, almacen_id=almacen_id)
+        serializer = serializers.StockComidaSerializer(stockComida)
 
         return Response(serializer.data)
     
@@ -140,11 +140,11 @@ class StockBebidaViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.StockBebidaSerializer
 
     @action(detail=False, methods=['get'], url_path='consulta')
-    def consultar_stockB(self, request):
+    def consultar_stockBedida(self, request):
         bebida_id = request.query_params.get('bebida_id')
         almacen_id = request.query_params.get('almacen_id')
 
-        stockB = models.Stock.objects.get(bebida_id=bebida_id, almacen_id=almacen_id)
-        serializer = serializers.StockSerializer(stockB)
+        stockBedida = models.StockBebida.objects.get(bebida_id=bebida_id, almacen_id=almacen_id)
+        serializer = serializers.StockBebidaSerializer(stockBedida)
 
         return Response(serializer.data)
