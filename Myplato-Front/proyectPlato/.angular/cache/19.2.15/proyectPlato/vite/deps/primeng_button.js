@@ -2,35 +2,35 @@ import {
   Badge,
   BadgeModule,
   DomHandler
-} from "./chunk-XYFSYV5P.js";
+} from "./chunk-FDQAPPBO.js";
 import {
   Ripple,
   SpinnerIcon
-} from "./chunk-UACHU5FD.js";
+} from "./chunk-PSXINTYR.js";
 import {
   BaseComponent
-} from "./chunk-PI3I3BTX.js";
+} from "./chunk-HFLULDA2.js";
 import {
   BaseStyle
-} from "./chunk-RJBTDME5.js";
+} from "./chunk-6FG7CQTN.js";
 import {
   PrimeTemplate,
   SharedModule,
   addClass,
   findSingle,
   isEmpty
-} from "./chunk-M23OP5QM.js";
+} from "./chunk-F73NBEZC.js";
 import {
   CommonModule,
   NgClass,
   NgIf,
   NgStyle,
   NgTemplateOutlet
-} from "./chunk-6RMOQLDJ.js";
+} from "./chunk-TVPK53CY.js";
 import {
   DOCUMENT,
   isPlatformBrowser
-} from "./chunk-UNCPHW44.js";
+} from "./chunk-MKNL5JQP.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -84,8 +84,7 @@ import {
   ɵɵtemplate,
   ɵɵtext,
   ɵɵtextInterpolate
-} from "./chunk-2NCRVGVE.js";
-import "./chunk-HM5YLMWO.js";
+} from "./chunk-XJSATSUL.js";
 import "./chunk-WDMUDEB6.js";
 
 // node_modules/primeng/fesm2022/primeng-autofocus.mjs
