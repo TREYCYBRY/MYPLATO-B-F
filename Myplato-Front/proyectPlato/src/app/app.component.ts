@@ -34,7 +34,23 @@ export class AppComponent {
                       label: 'Plato',
                       icon: 'pi pi-fw pi-plus',
                       command: () => {
-                     this.router.navigate(['/plato']);}}
+                     this.router.navigate(['/plato']);}
+                    },
+                    {
+                      label: 'Categoria Extra',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/categoriaExtra']);}
+                    },
+                    {
+                      label: 'Unidad de Medida',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/unidad']);}
+                    }
+
+
+
                     ]
       },
       
