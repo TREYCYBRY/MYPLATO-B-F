@@ -1,6 +1,36 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser,BaseUserManager
 from django.conf import settings
+class UsuarioManager(BaseUserManager):
+    def create_user(self,username,email,password=None,**extra_fields):
+        #Creamos un usario en base a nombre de usuario, contraseña y correo
+        if not email:
+            raise ValueError('Correo es obligatorio')
+        email = self.normalize_email(email)
+        user = self.model(username=username,email=email,**extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+    
+    def create_superuser(self,username,email,password=None,**extra_fields):
+        #Creamos un superusario en base a nombre de usuario, contraseña y correo
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('El campo staff debe ser True')
+        
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('El campo superusuario debe ser True')
+        
+        return self.create_user(username,email,password,**extra_fields)
+    
+class Usuario(AbstractUser):
+    objects=UsuarioManager()
+    
+    def __str__(self):
+        return self.username
+
 
 class CategoriaExtra(models.Model):
     nombre = models.CharField(max_length=50)
@@ -152,35 +182,6 @@ class BebidaPedido(models.Model):
     def __str__(self):
         return f"{self.cantidad}x {self.bebida.nombre} - Pedido {self.pedido.id}"
 
-class UsuarioManager(BaseUserManager):
-    def create_user(self,username,email,password=None,**extra_fields):
-        #Creamos un usario en base a nombre de usuario, contraseña y correo
-        if not email:
-            raise ValueError('Correo es obligatorio')
-        email = self.normalize_email(email)
-        user = self.model(username=username,email=email,**extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-    
-    def create_superuser(self,username,email,password=None,**extra_fields):
-        #Creamos un superusario en base a nombre de usuario, contraseña y correo
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError('El campo staff debe ser True')
-        
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError('El campo superusuario debe ser True')
-        
-        return self.create_user(username,email,password,**extra_fields)
-    
-class Usuario(AbstractUser):
-    objects=UsuarioManager()
-    
-    def __str__(self):
-        return self.username
 
 class ExtraPlato(models.Model):
     id_plato = models.ForeignKey(Plato, on_delete=models.CASCADE)
@@ -212,3 +213,4 @@ class StockBebida(models.Model):
 
     class Meta:
         unique_together = ['bebida', 'almacen']
+
