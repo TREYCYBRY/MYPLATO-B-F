@@ -11,6 +11,12 @@ import { FormsModule} from '@angular/forms';
 import {CardModule} from 'primeng/card';
 import {MessageModule}from 'primeng/message';
 import {ButtonModule} from 'primeng/button'
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { SelectModule } from 'primeng/select';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 import { HTTP_INTERCEPTORS,HttpClientModule } from '@angular/common/http';
@@ -23,6 +29,9 @@ import { Menubar } from 'primeng/menubar';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
 import { PlatoComponent } from './plato/plato.component';
+import { CategoriaExtraComponent } from './categoria-extra/categoria-extra.component';
+import { ExtraComponent } from './extra/extra.component';
+import { UnidadComponent } from './unidad/unidad.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +39,10 @@ import { PlatoComponent } from './plato/plato.component';
     LoginComponent,
     InicioComponent,
     PlatoComponent,
+    CategoriaExtraComponent,
+    ExtraComponent,
+    UnidadComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -41,6 +54,12 @@ import { PlatoComponent } from './plato/plato.component';
     MessageModule,
     MenubarModule,
     Menubar,
+    TableModule,
+    InputTextModule,
+    SelectModule,
+    ConfirmDialogModule,
+    DialogModule,
+    FileUploadModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true},

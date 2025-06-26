@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Plato } from "../model/plato.model";
+import { categoriaExtra } from "../model/categoriaExtra.model";
+import { unidadMedida } from "../model/unidadMedida.model";
 
 @Injectable({
   providedIn: "root"
@@ -38,6 +40,55 @@ export class ApiService {
         let body = JSON.stringify(Plato);
         return this.http.post<Plato>(this.ApiUrl + 'platos/',body,this.httpOptions);
     }
+    
+   // ------------------------------------------------------------------------------------------------
+    
+   
+   //GET Categorias Extras
+    public getCategoriasExtras(): Observable<categoriaExtra[]> {
+        return this.http.get<categoriaExtra[]>(this.ApiUrl + 'categoriaExtra/');
+    }
 
+    //DELETE Categorias Extras CRUD:Delete
+    public deleteCategoriaExtra(id:string): Observable<void>{
+        return this.http.delete<void>(this.ApiUrl + 'categoriaExtra/' + id + "/");
+    }
+
+    //PUT Categorias Extras CRUD:Update
+    public putCategoriaExtra(cat:categoriaExtra): Observable<categoriaExtra>{
+        let body = JSON.stringify(cat);
+        return this.http.put<categoriaExtra>(this.ApiUrl + 'categoriaExtra/' + cat.id + "/",body,this.httpOptions);
+    }
+
+    //POST Categorias Extras CRUD:Create
+    public postCategoriaExtra(cat:categoriaExtra): Observable<categoriaExtra>{
+        let body = JSON.stringify(cat);
+        return this.http.post<categoriaExtra>(this.ApiUrl + 'categoriaExtra/',body,this.httpOptions);
+    }    
+    
+    // ------------------------------------------------------------------------------------------------
+    
+    //Unidades
+    //GET Unidades CRUD:Select READ
+    public getUnidades(): Observable<unidadMedida[]> {
+        return this.http.get<unidadMedida[]>(this.ApiUrl + 'unidadDeMedida/');
+    }
+
+    //DELETE Unidades CRUD:Delete
+    public deleteUnidades(id:string): Observable<void>{
+        return this.http.delete<void>(this.ApiUrl + 'unidadDeMedida/' + id + "/");
+    }
+
+    //PUT Unidades CRUD:Update
+    public putUnidades(uni: unidadMedida): Observable<unidadMedida>{
+        let body = JSON.stringify(uni);
+        return this.http.put<unidadMedida>(this.ApiUrl + 'unidadDeMedida/' + uni.id + "/",body,this.httpOptions);
+    }
+
+    //POST Unidades CRUD:Create
+    public postUnidades(uni:unidadMedida): Observable<unidadMedida>{
+        let body = JSON.stringify(uni);
+        return this.http.post<unidadMedida>(this.ApiUrl + 'unidadDeMedida/',body,this.httpOptions);
+    }
 
 }

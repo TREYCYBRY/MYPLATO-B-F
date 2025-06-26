@@ -4,11 +4,16 @@ import { LoginComponent } from './login/login.component';
 import { InicioComponent} from './inicio/inicio.component';
 import { PlatoComponent } from './plato/plato.component';
 import { AuthGuard } from '../service/auth.guard';
+import { CategoriaExtraComponent } from './categoria-extra/categoria-extra.component';
+import { UnidadComponent } from './unidad/unidad.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard] },
   { path: 'plato', component: PlatoComponent, canActivate: [AuthGuard] },
+  { path: 'categoriaExtra', component: CategoriaExtraComponent },
+  { path: 'extra', component: CategoriaExtraComponent },  
+  { path: 'unidad', component: UnidadComponent},  
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
 ];
