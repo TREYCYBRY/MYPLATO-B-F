@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+
+# Django
+db.sqlite3
+*.db
+*.env
+
+# Angular
+.angular/
+dist/
+*.tsbuildinfo
+*.log
+
+# Node
+node_modules/
+
+# VSCode
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
