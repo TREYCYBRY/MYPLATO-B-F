@@ -50,7 +50,7 @@
     </ng-template>
 </p-table>
 
-<p-dialog header="{{tituloDialogo}}" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+<p-dialog header="{{tituloDialogo}}" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
     <div class="flex items-center gap-4 mb-4">
         <label for="plato" class="font-semibold w-24">Plato</label>
         <input pInputText id="plato" class="flex-auto" autocomplete="off" [(ngModel)]="platoDialogo.nombre"/>
@@ -73,7 +73,7 @@
 
     <div class="flex items-center gap-4 mb-4">
         <label for="categoria" class="font-semibold w-24">Categoria</label>
-        <p-select id="categoria" [options]="categoria_Plato" [(ngModel)]="categoriaPlatoSeleccionado" optionLabel="nombre" placeholder="Seleccione una categoria" class="w-full md:w-56" />
+        <p-select id="categoria" [options]="categoria_Plato" [(ngModel)]="categoriaPlatoSeleccionado" optionLabel="nombre" placeholder="Seleccione una categoria" appendTo="body" class="w-full md:w-56" />
     </div>
 
     <div class="flex justify-end gap-2">
