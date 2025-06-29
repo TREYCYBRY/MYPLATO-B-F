@@ -50,9 +50,9 @@ class Extra(models.Model):
     nombre = models.CharField(max_length=50)
     precioporPorcion = models.DecimalField(max_digits=6, decimal_places=2)
     descripcion = models.CharField(max_length=50)
-    #cantidad_Disponible= models.IntegerField()
     idcategoria_extra = models.ForeignKey(CategoriaExtra, on_delete=models.CASCADE)
     unidad = models.ForeignKey(UnidadMedida, on_delete=models.CASCADE,null=True,blank=True)
+    imagen= models.ImageField(upload_to='extras/', null=True, blank=True)
 
     def __str__(self):
         return self.nombre

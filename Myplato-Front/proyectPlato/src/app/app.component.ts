@@ -47,6 +47,12 @@ export class AppComponent {
                       icon: 'pi pi-fw pi-plus',
                       command: () => {
                      this.router.navigate(['/unidad']);}
+                    },
+                    {
+                      label: 'Mesa',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/extra']);}
                     }
 
 
