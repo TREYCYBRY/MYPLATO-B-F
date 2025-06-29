@@ -4,5 +4,5 @@ export class Plato{
     descripcion: string;
     precio: number;
     personalizable: boolean;
-    idcategoria_plato: number;
+    idcategoria_plato: number
 }

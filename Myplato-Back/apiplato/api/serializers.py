@@ -25,6 +25,7 @@ class  CategoriaPlatoSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class  PlatoSerializer(serializers.ModelSerializer):
+    nombre_categoria = serializers.ReadOnlyField(source='idcategoria_plato.nombre')
     class Meta:
         model= models.Plato
         fields='__all__'

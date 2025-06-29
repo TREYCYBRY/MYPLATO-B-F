@@ -1,4 +1,4 @@
-<h1>UNIDADES DE MEDIDA</h1>
+<h1>EXTRAS</h1>
 <!-- READ -> Tabla -->
 <p-button label="Nuevo Extra" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
 <p-table [value]="extras" [tableStyle]="{'min-width': '50rem'}">
@@ -79,7 +79,7 @@
     </div>
 
     <div class="flex items-center gap-4 mb-4">
-        <label for="unidad" class="font-semibold w-24">Categoria</label>
+        <label for="unidad" class="font-semibold w-24">Unidad de Medida</label>
         <p-select id="unidad" [options]="unidades" [(ngModel)]="unidadSeleccionada" optionLabel="unidad" placeholder="Seleccione una unidad" class="w-full md:w-56" />
     </div>
 
