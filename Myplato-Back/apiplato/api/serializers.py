@@ -14,6 +14,7 @@ class UnidadMedidaSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class ExtraSerializer(serializers.ModelSerializer):
+    nombre_categoria = serializers.ReadOnlyField(source='idcategoria_extra.nombre')
     class Meta:
         model= models.Extra
         fields='__all__'

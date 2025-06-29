@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { Plato } from "../model/plato.model";
 import { categoriaExtra } from "../model/categoriaExtra.model";
 import { unidadMedida } from "../model/unidadMedida.model";
+import { extra } from "../model/extra.model";
 
 @Injectable({
   providedIn: "root"
@@ -89,6 +90,29 @@ export class ApiService {
     public postUnidades(uni:unidadMedida): Observable<unidadMedida>{
         let body = JSON.stringify(uni);
         return this.http.post<unidadMedida>(this.ApiUrl + 'unidadDeMedida/',body,this.httpOptions);
+    }
+
+    //EXTRAS--------------------------------------------------------------------------------------------
+    //GET Extras CRUD:Select READ
+    public getExtra(): Observable<extra[]> {
+        return this.http.get<extra[]>(this.ApiUrl + 'extra/');
+    }
+
+    //DELETE Producto CRUD:Delete
+    public deleteExtra(id:string): Observable<void>{
+        return this.http.delete<void>(this.ApiUrl + 'extra/' + id + "/");
+    }
+
+    //PUT Producto CRUD:Update
+    public putExtra(ex:extra): Observable<extra>{
+        let body = JSON.stringify(ex);
+        return this.http.put<extra>(this.ApiUrl + 'extra/' + ex.id + "/",body,this.httpOptions);
+    }
+
+    //POST Producto CRUD:Create
+    public postExtra(ex:extra): Observable<extra>{
+        let body = JSON.stringify(ex);
+        return this.http.post<extra>(this.ApiUrl + 'extra/',body,this.httpOptions);
     }
 
 }
