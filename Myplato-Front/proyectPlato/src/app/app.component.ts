@@ -49,11 +49,17 @@ export class AppComponent {
                      this.router.navigate(['/unidad']);}
                     },
                     {
-                      label: 'Mesa',
+                      label: 'Extra',
                       icon: 'pi pi-fw pi-plus',
                       command: () => {
                      this.router.navigate(['/extra']);}
-                    }
+                    },
+                    {
+                      label: 'Categoria Plato',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/categoriaPlato']);}
+                    },
 
 
 

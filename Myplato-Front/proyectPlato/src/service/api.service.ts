@@ -5,6 +5,7 @@ import { Plato } from "../model/plato.model";
 import { categoriaExtra } from "../model/categoriaExtra.model";
 import { unidadMedida } from "../model/unidadMedida.model";
 import { extra } from "../model/extra.model";
+import { categoriaPlato } from "../model/categoriaPlato.model";
 
 @Injectable({
   providedIn: "root"
@@ -20,25 +21,25 @@ export class ApiService {
     constructor(private http: HttpClient) {
     }
 
-    //GET Jugadores
+    //GET Plato
     public getPlatos(): Observable<Plato[]> {
         return this.http.get<Plato[]>(this.ApiUrl + 'platos/');
     }
 
-    //DELETE Jugador
+    //DELETE Plato
     public deletePlatos(id:string): Observable<void>{
         return this.http.delete<void>(this.ApiUrl + 'platos/' + id + "/");
     }
 
-    //PUT Jugador
-    public putPlatos(Plato:Plato): Observable<Plato>{
-        let body = JSON.stringify(Plato);
-        return this.http.put<Plato>(this.ApiUrl + 'platos/' + Plato.id + "/",body,this.httpOptions);
+    //PUT Plato
+    public putPlatos(pla:Plato): Observable<Plato>{
+        let body = JSON.stringify(pla);
+        return this.http.put<Plato>(this.ApiUrl + 'platos/' + pla.id + "/",body,this.httpOptions);
     }
 
-    //POST Jugador
-    public postPlato(Plato:Plato): Observable<Plato>{
-        let body = JSON.stringify(Plato);
+    //POST Plato
+    public postPlato(pla:Plato): Observable<Plato>{
+        let body = JSON.stringify(pla);
         return this.http.post<Plato>(this.ApiUrl + 'platos/',body,this.httpOptions);
     }
     
@@ -114,5 +115,31 @@ export class ApiService {
         let body = JSON.stringify(ex);
         return this.http.post<extra>(this.ApiUrl + 'extra/',body,this.httpOptions);
     }
+
+    // ------------------------------------------------------------------------------------------------
+    
+    //Categoria Platos
+    public getCategoriasPlatos(): Observable<categoriaPlato[]> {
+        return this.http.get<categoriaPlato[]>(this.ApiUrl + 'categoriaPlato/');
+    }
+
+    //DELETE Categoria Platos CRUD:Delete
+    public deleteCategoriaPlato(id:string): Observable<void>{
+        return this.http.delete<void>(this.ApiUrl + 'categoriaPlato/' + id + "/");
+    }
+
+    //PUT Categorias Platos CRUD:Update
+    public putCategoriaPlato(cat:categoriaPlato): Observable<categoriaPlato>{
+        let body = JSON.stringify(cat);
+        return this.http.put<categoriaPlato>(this.ApiUrl + 'categoriaPlato/' + cat.id + "/",body,this.httpOptions);
+    }
+
+    //POST Categorias Platos CRUD:Create 
+    public postCategoriaPlato(cat:categoriaPlato): Observable<categoriaPlato>{
+        let body = JSON.stringify(cat);
+        return this.http.post<categoriaPlato>(this.ApiUrl + 'categoriaPlato/',body,this.httpOptions);
+    }
+
+
 
 }

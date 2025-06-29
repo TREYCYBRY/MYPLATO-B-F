@@ -17,6 +17,7 @@ import { SelectModule } from 'primeng/select';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 import { HTTP_INTERCEPTORS,HttpClientModule } from '@angular/common/http';
@@ -32,6 +33,7 @@ import { PlatoComponent } from './plato/plato.component';
 import { CategoriaExtraComponent } from './categoria-extra/categoria-extra.component';
 import { ExtraComponent } from './extra/extra.component';
 import { UnidadComponent } from './unidad/unidad.component';
+import { CategoriaPlatoComponent } from './categoria-plato/categoria-plato.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { UnidadComponent } from './unidad/unidad.component';
     CategoriaExtraComponent,
     ExtraComponent,
     UnidadComponent,
+    CategoriaPlatoComponent
     
   ],
   imports: [
@@ -59,7 +62,8 @@ import { UnidadComponent } from './unidad/unidad.component';
     SelectModule,
     ConfirmDialogModule,
     DialogModule,
-    FileUploadModule
+    FileUploadModule,
+    CheckboxModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true},

@@ -29,6 +29,8 @@ export class ExtraComponent {
 
   abrirDialogo(){
     this.visible = true;
+    this.nuevoExtra = true;
+    this.extraDialogo = new extra();
   }
 
   obtenerExtra(){
