@@ -79,6 +79,24 @@ export class AppComponent {
                       command: () => {
                      this.router.navigate(['/bebida']);}
                     },
+                    {
+                      label: 'Almacen',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/almacen']);}
+                    },
+                    {
+                      label: 'Stock Comida',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/stockComida']);}
+                    },
+                    {
+                      label: 'Stock Bebida',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/stockBebida']);}
+                    },
 
 
 
