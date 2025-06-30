@@ -1,0 +1,66 @@
+<h1>CATEGORIA DE CLIENTES</h1>
+<p-button label="Nuevo Tipo" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
+<p-table [value]="categoria_Cliente" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template #header>
+        <tr>
+            <th style="width:20%">ID</th>
+            <th style="width:20%">Fidelidad</th>
+            <th style="width:20%">Descripcion</th>
+            <th style="width:20%">Beneficio</th>
+            <th style="width:20%"></th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-categoriaCliente let-ri="rowIndex">
+        <tr>
+            <td>{{ categoriaCliente.id }}</td>
+            <td>{{ categoriaCliente.fidelidad }}</td>
+            <td>{{ categoriaCliente.descripcion }}</td>
+            <td>{{ categoriaCliente.beneficio }}</td>
+            <td>
+                <div class="flex items-center justify-center gap-2">
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-pencil"
+                        (click)="editarCategoriaCliente(categoriaCliente)"
+                        text
+                        rounded
+                        severity="secondary"
+                    ></button>
+                    <!-- DELETE -> Boton -->
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-times"
+                        (click)="eliminarCategoriaCliente(categoriaCliente)"
+                        text
+                        rounded
+                        severity="danger"
+                    ></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- CREATE y UPDATE -> Formulario -->
+<p-dialog header="{{tituloDialogo}}" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+    <div class="flex items-center gap-4 mb-4">
+        <label for="fidelidad" class="font-semibold w-24">Fidelidad</label>
+        <input pInputText id="fidelidad" class="flex-auto" autocomplete="off" [(ngModel)]=" CategoriaClienteDialogo.fidelidad"/>
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+    <label for="descripcion" class="font-semibold w-24">Descripcion</label>
+    <input pInputText id="descripcion" type="flex-auto" class="flex-auto" [(ngModel)]=" CategoriaClienteDialogo.descripcion"/>
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+    <label for="beneficio" class="font-semibold w-24">Beneficio</label>
+    <input pInputText id="beneficio" type="flex-auto" class="flex-auto" [(ngModel)]=" CategoriaClienteDialogo.beneficio"/>
+    </div>
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+        <p-button label="Guardar" (click)="guardarCategoriaCliente()" />
+    </div>
+</p-dialog>

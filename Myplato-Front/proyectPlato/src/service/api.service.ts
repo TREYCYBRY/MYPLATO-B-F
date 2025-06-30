@@ -6,6 +6,7 @@ import { categoriaExtra } from "../model/categoriaExtra.model";
 import { unidadMedida } from "../model/unidadMedida.model";
 import { extra } from "../model/extra.model";
 import { categoriaPlato } from "../model/categoriaPlato.model";
+import { categoriaCliente } from "../model/categoriaCliente.model";
 
 @Injectable({
   providedIn: "root"
@@ -140,6 +141,28 @@ export class ApiService {
         return this.http.post<categoriaPlato>(this.ApiUrl + 'categoriaPlato/',body,this.httpOptions);
     }
 
+    
+    // ------------------------------------------------------------------------------------------------
+    //Categoria Clientes
+    public getCategoriasClientes(): Observable<categoriaCliente[]> {
+        return this.http.get<categoriaCliente[]>(this.ApiUrl + 'categoriaCliente/');
+    }
 
+    //DELETE Categoria Platos CRUD:Delete
+    public deleteCategoriaCliente(id:string): Observable<void>{
+        return this.http.delete<void>(this.ApiUrl + 'categoriaCliente/' + id + "/");
+    }
+
+    //PUT Categorias Platos CRUD:Update
+    public putCategoriaCliente(cat:categoriaCliente): Observable<categoriaCliente>{
+        let body = JSON.stringify(cat);
+        return this.http.put<categoriaCliente>(this.ApiUrl + 'categoriaCliente/' + cat.id + "/",body,this.httpOptions);
+    }
+
+    //POST Categorias Platos CRUD:Create 
+    public postCategoriaCliente(cat:categoriaCliente): Observable<categoriaCliente>{
+        let body = JSON.stringify(cat);
+        return this.http.post<categoriaCliente>(this.ApiUrl + 'categoriaCliente/',body,this.httpOptions);
+    }
 
 }
