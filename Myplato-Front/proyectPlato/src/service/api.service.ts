@@ -7,6 +7,8 @@ import { unidadMedida } from "../model/unidadMedida.model";
 import { extra } from "../model/extra.model";
 import { categoriaPlato } from "../model/categoriaPlato.model";
 import { categoriaCliente } from "../model/categoriaCliente.model";
+import { rol } from "../model/rol.model";
+import { bebida } from "../model/bebida.model";
 
 @Injectable({
   providedIn: "root"
@@ -164,5 +166,58 @@ export class ApiService {
         let body = JSON.stringify(cat);
         return this.http.post<categoriaCliente>(this.ApiUrl + 'categoriaCliente/',body,this.httpOptions);
     }
+
+    // ------------------------------------------------------------------------------------------------
+    
+    //Roles
+    //GET Roles CRUD:Select READ
+    public getRoles(): Observable<rol[]> {
+        return this.http.get<rol[]>(this.ApiUrl + 'roles/');
+    }
+
+    //DELETE Roles CRUD:Delete
+    public deleteRoles(id:string): Observable<void>{
+        return this.http.delete<void>(this.ApiUrl + 'roles/' + id + "/");
+    }
+
+    //PUT Roles CRUD:Update
+    public putRoles(rls: rol): Observable<rol>{
+        let body = JSON.stringify(rls);
+        return this.http.put<rol>(this.ApiUrl + 'roles/' + rls.id + "/",body,this.httpOptions);
+    }
+
+    //POST Roles CRUD:Create
+    public postRoles(rls:rol): Observable<rol>{
+        let body = JSON.stringify(rls);
+        return this.http.post<rol>(this.ApiUrl + 'roles/',body,this.httpOptions);
+    }
+
+
+    // ------------------------------------------------------------------------------------------------
+    
+    //GET Bebida CRUD:Select READ
+    public getBebida(): Observable<bebida[]> {
+        return this.http.get<bebida[]>(this.ApiUrl + 'bebidas/');
+    }
+
+    //DELETE Producto CRUD:Delete
+    public deleteBebida(id:string): Observable<void>{
+        return this.http.delete<void>(this.ApiUrl + 'bebidas/' + id + "/");
+    }
+
+    //PUT Producto CRUD:Update
+    public putBebida(bb:bebida): Observable<bebida>{
+        let body = JSON.stringify(bb);
+        return this.http.put<bebida>(this.ApiUrl + 'bebidas/' + bb.id + "/",body,this.httpOptions);
+    }
+
+    //POST Producto CRUD:Create
+    public postBebida(bb:bebida): Observable<bebida>{
+        let body = JSON.stringify(bb);
+        return this.http.post<bebida>(this.ApiUrl + 'bebidas/',body,this.httpOptions);
+    }  
+    
+    // ------------------------------------------------------------------------------------------------
+
 
 }

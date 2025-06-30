@@ -67,6 +67,19 @@ export class AppComponent {
                      this.router.navigate(['/categoriaCliente']);}
                     },
 
+                    {
+                      label: 'Rol',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/rol']);}
+                    },
+                    {
+                      label: 'Bebida',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/bebida']);}
+                    },
+
 
 
                     ]
