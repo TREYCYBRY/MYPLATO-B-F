@@ -103,15 +103,19 @@ class AlmacenSerializer(serializers.ModelSerializer):
 class StockComidaSerializer(serializers.ModelSerializer):
     extra = serializers.PrimaryKeyRelatedField(queryset=models.Extra.objects.all())
     almacen = serializers.PrimaryKeyRelatedField(queryset=models.Almacen.objects.all())
+    extra_nombre = serializers.ReadOnlyField(source='extra.nombre')
+    almacen_nombre = serializers.ReadOnlyField(source='almacen.nombre')
 
     class Meta:
         model = models.StockComida
-        fields = ['extra','almacen','cantidad']
+        fields = ['extra','almacen','cantidad','extra_nombre', 'almacen_nombre']
 
 class StockBebidaSerializer(serializers.ModelSerializer):
     bebida = serializers.PrimaryKeyRelatedField(queryset=models.Bebida.objects.all())
     almacen = serializers.PrimaryKeyRelatedField(queryset=models.Almacen.objects.all())
+    bebida_nombre = serializers.ReadOnlyField(source='bebida.nombre')
+    almacen_nombre = serializers.ReadOnlyField(source='almacen.nombre')
 
     class Meta:
         model = models.StockBebida
-        fields = ['bebida','almacen','cantidad']
+        fields = ['bebida','almacen','cantidad','bebida_nombre','almacen_nombre']
