@@ -35,6 +35,8 @@ import { ExtraComponent } from './extra/extra.component';
 import { UnidadComponent } from './unidad/unidad.component';
 import { CategoriaPlatoComponent } from './categoria-plato/categoria-plato.component';
 import { CategoriaClienteComponent } from './categoria-cliente/categoria-cliente.component';
+import { RolComponent } from './rol/rol.component';
+import { BebidaComponent } from './bebida/bebida.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { CategoriaClienteComponent } from './categoria-cliente/categoria-cliente
     ExtraComponent,
     UnidadComponent,
     CategoriaPlatoComponent,
-    CategoriaClienteComponent
+    CategoriaClienteComponent,
+    RolComponent,
+    BebidaComponent
     
   ],
   imports: [
