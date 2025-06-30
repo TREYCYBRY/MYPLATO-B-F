@@ -10,6 +10,7 @@ import Lara from '@primeng/themes/lara';
 import { FormsModule} from '@angular/forms';
 import {CardModule} from 'primeng/card';
 import {MessageModule}from 'primeng/message';
+import { DropdownModule } from 'primeng/dropdown'; // For p-dropdown
 import {ButtonModule} from 'primeng/button'
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
@@ -18,6 +19,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CheckboxModule } from 'primeng/checkbox';
+import { RippleModule } from 'primeng/ripple';     // For pRipple, if you're using it
+
 
 
 import { HTTP_INTERCEPTORS,HttpClientModule } from '@angular/common/http';
@@ -37,6 +40,8 @@ import { CategoriaPlatoComponent } from './categoria-plato/categoria-plato.compo
 import { CategoriaClienteComponent } from './categoria-cliente/categoria-cliente.component';
 import { RolComponent } from './rol/rol.component';
 import { BebidaComponent } from './bebida/bebida.component';
+import { AlmacenComponent } from './almacen/almacen.component';
+import { StockComidaComponent } from './stock-comida/stock-comida.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +55,9 @@ import { BebidaComponent } from './bebida/bebida.component';
     CategoriaPlatoComponent,
     CategoriaClienteComponent,
     RolComponent,
-    BebidaComponent
+    BebidaComponent,
+    AlmacenComponent,
+    StockComidaComponent,
     
   ],
   imports: [
@@ -69,7 +76,9 @@ import { BebidaComponent } from './bebida/bebida.component';
     ConfirmDialogModule,
     DialogModule,
     FileUploadModule,
-    CheckboxModule
+    CheckboxModule,
+    DropdownModule,
+    RippleModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true},

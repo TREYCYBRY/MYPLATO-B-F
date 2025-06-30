@@ -9,6 +9,9 @@ import { categoriaPlato } from "../model/categoriaPlato.model";
 import { categoriaCliente } from "../model/categoriaCliente.model";
 import { rol } from "../model/rol.model";
 import { bebida } from "../model/bebida.model";
+import { almacen } from "../model/almacen.model";
+import { stockComida } from "../model/stockComida.model";
+import { stockBebida } from "../model/stockBebida.model";
 
 @Injectable({
   providedIn: "root"
@@ -218,6 +221,84 @@ export class ApiService {
     }  
     
     // ------------------------------------------------------------------------------------------------
+
+    //ALMACEN
+    //GET
+    public getAlmacenes(): Observable<almacen[]> {
+        return this.http.get<almacen[]>(this.ApiUrl + 'almacen/');
+    }
+
+    //DELETE
+    public deleteAlmacenes(id:string): Observable<void>{
+        return this.http.delete<void>(this.ApiUrl + 'almacen/' + id + "/");
+    }
+
+    //PUT
+    public putAlmacenes(almc: almacen): Observable<almacen>{
+        let body = JSON.stringify(almc);
+        return this.http.put<almacen>(this.ApiUrl + 'almacen/' + almc.id + "/",body,this.httpOptions);
+    }
+
+    //POST
+    public postAlmacenes(almc:almacen): Observable<almacen>{
+        let body = JSON.stringify(almc);
+        return this.http.post<almacen>(this.ApiUrl + 'almacen/',body,this.httpOptions);
+    }
+
+
+    // ------------------------------------------------------------------------------------------------
+
+    //STOCK COMIDA
+    //GET 
+    public getStockComida(): Observable<stockComida[]> {
+        return this.http.get<stockComida[]>(this.ApiUrl + 'stockComida/');
+    }
+
+    //DELETE
+    public deleteStockComida(id:string): Observable<void>{
+        return this.http.delete<void>(this.ApiUrl + 'stockComida/' + id + "/");
+    }
+
+    //PUT
+    public putStockComida(stckC:stockComida): Observable<stockComida>{
+        let body = JSON.stringify(stckC);
+        return this.http.put<stockComida>(this.ApiUrl + 'stockComida/' + stckC.id + "/",body,this.httpOptions);
+    }
+
+    //POST
+    public postStockComida(stckC:stockComida): Observable<stockComida>{
+        let body = JSON.stringify(stckC);
+        return this.http.post<stockComida>(this.ApiUrl + 'stockComida/',body,this.httpOptions);
+    }  
+
+
+    
+    // ------------------------------------------------------------------------------------------------
+
+    //STOCK COMIDA
+    //GET 
+    public getStockBebida(): Observable<stockBebida[]> {
+        return this.http.get<stockBebida[]>(this.ApiUrl + 'stockBebida/');
+    }
+
+    //DELETE
+    public deleteStockBebida(id:string): Observable<void>{
+        return this.http.delete<void>(this.ApiUrl + 'stockBebida/' + id + "/");
+    }
+
+    //PUT
+    public putStockBebida(stckB:stockBebida): Observable<stockBebida>{
+        let body = JSON.stringify(stckB);
+        return this.http.put<stockBebida>(this.ApiUrl + 'stockBebida/' + stckB.id + "/",body,this.httpOptions);
+    }
+
+    //POST
+    public postStockBebida(stckB:stockBebida): Observable<stockBebida>{
+        let body = JSON.stringify(stckB);
+        return this.http.post<stockBebida>(this.ApiUrl + 'stockBebida/',body,this.httpOptions);
+    }  
+
+    
 
 
 }
