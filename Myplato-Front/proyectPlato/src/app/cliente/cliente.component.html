@@ -1,0 +1,84 @@
+<h1>CLIENTES</h1>
+<!-- READ -> Tabla -->
+<p-button label="Nuevo Cliente" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
+<p-table [value]="clientes" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template #header>
+        <tr>
+            <th style="width:20%">ID</th>
+            <th style="width:20%">USER</th>
+            <th style="width:20%">NOMBRE</th>
+            <th style="width:20%">APELLIDOS</th>
+            <th style="width:20%">DNI</th>
+            <th style="width:20%">CATEGORIA</th>
+            <th style="width:20%"></th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-cli let-ri="rowIndex">
+        <tr>
+            <td>{{ cli.id }}</td>
+            <td>{{ cli.user }}</td>
+            <td>{{ cli.nombre }}</td>
+            <td>{{ cli.apellidos }}</td>
+            <td>{{ cli.dni }}</td>
+            <td>{{ cli.nombre_categoria }}</td>
+            
+            <td>
+                <div class="flex items-center justify-center gap-2">
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-pencil"
+                        (click)="editarCliente(cli)"
+                        text
+                        rounded
+                        severity="secondary"
+                    ></button>
+                    <!-- DELETE -> Boton -->
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-times"
+                        (click)="eliminarCliente(cli)"
+                        text
+                        rounded
+                        severity="danger"
+                    ></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-dialog header="{{tituloDialogo}}" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+    <div class="flex items-center gap-4 mb-4">
+        <label for="user" class="font-semibold w-24">User</label>
+        <input pInputText id="user" class="flex-auto" autocomplete="off" [(ngModel)]="clienteDialogo.user"/>
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="cliente" class="font-semibold w-24">Nombre Cliente</label>
+        <input pInputText id="cliente" class="flex-auto" autocomplete="off" [(ngModel)]="clienteDialogo.nombre"/>
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="apellidos" class="font-semibold w-24">Apellidos Cliente</label>
+        <input pInputText id="apellidos" class="flex-auto" autocomplete="off" [(ngModel)]="clienteDialogo.apellidos"/>
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="dni" class="font-semibold w-24">DNI</label>
+        <input pInputText id="dni" class="flex-auto" autocomplete="off" [(ngModel)]="clienteDialogo.dni"/>
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="categoria" class="font-semibold w-24">Categoria</label>
+        <p-select id="categoria" [options]="categoria_Cliente" [(ngModel)]="categoriaClienteSeleccionado" optionLabel="nombre" placeholder="Seleccione una categoria" class="w-full md:w-56" />
+    </div>
+
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+        <p-button label="Guardar" (click)="guardarExtra()"/>
+    </div>
+</p-dialog>

@@ -60,8 +60,19 @@ export class AppComponent {
                       command: () => {
                      this.router.navigate(['/categoriaPlato']);}
                     },
+                    {
+                      label: 'Categoria Cliente',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/categoriaCliente']);}
+                    },
 
-
+                    {
+                      label: 'Cliente',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/cliente']);}
+                    },
 
                     ]
       },

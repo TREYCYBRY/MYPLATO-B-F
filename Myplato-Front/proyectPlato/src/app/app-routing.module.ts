@@ -8,6 +8,9 @@ import { CategoriaExtraComponent } from './categoria-extra/categoria-extra.compo
 import { UnidadComponent } from './unidad/unidad.component';
 import { ExtraComponent } from './extra/extra.component';
 import { CategoriaPlatoComponent } from './categoria-plato/categoria-plato.component';
+import { CategoriaClienteComponent } from './categoria-cliente/categoria-cliente.component';
+import { ClienteComponent } from './cliente/cliente.component';
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,6 +20,8 @@ const routes: Routes = [
   { path: 'extra', component: ExtraComponent },  
   { path: 'unidad', component: UnidadComponent},  
   {path: 'categoriaPlato', component: CategoriaPlatoComponent},
+  {path: 'categoriaCliente', component: CategoriaClienteComponent},
+  {path: 'cliente', component: ClienteComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
 ];
