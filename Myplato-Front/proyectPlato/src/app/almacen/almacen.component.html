@@ -1,26 +1,18 @@
-<h1>UNIDADES DE MEDIDA</h1> 
+<h1>ALMACEN</h1> 
 <!-- READ -> Tabla -->
 <p-button label="Nuevo Tipo" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
-<p-table [value]="unidades" [tableStyle]="{'min-width': '50rem'}">
+<p-table [value]="almacenes" [tableStyle]="{'min-width': '50rem'}">
     <ng-template #header>
         <tr>
             <th style="width:20%">ID</th>
-            <th style="width:20%">Unidad</th>
-            <th style="width:20%">Sigla</th>
+            <th style="width:20%">Nombre</th>
             <th style="width:20%"></th>
         </tr>
     </ng-template>
-    <ng-template #body let-unidad let-ri="rowIndex">
+    <ng-template #body let-almc let-ri="rowIndex">
         <tr>
-            <td>
-                {{ unidad.id }}
-            </td>
-            <td>
-                {{ unidad.unidad }}
-            </td>
-            <td>
-                {{ unidad.sigla }}
-            </td>
+            <td> {{ almc.id }} </td>
+            <td> {{ almc.nombre }} </td>
             <td>
                 <div class="flex items-center justify-center gap-2">
                     <button
@@ -28,7 +20,7 @@
                         pRipple
                         type="button"
                         icon="pi pi-pencil"
-                        (click)="editarUnidades(unidad)"
+                        (click)="editarAlmacenes(almc)"
                         text
                         rounded
                         severity="secondary"
@@ -39,7 +31,7 @@
                         pRipple
                         type="button"
                         icon="pi pi-times"
-                        (click)="eliminarUnidades(unidad)"
+                        (click)="eliminarAlmacenes(almc)"
                         text
                         rounded
                         severity="danger"
@@ -53,15 +45,12 @@
 <!-- CREATE y UPDATE -> Formulario -->
 <p-dialog header="{{tituloDialogo}}" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
     <div class="flex items-center gap-4 mb-4">
-        <label for="unidad" class="font-semibold w-24">Unidad</label>
-        <input pInputText id="unidad" class="flex-auto" autocomplete="off" [(ngModel)]="unidadDialogo.unidad"/>
+        <label for="nombre" class="font-semibold w-24">Nombre</label>
+        <input pInputText id="nombre" class="flex-auto" autocomplete="off" [(ngModel)]="almacenDialogo.nombre"/>
     </div>
-    <div class="flex items-center gap-4 mb-4">
-    <label for="sigla" class="font-semibold w-24">Sigla</label>
-    <input pInputText id="sigla" class="flex-auto" autocomplete="off" [(ngModel)]="unidadDialogo.sigla"/>
-    </div>
+
     <div class="flex justify-end gap-2">
         <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
-        <p-button label="Guardar" (click)="guardarUnidades()"/>
+        <p-button label="Guardar" (click)="guardarAlmacenes()"/>
     </div>
 </p-dialog>

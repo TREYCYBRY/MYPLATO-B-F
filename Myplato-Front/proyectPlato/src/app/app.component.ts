@@ -60,6 +60,43 @@ export class AppComponent {
                       command: () => {
                      this.router.navigate(['/categoriaPlato']);}
                     },
+                    {
+                      label: 'Categoria Cliente',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/categoriaCliente']);}
+                    },
+
+                    {
+                      label: 'Rol',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/rol']);}
+                    },
+                    {
+                      label: 'Bebida',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/bebida']);}
+                    },
+                    {
+                      label: 'Almacen',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/almacen']);}
+                    },
+                    {
+                      label: 'Stock Comida',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/stockComida']);}
+                    },
+                    {
+                      label: 'Stock Bebida',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/stockBebida']);}
+                    },
 
                     ]
       },
