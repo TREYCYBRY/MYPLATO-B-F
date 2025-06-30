@@ -4,19 +4,21 @@
 <p-table [value]="stockComidas" [tableStyle]="{'min-width': '50rem'}">
     <ng-template #header>
         <tr>
-            <th style="width:20%">ID</th>
-            <th style="width:20%">Extra</th>
-            <th style="width:20%">Almacen</th>
+            <th style="width:20%">Id Extra</th>
+            <th style="width:20%">Id Almacen</th>
             <th style="width:20%">Cantidad</th>
+            <th style="width:20%">Nombre Extra</th>
+            <th style="width:20%">Nombre Almacen</th>
             <th style="width:20%"></th>
         </tr>
     </ng-template>
     <ng-template #body let-stckC let-ri="rowIndex">
         <tr>
-            <td>{{ stckC.id }}</td>
             <td>{{ stckC.extra }}</td>
             <td>{{ stckC.almacen }}</td>
             <td>{{ stckC.cantidad }}</td>
+            <td>{{ stckC.extra_nombre }}</td>
+            <td>{{ stckC.almacen_nombre }}</td>
 
             <td>
                 <div class="flex items-center justify-center gap-2">
@@ -51,12 +53,12 @@
 
     <div class="flex items-center gap-4 mb-4">
         <label for="extra" class="font-semibold w-24">Extra</label>
-        <p-select id="extra" [options]="extras" [(ngModel)]="extraSeleccionado" optionLabel="nombre" placeholder="Seleccione un extra" class="w-full md:w-56" />
+        <p-select id="extra" [options]="extras" [(ngModel)]="extraSeleccionado" optionLabel="nombre" placeholder="Seleccione un extra" appendTo="body" class="w-full md:w-56" />
     </div>
 
     <div class="flex items-center gap-4 mb-4">
         <label for="almacen" class="font-semibold w-24">Almacen</label>
-        <p-select id="almacen" [options]="almacenes" [(ngModel)]="almacenSeleccionado" optionLabel="unidad" placeholder="Seleccione un elemento" class="w-full md:w-56" />
+        <p-select id="almacen" [options]="almacenes" [(ngModel)]="almacenSeleccionado" optionLabel="nombre" placeholder="Seleccione un almacen" appendTo="body" class="w-full md:w-56" />
     </div>
 
     <div class="flex items-center gap-4 mb-4">

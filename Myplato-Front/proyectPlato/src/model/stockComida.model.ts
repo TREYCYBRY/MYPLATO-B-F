@@ -1,6 +1,5 @@
 export class stockComida{
-    id: number;
-    extra: string;
-    almacen: string;
+    extra: number;
+    almacen: number;
     cantidad: number;
 }

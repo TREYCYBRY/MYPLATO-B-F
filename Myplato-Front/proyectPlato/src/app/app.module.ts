@@ -42,6 +42,7 @@ import { RolComponent } from './rol/rol.component';
 import { BebidaComponent } from './bebida/bebida.component';
 import { AlmacenComponent } from './almacen/almacen.component';
 import { StockComidaComponent } from './stock-comida/stock-comida.component';
+import { StockBebidaComponent } from './stock-bebida/stock-bebida.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { StockComidaComponent } from './stock-comida/stock-comida.component';
     BebidaComponent,
     AlmacenComponent,
     StockComidaComponent,
+    StockBebidaComponent,
     
   ],
   imports: [

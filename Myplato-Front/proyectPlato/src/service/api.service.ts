@@ -146,28 +146,30 @@ export class ApiService {
         return this.http.post<categoriaPlato>(this.ApiUrl + 'categoriaPlato/',body,this.httpOptions);
     }
 
+    
     // ------------------------------------------------------------------------------------------------
-    //CATEGORIA CLIENTES
+    //Categoria Clientes
     public getCategoriasClientes(): Observable<categoriaCliente[]> {
         return this.http.get<categoriaCliente[]>(this.ApiUrl + 'categoriaCliente/');
     }
 
-    //DELETE Categoria Clientes CRUD:Delete
+    //DELETE Categoria Platos CRUD:Delete
     public deleteCategoriaCliente(id:string): Observable<void>{
         return this.http.delete<void>(this.ApiUrl + 'categoriaCliente/' + id + "/");
     }
 
-    //PUT Categorias Clientes CRUD:Update
+    //PUT Categorias Platos CRUD:Update
     public putCategoriaCliente(cat:categoriaCliente): Observable<categoriaCliente>{
         let body = JSON.stringify(cat);
         return this.http.put<categoriaCliente>(this.ApiUrl + 'categoriaCliente/' + cat.id + "/",body,this.httpOptions);
     }
 
-    //POST Categorias Clientes CRUD:Create 
+    //POST Categorias Platos CRUD:Create 
     public postCategoriaCliente(cat:categoriaCliente): Observable<categoriaCliente>{
         let body = JSON.stringify(cat);
         return this.http.post<categoriaCliente>(this.ApiUrl + 'categoriaCliente/',body,this.httpOptions);
     }
+
     // ------------------------------------------------------------------------------------------------
     
     //Roles
@@ -253,14 +255,14 @@ export class ApiService {
     }
 
     //DELETE
-    public deleteStockComida(id:string): Observable<void>{
-        return this.http.delete<void>(this.ApiUrl + 'stockComida/' + id + "/");
+    public deleteStockComida(extra_id: number,almacen_id: number): Observable<void>{
+        return this.http.delete<void>(`${this.ApiUrl}stockComida/${extra_id}_${almacen_id}/`);
     }
 
     //PUT
     public putStockComida(stckC:stockComida): Observable<stockComida>{
         let body = JSON.stringify(stckC);
-        return this.http.put<stockComida>(this.ApiUrl + 'stockComida/' + stckC.id + "/",body,this.httpOptions);
+        return this.http.put<stockComida>(`${this.ApiUrl}stockComida/${stckC.extra}_${stckC.almacen}/`,body,this.httpOptions);
     }
 
     //POST
@@ -280,14 +282,14 @@ export class ApiService {
     }
 
     //DELETE
-    public deleteStockBebida(id:string): Observable<void>{
-        return this.http.delete<void>(this.ApiUrl + 'stockBebida/' + id + "/");
+    public deleteStockBebida(bebida_id: number,almacen_id: number): Observable<void>{
+        return this.http.delete<void>(`${this.ApiUrl}stockBebida/${bebida_id}_${almacen_id}/`);
     }
 
     //PUT
     public putStockBebida(stckB:stockBebida): Observable<stockBebida>{
         let body = JSON.stringify(stckB);
-        return this.http.put<stockBebida>(this.ApiUrl + 'stockBebida/' + stckB.id + "/",body,this.httpOptions);
+        return this.http.put<stockBebida>(`${this.ApiUrl}stockBebida/${stckB.bebida}_${stckB.almacen}/`,body,this.httpOptions);
     }
 
     //POST
@@ -297,5 +299,6 @@ export class ApiService {
     }  
 
     
+
 
 }
