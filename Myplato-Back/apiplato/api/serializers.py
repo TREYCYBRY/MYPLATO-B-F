@@ -41,8 +41,6 @@ class  UsuarioSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class  ClienteSerializer(serializers.ModelSerializer):
-    nombre_categoria = serializers.ReadOnlyField(source='idcategoria_cliente.nombre')
-    user = serializers.ReadOnlyField(source = 'usuario.objects')
     class Meta:
         model= models.Cliente
         fields='__all__'

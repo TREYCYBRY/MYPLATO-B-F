@@ -7,7 +7,6 @@ import { unidadMedida } from "../model/unidadMedida.model";
 import { extra } from "../model/extra.model";
 import { categoriaPlato } from "../model/categoriaPlato.model";
 import { categoriaCliente } from "../model/categoriaCliente.model";
-import { cliente } from "../model/cliente.model";
 
 @Injectable({
   providedIn: "root"
@@ -148,44 +147,22 @@ export class ApiService {
         return this.http.get<categoriaCliente[]>(this.ApiUrl + 'categoriaCliente/');
     }
 
-    //DELETE Categoria Platos CRUD:Delete
+    //DELETE Categoria Clientes CRUD:Delete
     public deleteCategoriaCliente(id:string): Observable<void>{
         return this.http.delete<void>(this.ApiUrl + 'categoriaCliente/' + id + "/");
     }
 
-    //PUT Categorias Platos CRUD:Update
+    //PUT Categorias Clientes CRUD:Update
     public putCategoriaCliente(cat:categoriaCliente): Observable<categoriaCliente>{
         let body = JSON.stringify(cat);
         return this.http.put<categoriaCliente>(this.ApiUrl + 'categoriaCliente/' + cat.id + "/",body,this.httpOptions);
     }
 
-    //POST Categorias Platos CRUD:Create 
+    //POST Categorias Clientes CRUD:Create 
     public postCategoriaCliente(cat:categoriaCliente): Observable<categoriaCliente>{
         let body = JSON.stringify(cat);
         return this.http.post<categoriaCliente>(this.ApiUrl + 'categoriaCliente/',body,this.httpOptions);
     }
 
 
-     //CLIENTES--------------------------------------------------------------------------------------------
-    //GET Extras CRUD:Select READ
-    public getCliente(): Observable<cliente[]> {
-        return this.http.get<cliente[]>(this.ApiUrl + 'cliente/');
-    }
-
-    //DELETE Producto CRUD:Delete
-    public deleteCliente(id:string): Observable<void>{
-        return this.http.delete<void>(this.ApiUrl + 'cliente/' + id + "/");
-    }
-
-    //PUT Producto CRUD:Update
-    public putCliente(cli:cliente): Observable<cliente>{
-        let body = JSON.stringify(cli);
-        return this.http.put<cliente>(this.ApiUrl + 'cliente/' + cli.id + "/",body,this.httpOptions);
-    }
-
-    //POST Producto CRUD:Create
-    public postCliente(cli:cliente): Observable<cliente>{
-        let body = JSON.stringify(cli);
-        return this.http.post<cliente>(this.ApiUrl + 'cliente/',body,this.httpOptions);
-    }
 }
