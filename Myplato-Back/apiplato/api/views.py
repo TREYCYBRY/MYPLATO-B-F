@@ -10,6 +10,7 @@ from rest_framework.decorators import action
 from rest_framework import permissions
 from rest_framework.response import Response
 
+
 class CategoriaExtraViewSet(viewsets.ModelViewSet):
     queryset = models.CategoriaExtra.objects.all()
     serializer_class = serializers.CategoriaExtraSerializer

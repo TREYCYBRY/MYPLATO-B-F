@@ -12,6 +12,7 @@ import { bebida } from "../model/bebida.model";
 import { almacen } from "../model/almacen.model";
 import { stockComida } from "../model/stockComida.model";
 import { stockBebida } from "../model/stockBebida.model";
+import { extraPlato } from "../model/extraPlato.model";
 
 @Injectable({
   providedIn: "root"
@@ -260,7 +261,7 @@ export class ApiService {
     }
 
     //PUT
-    public putStockComida(stckC:stockComida): Observable<stockComida>{
+    public putStockComida(stckC: stockComida): Observable<stockComida>{
         let body = JSON.stringify(stckC);
         return this.http.put<stockComida>(this.ApiUrl + 'stockComida/' + stckC.id + "/",body,this.httpOptions);
     }
@@ -275,7 +276,7 @@ export class ApiService {
     
     // ------------------------------------------------------------------------------------------------
 
-    //STOCK COMIDA
+    //STOCK BEBIDA
     //GET 
     public getStockBebida(): Observable<stockBebida[]> {
         return this.http.get<stockBebida[]>(this.ApiUrl + 'stockBebida/');
@@ -287,7 +288,7 @@ export class ApiService {
     }
 
     //PUT
-    public putStockBebida(stckB:stockBebida): Observable<stockBebida>{
+    public putStockBebida(stckB: stockBebida): Observable<stockBebida>{
         let body = JSON.stringify(stckB);
         return this.http.put<stockBebida>(this.ApiUrl + 'stockBebida/' + stckB.id + "/",body,this.httpOptions);
     }
@@ -298,7 +299,30 @@ export class ApiService {
         return this.http.post<stockBebida>(this.ApiUrl + 'stockBebida/',body,this.httpOptions);
     }  
 
+
+    //EXTRA-PLATO --------------------------------------------------------------------------------------------
+    public getExtraPlato(): Observable<extraPlato[]> {
+        return this.http.get<extraPlato[]>(this.ApiUrl + 'extraPlato/');
+    }
+
+    //DELETE
+    public deleteExtraPlato(id: string): Observable<void> {
+        return this.http.delete<void>(this.ApiUrl + 'extraPlato/' + id + '/');
+    }
+
+    //PUT
+    public putExtraPlato(ep: extraPlato): Observable<extraPlato> {
+        let body = JSON.stringify(ep);
+        return this.http.put<extraPlato>(this.ApiUrl + 'extraPlato/' + ep.id + '/', body, this.httpOptions);
+    }
+    //POST
+    public postExtraPlato(ep: extraPlato): Observable<extraPlato> {
+        let body = JSON.stringify(ep);
+        return this.http.post<extraPlato>(this.ApiUrl + 'extraPlato/', body, this.httpOptions);
+}
+
+}
+
     
 
 
-}

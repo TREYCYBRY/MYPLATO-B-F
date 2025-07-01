@@ -15,21 +15,22 @@ import { stockComida } from '../../model/stockComida.model';
 export class StockComidaComponent {
   constructor(private api:ApiService) {}
 
-  stockComidas:stockComida[];
-  visible:boolean = false;
-  nuevoStockComida:boolean = true;
-  stockComidaDialogo:stockComida = new stockComida();
+  stockComidas:stockComida[] = [];
+  
+  visible = false;
+  nuevoRegistro = true;
+  stockComidaDialogo: stockComida = new stockComida();
   tituloDialogo:string = "Nuevo Stock de Comida";
 
-  extras: extra [];
+  extras: extra [] = [];
   extraSeleccionado:extra;
 
-  almacenes:almacen [];
+  almacenes:almacen [] = [];
   almacenSeleccionado:almacen;
 
   abrirDialogo(){
     this.visible = true;
-    this.nuevoStockComida = true;
+    this.nuevoRegistro = true;
     this.stockComidaDialogo = new stockComida();
   }
 
@@ -58,7 +59,7 @@ export class StockComidaComponent {
 
   editarStockComida(stckC:stockComida){
     this.stockComidaDialogo = {...stckC};
-    this.nuevoStockComida = false;
+    this.nuevoRegistro = false;
     this.visible = true;
   }
 
@@ -69,10 +70,10 @@ export class StockComidaComponent {
   }
 
 guardarStockComida(){
-    this.stockComidaDialogo.extra = this.extraSeleccionado.id.toString();
-    this.stockComidaDialogo.almacen = this.almacenSeleccionado.id.toString();
+    this.stockComidaDialogo.extra = this.extraSeleccionado.id;
+    this.stockComidaDialogo.almacen = this.almacenSeleccionado.id;
 
-    if (this.nuevoStockComida){
+    if (this.nuevoRegistro){
       this.api.postStockComida(this.stockComidaDialogo).subscribe(res => {
         this.obtenerStockComida();
       });

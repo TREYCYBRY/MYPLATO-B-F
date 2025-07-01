@@ -1,0 +1,72 @@
+<h1>EXTRAS - PLATO</h1>
+<!-- READ -> Tabla -->
+<p-button label="Nuevo Registro" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
+<p-table [value]="extraPlatos" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template #header>
+        <tr>
+            <th style="width:20%">ID</th>
+            <th style="width:20%">NOMBRE DEL PLATO</th>
+            <th style="width:20%">NOMBRE DEL EXTRA</th>
+            <th style="width:20%">CANTIDAD DE PORCIONES</th>
+            <th style="width:20%"></th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-ep let-ri="rowIndex">
+        <tr>
+            <td>{{ ep.id }}</td>
+            <td>{{ ep.plato_nombre }}</td>
+            <td>{{ ep.extra_nombre }}</td>
+            <td>{{ ep.cantidadPorciones }}</td>
+            
+            
+            <td>
+                <div class="flex items-center justify-center gap-2">
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-pencil"
+                        (click)="editarExtraPlato(ep)"
+                        text
+                        rounded
+                        severity="secondary"
+                    ></button>
+                    <!-- DELETE -> Boton -->
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-times"
+                        (click)="eliminarExtraPlato(ep)"
+                        text
+                        rounded
+                        severity="danger"
+                    ></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-dialog header="{{tituloDialogo}}" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+    
+    <div class="flex items-center gap-4 mb-4">
+        <label for="id_plato" class="font-semibold w-24">Plato</label>
+        <p-select id="id_plato" [options]="platos" [(ngModel)]="platoSeleccionado" optionLabel="nombre" placeholder="Seleccione un plato" class="w-full md:w-56" />
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="id_extra" class="font-semibold w-24">Extra</label>
+        <p-select id="id_extra" [options]="extras" [(ngModel)]="extraSeleccionado" optionLabel="nombre" placeholder="Seleccione un extra" class="w-full md:w-56" />
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="cantidadPorciones" class="font-semibold w-24">Porciones</label>
+        <input pInputText type="number" id="cantidadPorciones" class="flex-auto" autocomplete="off" [(ngModel)]="extraPlatoDialogo.cantidadPorciones"/>
+    </div>
+
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+        <p-button label="Guardar" (click)="guardarExtraPlato()"/>
+    </div>
+</p-dialog>

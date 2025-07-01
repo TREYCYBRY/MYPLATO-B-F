@@ -1,0 +1,74 @@
+<h1>STOCK BEBIDA</h1>
+<!-- READ -> Tabla -->
+<p-button label="Nuevo Stock de Bebida" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
+<p-table [value]="stockBebidas" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template #header>
+        <tr>
+            <th style="width:20%">Id Bebida</th>
+            <th style="width:20%">Id Almacen</th>
+            <th style="width:20%">Cantidad</th>
+            <th style="width:20%">Nombre Bebida</th>
+            <th style="width:20%">Nombre Almacen</th>
+            <th style="width:20%"></th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-stckB let-ri="rowIndex">
+        <tr>
+            <td>{{ stckB.bebida }}</td>
+            <td>{{ stckB.almacen }}</td>
+            <td>{{ stckB.cantidad }}</td>
+            <td>{{ stckB.bebida_nombre }}</td>
+            <td>{{ stckB.almacen_nombre }}</td>
+
+            <td>
+                <div class="flex items-center justify-center gap-2">
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-pencil"
+                        (click)="editarStockBebida(stckB)"
+                        text
+                        rounded
+                        severity="secondary"
+                    ></button>
+                    <!-- DELETE -> Boton -->
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-times"
+                        (click)="eliminarStockBebida(stckB)"
+                        text
+                        rounded
+                        severity="danger"
+                    ></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-dialog header="{{tituloDialogo}}" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="bebida" class="font-semibold w-24">Bebida</label>
+        <p-select id="bebida" [options]="bebidas" [(ngModel)]="bebidaSeleccionado" optionLabel="nombre" placeholder="Seleccione una bebida" appendTo="body" class="w-full md:w-56" />
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="almacen" class="font-semibold w-24">Almacen</label>
+        <p-select id="almacen" [options]="almacenes" [(ngModel)]="almacenSeleccionado" optionLabel="nombre" placeholder="Seleccione un almacen" appendTo="body" class="w-full md:w-56" />
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="cantidad" class="font-semibold w-24">Cantidad</label>
+        <input pInputText type="number" id="cantidad" class="flex-auto" autocomplete="off" [(ngModel)]="stockBebidaDialogo.cantidad"/>
+    </div>
+
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+        <p-button label="Guardar" (click)="guardarStockBebida()"/>
+    </div>
+    
+</p-dialog>

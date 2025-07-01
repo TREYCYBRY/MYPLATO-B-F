@@ -97,7 +97,12 @@ export class AppComponent {
                       command: () => {
                      this.router.navigate(['/stockBebida']);}
                     },
-
+                    {
+                      label: 'Extra - Plato',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/extraPlato']);}
+                    },
 
 
                     ]
