@@ -91,10 +91,11 @@ class  BebidaPedidoSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class ExtraPlatoSerializer(serializers.ModelSerializer):
-    
+    plato_nombre = serializers.ReadOnlyField(source='id_plato.nombre')
+    extra_nombre = serializers.ReadOnlyField(source='id_extra.nombre')
     class Meta:
         model= models.ExtraPlato
-        fields='__all__'
+        fields = '__all__'
 
 class AlmacenSerializer(serializers.ModelSerializer):
     class Meta:
@@ -109,7 +110,7 @@ class StockComidaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.StockComida
-        fields = ['extra','almacen','cantidad','extra_nombre', 'almacen_nombre']
+        fields = '__all__'
 
 class StockBebidaSerializer(serializers.ModelSerializer):
     bebida = serializers.PrimaryKeyRelatedField(queryset=models.Bebida.objects.all())
@@ -119,4 +120,4 @@ class StockBebidaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.StockBebida
-        fields = ['bebida','almacen','cantidad','bebida_nombre','almacen_nombre']
+        fields = '__all__'

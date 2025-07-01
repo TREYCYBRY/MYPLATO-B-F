@@ -283,14 +283,14 @@ export class ApiService {
     }
 
     //DELETE
-    public deleteStockBebida(bebida_id: number,almacen_id: number): Observable<void>{
-        return this.http.delete<void>(`${this.ApiUrl}stockBebida/${bebida_id}_${almacen_id}/`);
+    public deleteStockBebida(id:string): Observable<void>{
+        return this.http.delete<void>(this.ApiUrl + 'stockBebida/' + id + "/");
     }
 
     //PUT
-    public putStockBebida(stckB:stockBebida): Observable<stockBebida>{
+    public putStockBebida(stckB: stockBebida): Observable<stockBebida>{
         let body = JSON.stringify(stckB);
-        return this.http.put<stockBebida>(`${this.ApiUrl}stockBebida/${stckB.bebida}_${stckB.almacen}/`,body,this.httpOptions);
+        return this.http.put<stockBebida>(this.ApiUrl + 'stockBebida/' + stckB.id + "/",body,this.httpOptions);
     }
 
     //POST
@@ -298,7 +298,6 @@ export class ApiService {
         let body = JSON.stringify(stckB);
         return this.http.post<stockBebida>(this.ApiUrl + 'stockBebida/',body,this.httpOptions);
     }  
-
 
 
     //EXTRA-PLATO --------------------------------------------------------------------------------------------

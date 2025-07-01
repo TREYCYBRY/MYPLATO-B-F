@@ -5,8 +5,8 @@
     <ng-template #header>
         <tr>
             <th style="width:20%">ID</th>
-            <th style="width:20%">PLATO</th>
-            <th style="width:20%">EXTRA</th>
+            <th style="width:20%">NOMBRE DEL PLATO</th>
+            <th style="width:20%">NOMBRE DEL EXTRA</th>
             <th style="width:20%">CANTIDAD DE PORCIONES</th>
             <th style="width:20%"></th>
         </tr>
@@ -14,9 +14,10 @@
     <ng-template #body let-ep let-ri="rowIndex">
         <tr>
             <td>{{ ep.id }}</td>
-            <td>{{ ep.id_plato }}</td>
-            <td>{{ ep.id_extra }}</td>
+            <td>{{ ep.plato_nombre }}</td>
+            <td>{{ ep.extra_nombre }}</td>
             <td>{{ ep.cantidadPorciones }}</td>
+            
             
             <td>
                 <div class="flex items-center justify-center gap-2">

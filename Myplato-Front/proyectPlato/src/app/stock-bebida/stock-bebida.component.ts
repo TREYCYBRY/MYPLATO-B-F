@@ -64,7 +64,7 @@ export class StockBebidaComponent {
   }
 
   eliminarStockBebida(stckB:stockBebida){
-    this.api.deleteStockBebida(stckB.bebida, stckB.almacen).subscribe(() => {
+    this.api.deleteStockBebida(stckB.id.toString()).subscribe(() => {
       this.obtenerStockBebida();
     });
   }
