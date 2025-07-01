@@ -64,7 +64,7 @@ export class StockComidaComponent {
   }
 
   eliminarStockComida(stckC:stockComida){
-    this.api.deleteStockComida(stckC.extra, stckC.almacen).subscribe(() => {
+    this.api.deleteStockComida(stckC.id.toString()).subscribe(() => {
       this.obtenerStockComida();
     });
   }

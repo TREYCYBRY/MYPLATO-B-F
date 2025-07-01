@@ -91,6 +91,7 @@ class  BebidaPedidoSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class ExtraPlatoSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model= models.ExtraPlato
         fields='__all__'
