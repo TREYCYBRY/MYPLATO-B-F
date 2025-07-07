@@ -102,6 +102,8 @@ export class ApiService {
 
     //EXTRAS--------------------------------------------------------------------------------------------
     //GET Extras CRUD:Select READ
+    //EXTRAS--------------------------------------------------------------------------------------------
+    //GET Extras CRUD:Select READ
     public getExtra(): Observable<extra[]> {
         return this.http.get<extra[]>(this.ApiUrl + 'extra/');
     }
@@ -122,6 +124,16 @@ export class ApiService {
         let body = JSON.stringify(ex);
         return this.http.post<extra>(this.ApiUrl + 'extra/',body,this.httpOptions);
     }
+
+    public putExtraImagen(ex:FormData,id:string): Observable<extra>{
+        return this.http.put<extra>(this.ApiUrl + 'extra/' + id + "/",ex);
+    }
+
+    //POST Producto CRUD:Create
+    public postExtraImagen(ex:FormData): Observable<extra>{
+        return this.http.post<extra>(this.ApiUrl + 'extra/',ex);
+    }
+
 
     // ------------------------------------------------------------------------------------------------
     

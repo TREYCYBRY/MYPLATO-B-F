@@ -21,10 +21,9 @@
             <td>{{ ex.precioporPorcion }}</td>
             <td>{{ ex.descripcion }}</td>
             <td>{{ ex.nombre_categoria }}</td>
-            <td>{{ ex.unidad }}</td>
+            <td>{{ ex.nombre_unidad }}</td>
             <td>
-                <img
-                    [src]="ex.imagen"
+                <img src="{{ex.imagen}}"
                     alt="Imagen del producto"
                     style="width: 50px; height: 50px; object-fit: cover"
                 />
@@ -64,8 +63,8 @@
         <input pInputText id="extra" class="flex-auto" autocomplete="off" [(ngModel)]="extraDialogo.nombre"/>
     </div>
     <div class="flex items-center gap-4 mb-4">
-    <label for="precio" class="font-semibold w-24">PRECIO POR PORCION</label>
-    <input pInputText type="number" id="precio" class="flex-auto" autocomplete="off" [(ngModel)]="extraDialogo.precioporPorcion"/>
+        <label for="precio" class="font-semibold w-24">PRECIO POR PORCION</label>
+        <input pInputText type="number" id="precio" class="flex-auto" autocomplete="off" [(ngModel)]="extraDialogo.precioporPorcion"/>
     </div>
 
     <div class="flex items-center gap-4 mb-4">
@@ -79,7 +78,7 @@
     </div>
 
     <div class="flex items-center gap-4 mb-4">
-        <label for="unidad" class="font-semibold w-24">Unidad de Medida</label>
+        <label for="unidad" class="font-semibold w-24">Unidad</label>
         <p-select id="unidad" [options]="unidades" [(ngModel)]="unidadSeleccionada" optionLabel="unidad" placeholder="Seleccione una unidad" class="w-full md:w-56" />
     </div>
 
