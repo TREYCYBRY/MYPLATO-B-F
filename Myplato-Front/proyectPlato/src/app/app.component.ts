@@ -112,7 +112,7 @@ export class AppComponent {
                 label: 'Logout',
                 icon: 'pi pi-close',
                 command: () => {
-                    this.router.navigate(['/login']);
+                    this.router.navigate(['/admin-login']);
                     localStorage.removeItem('token')
                     
                     }
