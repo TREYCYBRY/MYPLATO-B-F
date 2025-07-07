@@ -103,6 +103,18 @@ export class AppComponent {
                       command: () => {
                      this.router.navigate(['/extraPlato']);}
                     },
+                    {
+                      label: 'Pedido',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/pedido']);}
+                    },
+                    {
+                      label: 'PlatoPedido',
+                      icon: 'pi pi-fw pi-plus',
+                      command: () => {
+                     this.router.navigate(['/PlatoPedido']);}
+                    },
 
 
                     ]

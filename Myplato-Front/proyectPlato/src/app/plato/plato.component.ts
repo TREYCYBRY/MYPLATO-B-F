@@ -29,6 +29,7 @@ export class PlatoComponent {
     this.platoDialogo = new Plato();
   }
 
+  
   obtenerPlato(){
     this.api.getPlatos().subscribe(res => {
       this.platos = res;

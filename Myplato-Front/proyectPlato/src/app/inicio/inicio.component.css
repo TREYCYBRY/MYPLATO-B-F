@@ -1,0 +1,34 @@
+.hero-container {
+  position: relative;
+  height: 100vh;
+  background-image: url('/assets/img/hero-bg.jpg'); /* Cambia por tu ruta de imagen */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.hero-button {
+  margin-top: 20px;
+}

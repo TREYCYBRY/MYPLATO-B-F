@@ -16,6 +16,8 @@ import { StockComidaComponent } from './stock-comida/stock-comida.component';
 import { StockBebidaComponent } from './stock-bebida/stock-bebida.component';
 import { extraPlato } from '../model/extraPlato.model';
 import { ExtraPlatoComponent } from './extra-plato/extra-plato.component';
+import { PedidoComponent } from './pedido/pedido.component';
+import { PlatoPedidoComponent } from './plato-pedido/plato-pedido.component';
 
 
 const routes: Routes = [
@@ -27,7 +29,10 @@ const routes: Routes = [
   { path: 'unidad', component: UnidadComponent},  
   { path: 'categoriaPlato', component: CategoriaPlatoComponent},
   { path: 'categoriaCliente', component: CategoriaClienteComponent },
+  {path: 'pedido', component: PedidoComponent},
+  { path: 'PlatoPedido', component: PlatoPedidoComponent},
 
+  
   { path: 'bebida', component:BebidaComponent },
   { path: 'almacen', component:AlmacenComponent },  
   { path: 'rol', component: RolComponent },
@@ -36,6 +41,7 @@ const routes: Routes = [
   { path: 'extraPlato', component: ExtraPlatoComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
+  
 ];
 
 

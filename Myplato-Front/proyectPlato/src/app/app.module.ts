@@ -44,6 +44,8 @@ import { AlmacenComponent } from './almacen/almacen.component';
 import { StockComidaComponent } from './stock-comida/stock-comida.component';
 import { StockBebidaComponent } from './stock-bebida/stock-bebida.component';
 import { ExtraPlatoComponent } from './extra-plato/extra-plato.component';
+import { PedidoComponent } from './pedido/pedido.component';
+import { PlatoPedidoComponent } from './plato-pedido/plato-pedido.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { ExtraPlatoComponent } from './extra-plato/extra-plato.component';
     StockComidaComponent,
     StockBebidaComponent,
     ExtraPlatoComponent,
+    PedidoComponent,
+    PlatoPedidoComponent,
     
   ],
   imports: [
