@@ -356,12 +356,12 @@ export class ApiService {
     }
 
     //PUT
-    public putPlatoPedido(pp: extraPlato): Observable<PlatoPedido> {
+    public putPlatoPedido(pp: PlatoPedido): Observable<PlatoPedido> {
         let body = JSON.stringify(pp);
         return this.http.put<PlatoPedido>(this.ApiUrl + 'PlatoPedido/' + pp.id + '/', body, this.httpOptions);
     }
     //POST
-    public postPlatoPedido(pp: extraPlato): Observable<PlatoPedido> {
+    public postPlatoPedido(pp: PlatoPedido): Observable<PlatoPedido> {
         let body = JSON.stringify(pp);
         return this.http.post<PlatoPedido>(this.ApiUrl + 'PlatoPedido/', body, this.httpOptions);
     }

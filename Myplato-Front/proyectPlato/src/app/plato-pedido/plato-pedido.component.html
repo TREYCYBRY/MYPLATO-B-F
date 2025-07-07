@@ -1,1 +1,100 @@
-<p>plato-pedido works!</p>
+<h1>PLATO - PEDIDO</h1>
+
+<!-- Botón para abrir el diálogo -->
+<p-button label="Nuevo Plato-Pedido" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
+
+<!-- Tabla de registros -->
+<p-table [value]="platoPedidos" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template #header>
+        <tr>
+            <th style="width:15%">Pedido</th>
+            <th style="width:15%">Plato</th>
+            <th style="width:15%">Precio Base</th>
+            <th style="width:15%">Precio Final</th>
+            <th style="width:15%">Tipo</th>
+            <th style="width:25%"></th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-pp>
+        <tr>
+            <td>{{ pp.pedido_nombre }}</td>
+            <td>{{ pp.plato_nombre }}</td>
+            <td>{{ pp.precioBasePlato }}</td>
+            <td>{{ pp.precioFinalPlato }}</td>
+            <td>{{ pp.tipoPedido }}</td>
+            <td>
+                <div class="flex items-center justify-center gap-2">
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-pencil"
+                        (click)="editarPlatoPedido(pp)"
+                        text
+                        rounded
+                        severity="secondary"
+                    ></button>
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-times"
+                        (click)="eliminarPlatoPedido(pp)"
+                        text
+                        rounded
+                        severity="danger"
+                    ></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- Diálogo -->
+<p-dialog header="{{ tituloDialogo }}" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <div class="flex items-center gap-4 mb-4">
+        <label for="pedido" class="font-semibold w-28">Pedido</label>
+        <p-dropdown
+            id="pedido"
+            [options]="pedidos"
+            [(ngModel)]="pedidoSeleccionado"
+            optionLabel="nombre"
+            placeholder="Seleccione un pedido"
+            appendTo="body"
+            class="w-full md:w-60"
+        />
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="plato" class="font-semibold w-28">Plato</label>
+        <p-dropdown
+            id="plato"
+            [options]="platos"
+            [(ngModel)]="platoSeleccionado"
+            optionLabel="nombre"
+            placeholder="Seleccione un plato"
+            appendTo="body"
+            class="w-full md:w-60"
+        />
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="precioBase" class="font-semibold w-28">Precio Base</label>
+        <input pInputText type="number" id="precioBase" class="flex-auto" [(ngModel)]="platoPedidoDialogo.precioBasePlato" />
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="precioFinal" class="font-semibold w-28">Precio Final</label>
+        <input pInputText type="number" id="precioFinal" class="flex-auto" [(ngModel)]="platoPedidoDialogo.precioFinalPlato" />
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="tipoPedido" class="font-semibold w-28">Tipo Pedido</label>
+        <input pInputText type="text" id="tipoPedido" class="flex-auto" [(ngModel)]="platoPedidoDialogo.tipoPedido" />
+    </div>
+
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+        <p-button label="Guardar" (click)="guardarPlatoPedido()" />
+    </div>
+</p-dialog>
