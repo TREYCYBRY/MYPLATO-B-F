@@ -110,6 +110,13 @@ export class AppComponent {
               this.router.navigate(['/empleado']);
             },
           },
+          {
+            label: 'Mesas',
+            icon: 'pi pi-fw pi-plus',
+            command: () => {
+              this.router.navigate(['/mesa']);
+            },
+          },
 
 
                     ]

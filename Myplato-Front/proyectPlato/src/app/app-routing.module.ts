@@ -20,6 +20,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { InicioUsuarioComponent } from './inicio-usuario/inicio-usuario.component';
 import { RegistroClienteComponent } from './registro-cliente/registro-cliente.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
+import { MesaComponent } from './mesa/mesa.component';
 
 
 const routes: Routes = [
@@ -41,7 +42,10 @@ const routes: Routes = [
   {path: 'admin-login', component: AdminLoginComponent},
   {path: 'inicio-usuario',component:InicioUsuarioComponent},
   {path: 'registro-cliente', component: RegistroClienteComponent},
-  {path: 'empleado', component: EmpleadoComponent}
+  {path: 'empleado', component: EmpleadoComponent},
+  {path: 'mesa', component: MesaComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full' },
+  {path: '**', redirectTo: '/login' } // Redirige cualquier ruta desconocida al login
 ];
 
 

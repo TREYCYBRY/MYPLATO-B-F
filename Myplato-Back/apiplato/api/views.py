@@ -62,13 +62,12 @@ class RolViewSet(viewsets.ModelViewSet):
 class EmpleadoViewSet(viewsets.ModelViewSet):
     queryset = Empleado.objects.all()
     serializer_class = EmpleadoSerializer
-
+    
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
 
         if not serializer.is_valid():
-            # 🔍 Este print te mostrará exactamente por qué falla
-            print("❌ Errores del serializer:", serializer.errors)
+            print(" Errores:", serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         self.perform_create(serializer)

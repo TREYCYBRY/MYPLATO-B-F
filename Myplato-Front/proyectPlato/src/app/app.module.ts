@@ -48,6 +48,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { RegistroClienteComponent } from './registro-cliente/registro-cliente.component';
 import { InicioUsuarioComponent } from './inicio-usuario/inicio-usuario.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
+import { MesaComponent } from './mesa/mesa.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { EmpleadoComponent } from './empleado/empleado.component';
     RegistroClienteComponent,
     InicioUsuarioComponent,
     EmpleadoComponent,
+    MesaComponent,
     
   ],
   imports: [

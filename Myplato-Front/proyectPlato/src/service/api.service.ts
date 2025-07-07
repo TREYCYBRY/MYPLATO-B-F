@@ -14,6 +14,7 @@ import { stockComida } from "../model/stockComida.model";
 import { stockBebida } from "../model/stockBebida.model";
 import { extraPlato } from "../model/extraPlato.model";
 import { Empleado } from "../model/empleado.model";
+import { mesa } from "../model/mesa.model";
 
 @Injectable({
   providedIn: "root"
@@ -350,7 +351,24 @@ public deleteEmpleado(id: string): Observable<void> {
   return this.http.delete<void>(this.ApiUrl + 'empleados/' + id + "/");
 }
 
+//Mesa
+    public getMesas(): Observable<mesa[]> {
+        return this.http.get<mesa[]>(this.ApiUrl + 'mesas/');
+    }
 
+    public deleteMesa(id: string): Observable<void> {
+        return this.http.delete<void>(this.ApiUrl + 'mesas/' + id + '/');
+    }
+
+    public putMesa(ms: mesa): Observable<mesa> {
+        let body = JSON.stringify(ms);
+        return this.http.put<mesa>(this.ApiUrl + 'mesas/' + ms.id + '/', body, this.httpOptions);
+    }
+
+    public postMesa(ms: mesa): Observable<mesa> {
+        let body = JSON.stringify(ms);
+        return this.http.post<mesa>(this.ApiUrl + 'mesas/', body, this.httpOptions);
+    }
 
 }
 
