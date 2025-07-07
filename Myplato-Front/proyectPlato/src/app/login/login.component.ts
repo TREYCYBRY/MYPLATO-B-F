@@ -14,17 +14,26 @@ export class LoginComponent {
       username='';
       password='';
       error='';
+      showMenu: boolean = false;
       login(){
         this.auth.login(this.username,this.password).subscribe({
           next:(res:any)=>{
             localStorage.setItem('token',res.token);
-            this.router.navigate(['/inicio']);
+            this.router.navigate(['/inicio-usuario']);
           },
           error:()=>{
             this.error='Usuario y/o contraseña incorrectos';
           }
         })
+        this.showMenu = false;
       }
-      
-    
+      goToAdminLogin() {
+      this.router.navigate(['/admin-login']);}
+      goToRegister() {
+  this.router.navigate(['/registro-cliente']);
 }
+
+}
+
+      
+  

@@ -1,15 +1,18 @@
+
+
 <div class="login-bg d-flex justify-content-center align-items-center vh-100 position-relative">
-  
-  <!-- Botón admin arriba a la derecha -->
+  <!-- Botón para volver a login cliente -->
   <button 
-    class="btn-admin position-absolute"
-    (click)="goToAdminLogin()">
-    ¿Eres admin?
+    class="btn-admin position-absolute" 
+    (click)="goToUserLogin()">
+    ¿Eres cliente?
   </button>
 
-  <!-- Tarjeta de login -->
+  <!-- Menú admin solo si está logueado -->
+  <p-menubar *ngIf="showMenu" [model]="items" class="admin-menu"></p-menubar>
+
   <div class="col-11 col-sm-8 col-md-6 col-lg-4">
-    <p-card header="Iniciar Sesión" class="text-center shadow p-4">
+    <p-card header="Login Administrador" class="text-center shadow p-4">
       <form class="p-fluid" (ngSubmit)="login()">
         <div class="form-group mb-3 text-start">
           <label for="username" class="form-label">Usuario</label>
@@ -21,16 +24,7 @@
         </div>
         <button pButton type="submit" label="Ingresar" class="w-100 mt-2"></button>
         <p-message *ngIf="error" severity="error" text="{{ error }}" class="mt-3"></p-message>
-  <!-- Botón para registrarse como cliente -->
-<button 
-  class="btn-admin position-absolute"
-  style="top: 75px; right: 20px"
-  (click)="goToRegister()">
-  ¿No tienes cuenta?
-</button>
-
       </form>
     </p-card>
   </div>
-
 </div>

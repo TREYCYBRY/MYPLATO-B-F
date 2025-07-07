@@ -9,6 +9,10 @@ from django.conf import settings
 from rest_framework.decorators import action
 from rest_framework import permissions
 from rest_framework.response import Response
+from .models import Cliente, Usuario,Empleado
+from rest_framework.decorators import api_view
+from .serializers import EmpleadoSerializer
+from rest_framework import status
 
 
 class CategoriaExtraViewSet(viewsets.ModelViewSet):
@@ -54,10 +58,20 @@ class RolViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.RolSerializer
 
 
-class EmpleadoViewSet(viewsets.ModelViewSet):
-    queryset = models.Empleado.objects.all()
-    serializer_class = serializers.EmpleadoSerializer
 
+class EmpleadoViewSet(viewsets.ModelViewSet):
+    queryset = Empleado.objects.all()
+    serializer_class = EmpleadoSerializer
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+
+        if not serializer.is_valid():
+            print(" Errores:", serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        self.perform_create(serializer)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class MesaViewSet(viewsets.ModelViewSet):
     queryset = models.Mesa.objects.all()
@@ -149,3 +163,35 @@ class StockBebidaViewSet(viewsets.ModelViewSet):
         serializer = serializers.StockBebidaSerializer(stockBedida)
 
         return Response(serializer.data)
+
+@api_view(['POST'])
+def registro_cliente(request):
+    data = request.data
+    try:
+        user = Usuario.objects.create_user(
+            username=data['username'],
+            email=data['email'],
+            password=data['password']
+        )
+        Cliente.objects.create(
+            user=user,
+            nombre=data['nombre'],
+            apellidos=data['apellidos'],
+            dni=data['dni'],
+            idcategoria_cliente_id=1
+        )
+        return Response({'mensaje': 'Cliente registrado exitosamente'})
+    except Exception as e:
+        return Response({'error': str(e)}, status=400)
+
+@api_view(['POST'])
+def login_cliente(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+    user = authenticate(username=username, password=password)
+    if user:
+        if Cliente.objects.filter(user=user).exists():
+            token, _ = Token.objects.get_or_create(user=user)
+            return Response({'token': token.key})
+        return Response({'error': 'Este usuario no es cliente'}, status=403)
+    return Response({'error': 'Credenciales incorrectas'}, status=400)

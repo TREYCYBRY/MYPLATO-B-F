@@ -44,6 +44,11 @@ import { AlmacenComponent } from './almacen/almacen.component';
 import { StockComidaComponent } from './stock-comida/stock-comida.component';
 import { StockBebidaComponent } from './stock-bebida/stock-bebida.component';
 import { ExtraPlatoComponent } from './extra-plato/extra-plato.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { RegistroClienteComponent } from './registro-cliente/registro-cliente.component';
+import { InicioUsuarioComponent } from './inicio-usuario/inicio-usuario.component';
+import { EmpleadoComponent } from './empleado/empleado.component';
+import { MesaComponent } from './mesa/mesa.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +67,11 @@ import { ExtraPlatoComponent } from './extra-plato/extra-plato.component';
     StockComidaComponent,
     StockBebidaComponent,
     ExtraPlatoComponent,
+    AdminLoginComponent,
+    RegistroClienteComponent,
+    InicioUsuarioComponent,
+    EmpleadoComponent,
+    MesaComponent,
     
   ],
   imports: [

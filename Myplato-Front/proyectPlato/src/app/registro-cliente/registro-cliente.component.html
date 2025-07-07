@@ -1,0 +1,33 @@
+<div class="login-bg d-flex justify-content-center align-items-center vh-100">
+  <div class="col-11 col-sm-8 col-md-6 col-lg-5">
+    <p-card header="Registro de Cliente" class="text-center shadow p-4">
+      <form class="p-fluid" (ngSubmit)="registrarCliente()">
+        <div class="form-group mb-2 text-start">
+          <label>Nombre</label>
+          <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" required />
+        </div>
+        <div class="form-group mb-2 text-start">
+          <label>Apellidos</label>
+          <input type="text" class="form-control" [(ngModel)]="cliente.apellidos" name="apellidos" required />
+        </div>
+        <div class="form-group mb-2 text-start">
+          <label>DNI</label>
+          <input type="text" class="form-control" [(ngModel)]="cliente.dni" name="dni" required />
+        </div>
+        <div class="form-group mb-2 text-start">
+          <label>Email</label>
+          <input type="email" class="form-control" [(ngModel)]="cliente.email" name="email" required />
+        </div>
+        <div class="form-group mb-2 text-start">
+          <label>Usuario</label>
+          <input type="text" class="form-control" [(ngModel)]="cliente.username" name="username" required />
+        </div>
+        <div class="form-group mb-3 text-start">
+          <label>Contraseña</label>
+          <input type="password" class="form-control" [(ngModel)]="cliente.password" name="password" required />
+        </div>
+        <button pButton type="submit" label="Registrarse" class="w-100 mt-2"></button>
+      </form>
+    </p-card>
+  </div>
+</div>

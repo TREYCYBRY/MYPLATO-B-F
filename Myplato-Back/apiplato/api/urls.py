@@ -26,5 +26,6 @@ router.register('stockComida', views.StockComidaViewSet)
 router.register('stockBebida', views.StockBebidaViewSet)
 urlpatterns = [
     path('',include(router.urls)),
-    path('login/',views.LoginView.as_view(),name='login')
+    path('login/',views.LoginView.as_view(),name='login'),
+    path('registro-cliente/', views.registro_cliente),
 ] 

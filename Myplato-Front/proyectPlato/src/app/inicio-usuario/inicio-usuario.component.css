@@ -1,4 +1,4 @@
-.admin-inicio-container {
+.usuario-inicio-container {
   height: 100vh;
   background-color: #FFF5F0;
   display: flex;
@@ -6,24 +6,26 @@
   align-items: center;
 }
 
-.admin-box {
-  background-color: #f88e51;
-  color: #f4f4f4;
+.welcome-box {
+  background-color: #f7a252fb;
+  color: #333;
   padding: 3rem;
   border-radius: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 
-.admin-box h1 {
+.welcome-box h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
-.admin-box .admin {
+.welcome-box .brand {
+  color: #e82a2a;
   font-weight: bold;
 }
 
-.admin-box p {
+.welcome-box p {
   font-size: 1.2rem;
+  font-style: italic;
 }

@@ -13,6 +13,8 @@ import { almacen } from "../model/almacen.model";
 import { stockComida } from "../model/stockComida.model";
 import { stockBebida } from "../model/stockBebida.model";
 import { extraPlato } from "../model/extraPlato.model";
+import { Empleado } from "../model/empleado.model";
+import { mesa } from "../model/mesa.model";
 
 @Injectable({
   providedIn: "root"
@@ -102,6 +104,8 @@ export class ApiService {
 
     //EXTRAS--------------------------------------------------------------------------------------------
     //GET Extras CRUD:Select READ
+    //EXTRAS--------------------------------------------------------------------------------------------
+    //GET Extras CRUD:Select READ
     public getExtra(): Observable<extra[]> {
         return this.http.get<extra[]>(this.ApiUrl + 'extra/');
     }
@@ -122,6 +126,16 @@ export class ApiService {
         let body = JSON.stringify(ex);
         return this.http.post<extra>(this.ApiUrl + 'extra/',body,this.httpOptions);
     }
+
+    public putExtraImagen(ex:FormData,id:string): Observable<extra>{
+        return this.http.put<extra>(this.ApiUrl + 'extra/' + id + "/",ex);
+    }
+
+    //POST Producto CRUD:Create
+    public postExtraImagen(ex:FormData): Observable<extra>{
+        return this.http.post<extra>(this.ApiUrl + 'extra/',ex);
+    }
+
 
     // ------------------------------------------------------------------------------------------------
     
@@ -320,6 +334,41 @@ export class ApiService {
         let body = JSON.stringify(ep);
         return this.http.post<extraPlato>(this.ApiUrl + 'extraPlato/', body, this.httpOptions);
 }
+    
+    public getEmpleados(): Observable<Empleado[]> {
+  return this.http.get<Empleado[]>(this.ApiUrl + 'empleados/');
+}
+
+public postEmpleado(emp: Empleado): Observable<Empleado> {
+  return this.http.post<Empleado>(this.ApiUrl + 'empleados/', JSON.stringify(emp), this.httpOptions);
+}
+
+public putEmpleado(emp: Empleado): Observable<Empleado> {
+  return this.http.put<Empleado>(this.ApiUrl + 'empleados/' + emp.id + "/", JSON.stringify(emp), this.httpOptions);
+}
+
+public deleteEmpleado(id: string): Observable<void> {
+  return this.http.delete<void>(this.ApiUrl + 'empleados/' + id + "/");
+}
+
+//Mesa
+    public getMesas(): Observable<mesa[]> {
+        return this.http.get<mesa[]>(this.ApiUrl + 'mesas/');
+    }
+
+    public deleteMesa(id: string): Observable<void> {
+        return this.http.delete<void>(this.ApiUrl + 'mesas/' + id + '/');
+    }
+
+    public putMesa(ms: mesa): Observable<mesa> {
+        let body = JSON.stringify(ms);
+        return this.http.put<mesa>(this.ApiUrl + 'mesas/' + ms.id + '/', body, this.httpOptions);
+    }
+
+    public postMesa(ms: mesa): Observable<mesa> {
+        let body = JSON.stringify(ms);
+        return this.http.post<mesa>(this.ApiUrl + 'mesas/', body, this.httpOptions);
+    }
 
 }
 
