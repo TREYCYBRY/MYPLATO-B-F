@@ -58,8 +58,9 @@ label.form-label {
   background-color: #f4892b; /* pastel rojo-anaranjado */
   color: #fff;
   border: none;
+  
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: 10px 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;

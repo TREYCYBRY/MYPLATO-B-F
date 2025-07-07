@@ -28,9 +28,12 @@ export class LoginComponent {
         this.showMenu = false;
       }
       goToAdminLogin() {
-      this.router.navigate(['/admin-login']);
+      this.router.navigate(['/admin-login']);}
+      goToRegister() {
+  this.router.navigate(['/registro-cliente']);
+}
+
 }
 
       
-    
-}
+  

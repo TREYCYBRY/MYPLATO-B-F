@@ -13,6 +13,7 @@ import { almacen } from "../model/almacen.model";
 import { stockComida } from "../model/stockComida.model";
 import { stockBebida } from "../model/stockBebida.model";
 import { extraPlato } from "../model/extraPlato.model";
+import { Empleado } from "../model/empleado.model";
 
 @Injectable({
   providedIn: "root"
@@ -332,6 +333,24 @@ export class ApiService {
         let body = JSON.stringify(ep);
         return this.http.post<extraPlato>(this.ApiUrl + 'extraPlato/', body, this.httpOptions);
 }
+    
+    public getEmpleados(): Observable<Empleado[]> {
+  return this.http.get<Empleado[]>(this.ApiUrl + 'empleados/');
+}
+
+public postEmpleado(emp: Empleado): Observable<Empleado> {
+  return this.http.post<Empleado>(this.ApiUrl + 'empleados/', JSON.stringify(emp), this.httpOptions);
+}
+
+public putEmpleado(emp: Empleado): Observable<Empleado> {
+  return this.http.put<Empleado>(this.ApiUrl + 'empleados/' + emp.id + "/", JSON.stringify(emp), this.httpOptions);
+}
+
+public deleteEmpleado(id: string): Observable<void> {
+  return this.http.delete<void>(this.ApiUrl + 'empleados/' + id + "/");
+}
+
+
 
 }
 

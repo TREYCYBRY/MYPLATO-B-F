@@ -46,8 +46,8 @@ import { StockBebidaComponent } from './stock-bebida/stock-bebida.component';
 import { ExtraPlatoComponent } from './extra-plato/extra-plato.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { RegistroClienteComponent } from './registro-cliente/registro-cliente.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { InicioUsuarioComponent } from './inicio-usuario/inicio-usuario.component';
+import { EmpleadoComponent } from './empleado/empleado.component';
 
 @NgModule({
   declarations: [
@@ -68,8 +68,8 @@ import { InicioUsuarioComponent } from './inicio-usuario/inicio-usuario.componen
     ExtraPlatoComponent,
     AdminLoginComponent,
     RegistroClienteComponent,
-    AdminDashboardComponent,
     InicioUsuarioComponent,
+    EmpleadoComponent,
     
   ],
   imports: [

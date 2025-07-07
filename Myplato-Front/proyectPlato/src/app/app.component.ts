@@ -103,6 +103,13 @@ export class AppComponent {
                       command: () => {
                      this.router.navigate(['/extraPlato']);}
                     },
+                    {
+            label: 'Empleados',
+            icon: 'pi pi-fw pi-plus',
+            command: () => {
+              this.router.navigate(['/empleado']);
+            },
+          },
 
 
                     ]
@@ -112,7 +119,7 @@ export class AppComponent {
                 label: 'Logout',
                 icon: 'pi pi-close',
                 command: () => {
-                    this.router.navigate(['/admin-login']);
+                    this.router.navigate(['/login']);
                     localStorage.removeItem('token')
                     
                     }

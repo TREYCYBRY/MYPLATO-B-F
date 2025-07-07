@@ -1,0 +1,93 @@
+<h1>EMPLEADOS</h1>
+
+<p-button label="Nuevo Empleado" icon="pi pi-plus" (onClick)="abrirDialogo()" />
+
+<p-table [value]="empleados" [tableStyle]="{'min-width': '50rem'}">
+  <ng-template #header>
+    <tr>
+      <th>ID</th>  
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>DNI</th>
+      <th>Teléfono</th>
+      <th>Dirección</th>
+      <th>Turno</th>
+      <th>Rol</th>
+      <th>Usuario</th>
+      <th>Email</th>
+      <th>Contraseña</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-emp>
+    <tr>
+       <td>{{ emp.id }}</td>
+      <td>{{ emp.nombreEmp }}</td>
+      <td>{{ emp.apeEmp }}</td>
+      <td>{{ emp.dni }}</td>
+      <td>{{ emp.numeroTelefono }}</td>
+      <td>{{ emp.direccion }}</td>
+      <td>{{ emp.turno }}</td>
+      <td>{{ emp.idrol }}</td>
+      <td>{{ emp.usernombre }}</td>
+      <td>{{ emp.gmail }}</td>
+      <td>{{ emp.password }}</td>
+      <td>
+        <button pButton icon="pi pi-pencil" (click)="editarEmpleado(emp)" text></button>
+        <button pButton icon="pi pi-times" (click)="eliminarEmpleado(emp)" text severity="danger"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog header="{{tituloDialogo}}" [(visible)]="visible" [modal]="true">
+  <div class="mb-2">
+    <label>Nombre</label>
+    <input pInputText [(ngModel)]="empleadoDialogo.nombreEmp" />
+  </div>
+  <div class="mb-2">
+    <label>Apellido</label>
+    <input pInputText [(ngModel)]="empleadoDialogo.apeEmp" />
+  </div>
+  <div class="mb-2">
+    <label>DNI</label>
+    <input pInputText [(ngModel)]="empleadoDialogo.dni" />
+  </div>
+  <div class="mb-2">
+    <label>Teléfono</label>
+    <input pInputText [(ngModel)]="empleadoDialogo.numeroTelefono" />
+  </div>
+  <div class="mb-2">
+    <label>Dirección</label>
+    <input pInputText [(ngModel)]="empleadoDialogo.direccion" />
+  </div>
+  <div class="mb-2">
+    <label>Turno</label>
+    <input pInputText [(ngModel)]="empleadoDialogo.turno" />
+  </div>
+  <div class="mb-2">
+    <label>Rol</label>
+    <p-select [options]="roles" [(ngModel)]="rolSeleccionado" optionLabel="cargo" placeholder="Seleccione rol" />
+  </div>
+
+  <div class="flex items-center gap-4 mb-4">
+  <label for="username" class="font-semibold w-24">Usuario</label>
+  <input pInputText id="username" class="flex-auto" [(ngModel)]="empleadoDialogo.username" />
+</div>
+
+<div class="flex items-center gap-4 mb-4">
+  <label for="email" class="font-semibold w-24">Email</label>
+  <input pInputText id="email" class="flex-auto" [(ngModel)]="empleadoDialogo.email" />
+</div>
+
+<div class="flex items-center gap-4 mb-4">
+  <label for="password" class="font-semibold w-24">Contraseña</label>
+  <input pInputText id="password" type="password" class="flex-auto" [(ngModel)]="empleadoDialogo.password" />
+</div>
+
+  
+  <div class="flex justify-end gap-2">
+    <p-button label="Cancelar" (click)="visible = false" />
+    <p-button label="Guardar" (click)="guardarEmpleado()" />
+  </div>
+</p-dialog>

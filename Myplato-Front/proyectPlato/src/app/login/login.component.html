@@ -21,6 +21,14 @@
         </div>
         <button pButton type="submit" label="Ingresar" class="w-100 mt-2"></button>
         <p-message *ngIf="error" severity="error" text="{{ error }}" class="mt-3"></p-message>
+  <!-- Botón para registrarse como cliente -->
+<button 
+  class="btn-admin position-absolute"
+  style="top: 75px; right: 20px"
+  (click)="goToRegister()">
+  ¿No tienes cuenta?
+</button>
+
       </form>
     </p-card>
   </div>

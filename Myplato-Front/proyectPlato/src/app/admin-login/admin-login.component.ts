@@ -139,6 +139,13 @@ export class AdminLoginComponent {
               this.router.navigate(['/extraPlato']);
             },
           },
+          {
+            label: 'Empleados',
+            icon: 'pi pi-fw pi-plus',
+            command: () => {
+              this.router.navigate(['/empleado']);
+            },
+          },
         ],
       },
       {
@@ -147,7 +154,7 @@ export class AdminLoginComponent {
         command: () => {
           localStorage.removeItem('token');
           this.router.navigate(['/admin-login']);
-          this.items = []; // Limpiar menú
+          this.items = []; 
           this.showMenu = false;
         },
       },

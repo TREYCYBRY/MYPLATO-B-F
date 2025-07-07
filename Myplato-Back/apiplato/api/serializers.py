@@ -1,7 +1,10 @@
 
 from rest_framework import serializers
 from.import models
+from .models import Empleado,Usuario
+from django.contrib.auth import get_user_model
 
+Usuario = get_user_model()
 
 class CategoriaExtraSerializer(serializers.ModelSerializer):
     class Meta:
@@ -51,11 +54,37 @@ class  RolSerializer(serializers.ModelSerializer):
         model= models.Rol
         fields='__all__'
 
-class  EmpleadoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= models.Empleado
-        fields='__all__'
 
+class EmpleadoSerializer(serializers.ModelSerializer):
+    usernombre= serializers.ReadOnlyField(source='user.username')
+    gmail= serializers.ReadOnlyField(source='user.email')
+    contra= serializers.ReadOnlyField(source='user.password')
+    username = serializers.CharField(write_only=True)
+    email = serializers.EmailField(write_only=True)
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = Empleado
+        fields = [
+            'id', 'nombreEmp', 'apeEmp', 'dni', 'numeroTelefono',
+            'direccion', 'turno', 'idrol',
+            'username', 'email', 'password',
+            'usernombre','gmail','contra'
+        ]
+
+    def create(self, validated_data):
+        username = validated_data.pop('username')
+        email = validated_data.pop('email')
+        password = validated_data.pop('password')
+
+        user = Usuario.objects.create_user(
+            username=username,
+            email=email,
+            password=password
+        )
+
+        empleado = Empleado.objects.create(user=user, **validated_data)
+        return empleado
 class  MesaSerializer(serializers.ModelSerializer):
     class Meta:
         model= models.Mesa
