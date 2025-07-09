@@ -1,66 +1,72 @@
-
+/* Fondo con imagen elegante */
 .login-bg {
-  background-image: url('../../assets/fondo1.jpg');
+  background-image: url('../../assets/4.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
   min-height: 100vh;
 }
+
+/* Tarjeta de login oscura y moderna */
 ::ng-deep .p-card {
-  background-color: rgba(18, 17, 17, 0.9);
+  background-color: rgba(0, 0, 0, 0.85);
   border-radius: 1.5rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  color: #fff;
 }
 
+/* Título del card */
 ::ng-deep .p-card-header {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #5da61c;
+  color: #f4892b; /* naranja pastel */
 }
 
+/* Mensajes de error */
 ::ng-deep .p-message {
   border-radius: 0.5rem;
   font-size: 0.9rem;
 }
 
-
-/* Campos de entrada */
+/* Campos de texto */
 input.form-control {
   border-radius: 0.75rem;
-  border: 1px solid #55b73d;
+  border: 1px solid #f4892b;
   padding: 0.75rem;
   font-size: 1rem;
-}
-
-/* Botón "Ingresar" */
-.p-button {
-  background-color: #d35400;
-  border: none;
-  font-weight: bold;
-  font-size: 1.1rem;
-  border-radius: 0.75rem;
-}
-
-.p-button:hover {
-  background-color: #379145;
+  background-color: #fdf5f2;
 }
 
 /* Etiquetas */
 label.form-label {
-  color: #998c8c;
+  color: #f1c0a2;
   font-weight: 500;
 }
 
+/* Botón Ingresar */
+.p-button {
+  background-color: #f4892b;
+  border: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 0.75rem;
+  color: white;
+}
+
+.p-button:hover {
+  background-color: #e26b00;
+}
+
+/* Botón "¿Eres cliente?" arriba a la derecha */
 .btn-admin {
   top: 20px;
   right: 20px;
-  background-color: #f4892b; /* pastel rojo-anaranjado */
+  background-color: #f4892b;
   color: #fff;
   border: none;
-  
   border-radius: 8px;
-  padding: 10px 16px;
+  padding: 8px 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -69,7 +75,7 @@ label.form-label {
 }
 
 .btn-admin:hover {
-  background-color: #54a041;
+  background-color: #c85600;
 }
 
 .position-absolute {

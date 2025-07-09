@@ -1,1 +1,70 @@
-<p>mesa works!</p>
+<h1>MESAS</h1>
+<!-- READ -> Tabla -->
+<p-button label="Nueva Mesa" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
+<p-table [value]="mesas" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template #header>
+        <tr>
+            <th style="width:20%">ID</th>
+            <th style="width:20%">NUMERO</th>
+            <th style="width:20%">DESCRIPCION</th>
+            <th style="width:20%">MOZO</th> 
+            <th style="width:20%"></th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-ms let-ri="rowIndex">
+        <tr>
+            <td>{{ ms.id }}</td>
+            <td>{{ ms.numeroMesa }}</td>
+            <td>{{ ms.descripcion }}</td>
+             <td>{{ ms.idmozo }}</td> 
+            
+            <td>
+                <div class="flex items-center justify-center gap-2">
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-pencil"
+                        (click)="editarMesa(ms)"
+                        text
+                        rounded
+                        severity="secondary"
+                    ></button>
+                    <!-- DELETE -> Boton -->
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-times"
+                        (click)="eliminarMesa(ms)"
+                        text
+                        rounded
+                        severity="danger"
+                    ></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-dialog header="{{tituloDialogo}}" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+    <div class="flex items-center gap-4 mb-4">
+        <label for="mesa" class="font-semibold w-24">Numero Mesa</label>
+        <input pInputText id="mesa" class="flex-auto" autocomplete="off" [(ngModel)]="mesaDialogo.numeroMesa"/>
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="descripcion" class="font-semibold w-24">Descripcion</label>
+        <input pInputText id="descripcion" class="flex-auto" autocomplete="off" [(ngModel)]="mesaDialogo.descripcion"/>
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="mozo" class="font-semibold w-24">Mozo</label>
+        <p-select id="mozo" [options]="mozos" [(ngModel)]="mozoSeleccionado" optionLabel="nombreEmp" placeholder="Seleccione un mozo" class="w-full md:w-56" />
+    </div> 
+
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+        <p-button label="Guardar" (click)="guardarMesa()"/>
+    </div>
+</p-dialog>

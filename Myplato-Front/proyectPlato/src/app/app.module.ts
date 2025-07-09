@@ -44,8 +44,15 @@ import { AlmacenComponent } from './almacen/almacen.component';
 import { StockComidaComponent } from './stock-comida/stock-comida.component';
 import { StockBebidaComponent } from './stock-bebida/stock-bebida.component';
 import { ExtraPlatoComponent } from './extra-plato/extra-plato.component';
+<<<<<<< HEAD
 import { PedidoComponent } from './pedido/pedido.component';
 import { PlatoPedidoComponent } from './plato-pedido/plato-pedido.component';
+=======
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { RegistroClienteComponent } from './registro-cliente/registro-cliente.component';
+import { InicioUsuarioComponent } from './inicio-usuario/inicio-usuario.component';
+import { EmpleadoComponent } from './empleado/empleado.component';
+>>>>>>> 53230cc7e2e0dda12b82d61261757793aef606be
 import { MesaComponent } from './mesa/mesa.component';
 
 @NgModule({
@@ -65,8 +72,15 @@ import { MesaComponent } from './mesa/mesa.component';
     StockComidaComponent,
     StockBebidaComponent,
     ExtraPlatoComponent,
+<<<<<<< HEAD
     PedidoComponent,
     PlatoPedidoComponent,
+=======
+    AdminLoginComponent,
+    RegistroClienteComponent,
+    InicioUsuarioComponent,
+    EmpleadoComponent,
+>>>>>>> 53230cc7e2e0dda12b82d61261757793aef606be
     MesaComponent,
     
   ],

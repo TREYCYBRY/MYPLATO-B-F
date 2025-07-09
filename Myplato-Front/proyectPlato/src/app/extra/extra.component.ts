@@ -41,7 +41,7 @@ export class ExtraComponent {
 
   obtenerCategoriaExtra(){
     this.api.getCategoriasExtras().subscribe(res => {
-  this.categoria_Extra = res;});
+       this.categoria_Extra = res;});
   }
 
   obtenerUnidades(){
@@ -57,9 +57,13 @@ export class ExtraComponent {
   }
 
   editarExtra(ex:extra){
-    this.extraDialogo = {...ex};
-    this.nuevoExtra = false;
     this.visible = true;
+    this.nuevoExtra = false;
+    this.extraDialogo = ex;
+    this.categoriaExtraSeleccionado = this.categoria_Extra.find(t => t.id === this.extraDialogo.idcategoria_extra)!;
+    this.unidadSeleccionada=this.unidades.find(t => t.id === this.extraDialogo.unidad)!;
+    
+
   }
 
   eliminarExtra(ex:extra){
@@ -69,14 +73,26 @@ export class ExtraComponent {
   }
 
   guardarExtra(){
+    const formDataExtra = new FormData();
     this.extraDialogo.idcategoria_extra = this.categoriaExtraSeleccionado.id;
     this.extraDialogo.unidad = this.unidadSeleccionada.id;
+
+    formDataExtra.append('nombre',this.extraDialogo.nombre);
+    formDataExtra.append('precioporPorcion',this.extraDialogo.precioporPorcion.toString());
+    formDataExtra.append('descripcion',this.extraDialogo.descripcion);
+    formDataExtra.append('idcategoria_extra',this.categoriaExtraSeleccionado.id.toString());
+    formDataExtra.append('unidad',this.unidadSeleccionada.id.toString())
+
+    if(this.imagenSeleccionada){
+        formDataExtra.append('imagen',this.imagenSeleccionada)
+    }  
+
     if (this.nuevoExtra){
-      this.api.postExtra(this.extraDialogo).subscribe(res => {
+      this.api.postExtraImagen(formDataExtra).subscribe(res => {
         this.obtenerExtra();
       });
     } else {
-      this.api.putExtra(this.extraDialogo).subscribe(res => {
+        this.api.putExtraImagen(formDataExtra,this.extraDialogo.id.toString()).subscribe(res => {
         this.obtenerExtra();
       });
     }

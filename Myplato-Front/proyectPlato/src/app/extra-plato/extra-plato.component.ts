@@ -60,6 +60,8 @@ export class ExtraPlatoComponent {
     this.extraPlatoDialogo = { ...ep };
     this.nuevoRegistro = false;
     this.visible = true;
+    this.platoSeleccionado = this.platos.find(t => t.id === this.extraPlatoDialogo.id_plato)!;
+    this.extraSeleccionado = this.extras.find(t => t.id === this.extraPlatoDialogo.id_extra)!;
   }
 
   eliminarExtraPlato(ep: extraPlato) {
