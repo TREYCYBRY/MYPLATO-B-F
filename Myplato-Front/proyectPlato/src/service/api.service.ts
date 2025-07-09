@@ -17,6 +17,7 @@ import { Empleado } from "../model/empleado.model";
 import { mesa } from "../model/mesa.model";
 import { Pedido } from "../model/pedido.model";
 import { cliente } from "../model/cliente.model";
+import { PlatoPedido } from "../model/platoPedido.model";
 
 @Injectable({
   providedIn: "root"
@@ -435,7 +436,26 @@ public deleteEmpleado(id: string): Observable<void> {
         let body = JSON.stringify(cli);
         return this.http.post<cliente>(this.ApiUrl + 'clientes/', body, this.httpOptions);
 }
+//PLATO-PEDIDO --------------------------------------------------------------------------------------------
+    public getPlatoPedido(): Observable<PlatoPedido[]> {
+        return this.http.get<PlatoPedido[]>(this.ApiUrl + 'platoPedido/');
+    }
 
+    //DELETE
+    public deletePlatoPedido(id: string): Observable<void> {
+        return this.http.delete<void>(this.ApiUrl + 'platoPedido/' + id + '/');
+    }
+
+    //PUT
+    public putPlatoPedido(pp: PlatoPedido): Observable<PlatoPedido> {
+        let body = JSON.stringify(pp);
+        return this.http.put<PlatoPedido>(this.ApiUrl + 'platoPedido/' + pp.id + '/', body, this.httpOptions);
+    }
+    //POST
+    public postPlatoPedido(pp: PlatoPedido): Observable<PlatoPedido> {
+        let body = JSON.stringify(pp);
+        return this.http.post<PlatoPedido>(this.ApiUrl + 'platoPedido/', body, this.httpOptions);
+}
 }
 
     
