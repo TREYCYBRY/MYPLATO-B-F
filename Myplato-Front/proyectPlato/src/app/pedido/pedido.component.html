@@ -57,12 +57,12 @@
 <!-- CREATE / UPDATE: Diálogo -->
 <p-dialog header="{{tituloDialogo}}" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
   <div class="flex items-center gap-4 mb-3">
-    <label for="platos" class="font-semibold w-32"># Platos</label>
+    <label for="platos" class="font-semibold w-32">Platos</label>
     <input type="number" pInputText id="platos" class="flex-auto" [(ngModel)]="pedidoDialogo.cantidadTotalPlatos" />
   </div>
 
   <div class="flex items-center gap-4 mb-3">
-    <label for="bebidas" class="font-semibold w-32"># Bebidas</label>
+    <label for="bebidas" class="font-semibold w-32">Bebidas</label>
     <input type="number" pInputText id="bebidas" class="flex-auto" [(ngModel)]="pedidoDialogo.cantidadTotalBebidas" />
   </div>
 

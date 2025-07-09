@@ -22,6 +22,7 @@ import { RegistroClienteComponent } from './registro-cliente/registro-cliente.co
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { MesaComponent } from './mesa/mesa.component';
 import { PedidoComponent } from './pedido/pedido.component';
+import { PagoComponent } from './pago/pago.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
   {path: 'empleado', component: EmpleadoComponent},
   {path: 'mesa', component: MesaComponent},
   {path: 'pedido', component: PedidoComponent }, // Asegúrate de que el componente PedidoComponent esté importado correctamente
+  {path: 'pago', component:PagoComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: '**', redirectTo: '/login' } // Redirige cualquier ruta desconocida al login
 

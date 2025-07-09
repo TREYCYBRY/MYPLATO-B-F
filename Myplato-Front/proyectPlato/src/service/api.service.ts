@@ -17,6 +17,7 @@ import { Empleado } from "../model/empleado.model";
 import { mesa } from "../model/mesa.model";
 import { Pedido } from "../model/pedido.model";
 import { cliente } from "../model/cliente.model";
+import { Pago } from "../model/pago.model";
 
 @Injectable({
   providedIn: "root"
@@ -413,7 +414,7 @@ public deleteEmpleado(id: string): Observable<void> {
     public postPedido(ped: Pedido): Observable<Pedido> {
         let body = JSON.stringify(ped);
         return this.http.post<Pedido>(this.ApiUrl + 'pedidos/', body, this.httpOptions);
-}
+    }
 // GET Clientes
     public getClientes(): Observable<cliente[]> {
         return this.http.get<cliente[]>(this.ApiUrl + 'clientes/');
@@ -434,7 +435,24 @@ public deleteEmpleado(id: string): Observable<void> {
     public postCliente(cli: cliente): Observable<cliente> {
         let body = JSON.stringify(cli);
         return this.http.post<cliente>(this.ApiUrl + 'clientes/', body, this.httpOptions);
-}
+    }
+
+    // PAGOS
+    public getPagos(): Observable<Pago[]> {
+        return this.http.get<Pago[]>(this.ApiUrl + 'pagos/');
+    }
+
+    public postPago(pago: Pago): Observable<Pago> {
+        return this.http.post<Pago>(this.ApiUrl + 'pagos/', pago, this.httpOptions);
+    }
+
+    public putPago(pago: Pago): Observable<Pago> {
+        return this.http.put<Pago>(this.ApiUrl + 'pagos/' + pago.id + '/', pago, this.httpOptions);
+    }
+
+    public deletePago(id: string): Observable<void> {
+        return this.http.delete<void>(this.ApiUrl + 'pagos/' + id + '/');
+    }
 
 }
 
