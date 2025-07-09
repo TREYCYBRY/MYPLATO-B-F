@@ -69,6 +69,7 @@ class Plato(models.Model):
     precio = models.DecimalField(max_digits=6, decimal_places=2)
     personalizable = models.BooleanField(default=False)
     idcategoria_plato = models.ForeignKey(CategoriaPlato, on_delete=models.CASCADE)
+    imagen= models.ImageField(upload_to='platos/', null=True, blank=True)
 
     def __str__(self):
         return self.nombre
@@ -169,6 +170,7 @@ class Bebida(models.Model):
     descripcion = models.CharField(max_length=100)
     precio = models.DecimalField(max_digits=6, decimal_places=2)
     unidad = models.ForeignKey(UnidadMedida, on_delete=models.CASCADE,null=True,blank=True)
+    imagen= models.ImageField(upload_to='bebidas/', null=True, blank=True)
 
     def __str__(self):
         return self.nombre

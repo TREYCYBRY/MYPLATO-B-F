@@ -27,8 +27,8 @@ export class PedidoComponent {
   
   ngOnInit() {
     this.obtenerPedidos();
-    // this.obtenerClientes();
-    // this.obtenerMesas();
+    this.obtenerClientes();
+    this.obtenerMesas();
   }
 
   abrirDialogo() {
@@ -43,17 +43,17 @@ export class PedidoComponent {
     });
   }
 
-  // obtenerClientes() {
-  //   this.api.getClientes().subscribe(res => {
-  //     this.clientes = res;
-  //   });
-  // }
+  obtenerClientes() {
+  this.api.getClientes().subscribe(res => {
+  this.clientes = res;
+  });
+  }
 
-  // obtenerMesas() {
-  //   this.api.getMesas().subscribe(res => {
-  //     this.mesas = res;
-  //   });
-  // }
+  obtenerMesas() {
+     this.api.getMesas().subscribe(res => {
+       this.mesas = res;
+     });
+   }
 
   editarPedido(ped: Pedido) {
     this.pedidoDialogo = { ...ped };
@@ -68,8 +68,8 @@ export class PedidoComponent {
   }
 
   guardarPedido() {
-    // this.pedidoDialogo.idCliente = this.clienteSeleccionado.id;
-    // this.pedidoDialogo.idmesa = this.mesaSeleccionada.id;
+  this.pedidoDialogo.idcliente = this.clienteSeleccionado.id;
+  this.pedidoDialogo.idmesa = this.mesaSeleccionada.id;
      console.log('Guardando pedido:', this.pedidoDialogo); // 👈
 
     if (this.nuevoPedido) {
@@ -82,6 +82,6 @@ export class PedidoComponent {
       });
     }
 
-    this.visible = false;
-  }
+    this.visible=false;
+}
 }

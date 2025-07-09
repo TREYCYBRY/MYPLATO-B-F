@@ -5,5 +5,5 @@ export class Pedido {
     montoTotal: number;
     fecha: Date;
     idcliente: number;
-    idmesa: number;
+    idmesa:number;
 }

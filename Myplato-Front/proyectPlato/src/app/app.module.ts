@@ -54,6 +54,7 @@ import { InicioUsuarioComponent } from './inicio-usuario/inicio-usuario.componen
 import { EmpleadoComponent } from './empleado/empleado.component';
 >>>>>>> 53230cc7e2e0dda12b82d61261757793aef606be
 import { MesaComponent } from './mesa/mesa.component';
+import { PedidoComponent } from './pedido/pedido.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { MesaComponent } from './mesa/mesa.component';
     EmpleadoComponent,
 >>>>>>> 53230cc7e2e0dda12b82d61261757793aef606be
     MesaComponent,
+    PedidoComponent,
     
   ],
   imports: [
