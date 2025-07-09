@@ -117,6 +117,13 @@ export class AppComponent {
               this.router.navigate(['/mesa']);
             },
           },
+          {
+            label: 'Pedidos',
+            icon: 'pi pi-fw pi-plus',
+            command: () => {
+              this.router.navigate(['/pedido']);
+            },
+          },
 
 
                     ]

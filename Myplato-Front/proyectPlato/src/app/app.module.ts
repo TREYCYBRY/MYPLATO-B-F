@@ -49,6 +49,7 @@ import { RegistroClienteComponent } from './registro-cliente/registro-cliente.co
 import { InicioUsuarioComponent } from './inicio-usuario/inicio-usuario.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { MesaComponent } from './mesa/mesa.component';
+import { PedidoComponent } from './pedido/pedido.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { MesaComponent } from './mesa/mesa.component';
     InicioUsuarioComponent,
     EmpleadoComponent,
     MesaComponent,
+    PedidoComponent,
     
   ],
   imports: [

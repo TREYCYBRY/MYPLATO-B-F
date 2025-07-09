@@ -4,4 +4,5 @@ export class bebida {
     descripcion: string;
     precio: number;
     unidad: number;
+    imagen: string;
 }

@@ -111,6 +111,7 @@ class  PagoSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class  BebidaSerializer(serializers.ModelSerializer):
+    nombre_unidad = serializers.ReadOnlyField(source='unidad.sigla')
     class Meta:
         model= models.Bebida
         fields='__all__'
