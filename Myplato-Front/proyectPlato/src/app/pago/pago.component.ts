@@ -17,10 +17,30 @@ export class PagoComponent {
   pagos: Pago[] = [];
   visible = false;
   nuevoPago = true;
-  pagoDialogo: Pago = new Pago();
+  //pagoDialogo: Pago = new Pago();
+
+  pagoDialogo: Pago = {
+  id: 0,
+  montoPagado: 0,
+  montoRestante: 0,
+  montoTotal: 0,
+  fecha: '',
+  metodo: '',
+  idpedido: 1,
+  estado: ''
+  };
+
+
   tituloDialogo = 'Nuevo Pago';
   pedidos: Pedido[] = [];
   pedidoSeleccionado: Pedido;
+  metodos = [
+    { label: 'Billetera Virtual', value: 'Billetera Virtual' },
+    { label: 'Tarjeta', value: 'Tarjeta' },
+    { label: 'Efectivo', value: 'Efectivo' }
+  ];
+
+
 
   ngOnInit() {
     this.obtenerPagos();

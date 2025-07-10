@@ -77,8 +77,16 @@
     </div>
 
     <div class="flex items-center gap-4 mb-4">
-        <label for="metodo" class="font-semibold w-24">Método</label>
-        <input pInputText id="metodo" class="flex-auto" autocomplete="off" [(ngModel)]="pagoDialogo.metodo"/>
+    <label for="metodo" class="font-semibold w-24">Método</label>
+    <p-dropdown
+        [options]="metodos"
+        [(ngModel)]="pagoDialogo.metodo"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Seleccione un método"
+        class="w-full md:w-56"
+    />
+
     </div>
 
     <div class="flex items-center gap-4 mb-4">
