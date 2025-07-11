@@ -17,15 +17,10 @@ import { Empleado } from "../model/empleado.model";
 import { mesa } from "../model/mesa.model";
 import { Pedido } from "../model/pedido.model";
 import { cliente } from "../model/cliente.model";
-<<<<<<< HEAD
-import { Pago } from "../model/pago.model";
-
-=======
 import { PlatoPedido } from "../model/platoPedido.model";
 import { Pago } from "../model/pago.model";
 import { bebidaPedido } from "../model/bebidaPedido.model";
 import { extrasPlatoPedido } from "../model/extrasPlatoPedido.model";
->>>>>>> b22e1703798e90582bf5e0ecc58fd1828875a462
 @Injectable({
   providedIn: "root"
 })
@@ -442,11 +437,6 @@ public deleteEmpleado(id: string): Observable<void> {
     public postCliente(cli: cliente): Observable<cliente> {
         let body = JSON.stringify(cli);
         return this.http.post<cliente>(this.ApiUrl + 'clientes/', body, this.httpOptions);
-<<<<<<< HEAD
-    }
-
-    // PAGOS
-=======
 }
 //PLATO-PEDIDO --------------------------------------------------------------------------------------------
     public getPlatoPedido(): Observable<PlatoPedido[]> {
@@ -469,7 +459,6 @@ public deleteEmpleado(id: string): Observable<void> {
         return this.http.post<PlatoPedido>(this.ApiUrl + 'platoPedido/', body, this.httpOptions);
 }
 // PAGOS
->>>>>>> b22e1703798e90582bf5e0ecc58fd1828875a462
     public getPagos(): Observable<Pago[]> {
         return this.http.get<Pago[]>(this.ApiUrl + 'pagos/');
     }
@@ -483,9 +472,6 @@ public deleteEmpleado(id: string): Observable<void> {
     }
 
     public deletePago(id: string): Observable<void> {
-<<<<<<< HEAD
-        return this.http.delete<void>(this.ApiUrl + 'pagos/' + id + '/');
-=======
         return this.http.delete<void>(this.ApiUrl + 'pagos/' + id+'/');
 }
  //BEBIDAPEDIDOS ------------------------------------------------------------------------------------------------------ 
@@ -539,7 +525,6 @@ public deleteEmpleado(id: string): Observable<void> {
             body,
             this.httpOptions
         );
->>>>>>> b22e1703798e90582bf5e0ecc58fd1828875a462
     }
 
 }

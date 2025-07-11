@@ -104,33 +104,6 @@ export class AppComponent {
                      this.router.navigate(['/extraPlato']);}
                     },
                     {
-<<<<<<< HEAD
-                      label: 'Empleados',
-                      icon: 'pi pi-fw pi-plus',
-                      command: () => {
-                      this.router.navigate(['/empleado']);},
-                    },
-                    {
-                      label: 'Mesas',
-                      icon: 'pi pi-fw pi-plus',
-                      command: () => {
-                      this.router.navigate(['/mesa']);},
-                    },
-                    {
-                      label: 'Pedidos',
-                      icon: 'pi pi-fw pi-plus',
-                      command: () => {
-                      this.router.navigate(['/pedido']);},
-                    },
-                    {
-                      label: 'Pagos',
-                      icon: 'pi pi-fw pi-plus',
-                      command: () => {
-                      this.router.navigate(['/pago']);},
-                    },
-
-
-=======
             label: 'Empleados',
             icon: 'pi pi-fw pi-plus',
             command: () => {
@@ -179,7 +152,6 @@ export class AppComponent {
               this.router.navigate(['/extrasPlatoPedido']);
             },
           },
->>>>>>> b22e1703798e90582bf5e0ecc58fd1828875a462
 
 
 

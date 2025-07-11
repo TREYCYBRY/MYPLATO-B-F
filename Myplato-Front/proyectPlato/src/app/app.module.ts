@@ -50,14 +50,10 @@ import { InicioUsuarioComponent } from './inicio-usuario/inicio-usuario.componen
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { MesaComponent } from './mesa/mesa.component';
 import { PedidoComponent } from './pedido/pedido.component';
-<<<<<<< HEAD
-import { PagoComponent } from './pago/pago.component';
-=======
 import { PlatoPedidoComponent } from './plato-pedido/plato-pedido.component';
 import { PagoComponent } from './pago/pago.component';
 import { BebidaPedidoComponent } from './bebida-pedido/bebida-pedido.component';
 import { ExtrasPlatoPedidoComponent } from './extras-plato-pedido/extras-plato-pedido.component';
->>>>>>> b22e1703798e90582bf5e0ecc58fd1828875a462
 
 @NgModule({
   declarations: [
@@ -82,14 +78,10 @@ import { ExtrasPlatoPedidoComponent } from './extras-plato-pedido/extras-plato-p
     EmpleadoComponent,
     MesaComponent,
     PedidoComponent,
-<<<<<<< HEAD
-    PagoComponent,
-=======
     PlatoPedidoComponent,
     PagoComponent,
     BebidaPedidoComponent,
     ExtrasPlatoPedidoComponent,
->>>>>>> b22e1703798e90582bf5e0ecc58fd1828875a462
     
   ],
   imports: [
