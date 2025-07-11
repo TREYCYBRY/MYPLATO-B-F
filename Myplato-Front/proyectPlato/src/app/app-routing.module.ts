@@ -22,8 +22,15 @@ import { RegistroClienteComponent } from './registro-cliente/registro-cliente.co
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { MesaComponent } from './mesa/mesa.component';
 import { PedidoComponent } from './pedido/pedido.component';
+<<<<<<< HEAD
 import { PagoComponent } from './pago/pago.component';
 
+=======
+import { PlatoPedidoComponent } from './plato-pedido/plato-pedido.component';
+import { PagoComponent } from './pago/pago.component';
+import { BebidaPedidoComponent } from './bebida-pedido/bebida-pedido.component';
+import { ExtrasPlatoPedidoComponent } from './extras-plato-pedido/extras-plato-pedido.component';
+>>>>>>> b22e1703798e90582bf5e0ecc58fd1828875a462
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -46,11 +53,18 @@ const routes: Routes = [
   {path: 'registro-cliente', component: RegistroClienteComponent},
   {path: 'empleado', component: EmpleadoComponent},
   {path: 'mesa', component: MesaComponent},
+<<<<<<< HEAD
   {path: 'pedido', component: PedidoComponent }, // Asegúrate de que el componente PedidoComponent esté importado correctamente
   {path: 'pago', component:PagoComponent},
+=======
+  {path: 'pedido', component: PedidoComponent },
+  {path:'bebidaPedido', component: BebidaPedidoComponent}, // Asegúrate de que este componente exista y sea correcto
+  {path:'pago',component: PagoComponent}, // Asegúrate de que este componente exista y sea correcto
+  {path:'platoPedido', component: PlatoPedidoComponent},
+  {path:'extrasPlatoPedido',component:ExtrasPlatoPedidoComponent}, // Asegúrate de que este componente exista y sea correcto
+>>>>>>> b22e1703798e90582bf5e0ecc58fd1828875a462
   {path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: '**', redirectTo: '/login' } // Redirige cualquier ruta desconocida al login
-
 ];
 
 

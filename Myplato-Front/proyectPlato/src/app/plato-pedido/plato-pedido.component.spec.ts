@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PagoComponent } from './pago.component';
+import { PlatoPedidoComponent } from './plato-pedido.component';
 
-describe('PagoComponent', () => {
-  let component: PagoComponent;
-  let fixture: ComponentFixture<PagoComponent>;
+describe('PlatoPedidoComponent', () => {
+  let component: PlatoPedidoComponent;
+  let fixture: ComponentFixture<PlatoPedidoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PagoComponent]
+      declarations: [PlatoPedidoComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PagoComponent);
+    fixture = TestBed.createComponent(PlatoPedidoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

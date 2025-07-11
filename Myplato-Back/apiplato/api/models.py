@@ -169,7 +169,7 @@ class Pago(models.Model):
     metodo = models.CharField(max_length=50, choices=METODO_CHOICES, default='Efectivo')
     idpedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     estado = models.CharField(max_length=50)
-    def __str__(self):
+    def _str_(self):
         return f'Pago {self.id} - {self.montoRestante}'
     
 class Bebida(models.Model):
