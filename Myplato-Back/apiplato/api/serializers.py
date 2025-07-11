@@ -101,6 +101,8 @@ class  PlatoPedidoSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class  ExtrasPlatoPedidoSerializer(serializers.ModelSerializer):
+    nombre_extra = serializers.ReadOnlyField(source='idextra.nombre')
+    nombre_plato_pedido = serializers.ReadOnlyField(source='idplato_pedido.idplato.nombre')
     class Meta:
         model= models.ExtrasPlatoPedido
         fields='__all__'

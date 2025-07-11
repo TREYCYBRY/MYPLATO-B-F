@@ -159,10 +159,17 @@ class Pago(models.Model):
     montoRestante = models.DecimalField(max_digits=8, decimal_places=2)
     montoTotal=models.DecimalField(max_digits=8, decimal_places=2)
     fecha = models.DateField()
-    metodo = models.CharField(max_length=50)
+
+    METODO_CHOICES = [
+        ('Billetera Virtual', 'Billetera Virtual'),
+        ('Tarjeta', 'Tarjeta'),
+        ('Efectivo', 'Efectivo')
+    ]
+
+    metodo = models.CharField(max_length=50, choices=METODO_CHOICES, default='Efectivo')
     idpedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     estado = models.CharField(max_length=50)
-    def __str__(self):
+    def _str_(self):
         return f'Pago {self.id} - {self.montoRestante}'
     
 class Bebida(models.Model):

@@ -18,7 +18,9 @@ import { mesa } from "../model/mesa.model";
 import { Pedido } from "../model/pedido.model";
 import { cliente } from "../model/cliente.model";
 import { PlatoPedido } from "../model/platoPedido.model";
-
+import { Pago } from "../model/pago.model";
+import { bebidaPedido } from "../model/bebidaPedido.model";
+import { extrasPlatoPedido } from "../model/extrasPlatoPedido.model";
 @Injectable({
   providedIn: "root"
 })
@@ -456,6 +458,75 @@ public deleteEmpleado(id: string): Observable<void> {
         let body = JSON.stringify(pp);
         return this.http.post<PlatoPedido>(this.ApiUrl + 'platoPedido/', body, this.httpOptions);
 }
+// PAGOS
+    public getPagos(): Observable<Pago[]> {
+        return this.http.get<Pago[]>(this.ApiUrl + 'pagos/');
+    }
+
+    public postPago(pago: Pago): Observable<Pago> {
+        return this.http.post<Pago>(this.ApiUrl + 'pagos/', pago, this.httpOptions);
+    }
+
+    public putPago(pago: Pago): Observable<Pago> {
+        return this.http.put<Pago>(this.ApiUrl + 'pagos/' + pago.id + '/', pago, this.httpOptions);
+    }
+
+    public deletePago(id: string): Observable<void> {
+        return this.http.delete<void>(this.ApiUrl + 'pagos/' + id+'/');
+}
+ //BEBIDAPEDIDOS ------------------------------------------------------------------------------------------------------ 
+    // GET - obtener todos los pedidos
+    public getbebidaPedidos(): Observable<bebidaPedido[]> {
+        return this.http.get<bebidaPedido[]>(this.ApiUrl + 'bebidaPedido/');
+    }
+
+    // DELETE - eliminar un pedido
+    public deletebebidaPedidos(id: string): Observable<void> {
+        return this.http.delete<void>(this.ApiUrl + 'bebidaPedido/' + id + '/');
+    }
+
+    // PUT - actualizar un pedido
+    public putbebidaPedidos(beb: bebidaPedido): Observable<bebidaPedido> {
+        let body = JSON.stringify(beb);
+        return this.http.put<bebidaPedido>(this.ApiUrl + 'bebidaPedido/' + beb.id + '/', body, this.httpOptions);
+    }
+
+    // POST - crear nuevo pedido
+    public postbebidaPedidos(beb: bebidaPedido): Observable<bebidaPedido> {
+        let body = JSON.stringify(beb);
+        return this.http.post<bebidaPedido>(this.ApiUrl + 'bebidaPedido/', body, this.httpOptions);
+}
+    // EXTRAS-PLATO-PEDIDO --------------------------------------------------------------------------------------------
+
+    public getExtrasPlatoPedido(): Observable<extrasPlatoPedido[]> {
+        return this.http.get<extrasPlatoPedido[]>(this.ApiUrl + 'extrasPlatoPedido/');
+    }
+
+    // DELETE
+    public deleteExtrasPlatoPedido(id: string): Observable<void> {
+        return this.http.delete<void>(this.ApiUrl + 'extrasPlatoPedido/' + id + '/');
+    }
+
+    // PUT
+    public putExtrasPlatoPedido(epp: extrasPlatoPedido): Observable<extrasPlatoPedido> {
+        const body = JSON.stringify(epp);
+        return this.http.put<extrasPlatoPedido>(
+            this.ApiUrl + 'extrasPlatoPedido/' + epp.id + '/',
+            body,
+            this.httpOptions
+        );
+    }
+
+    // POST
+    public postExtrasPlatoPedido(epp: extrasPlatoPedido): Observable<extrasPlatoPedido> {
+        const body = JSON.stringify(epp);
+        return this.http.post<extrasPlatoPedido>(
+            this.ApiUrl + 'extrasPlatoPedido/',
+            body,
+            this.httpOptions
+        );
+    }
+
 }
 
     
