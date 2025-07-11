@@ -3,6 +3,7 @@ import { ApiService } from '../../service/api.service';
 import { extrasPlatoPedido } from '../../model/extrasPlatoPedido.model';
 import { extra } from '../../model/extra.model';
 import { PlatoPedido } from '../../model/platoPedido.model';
+import { EventEmitter, Output,Input } from '@angular/core';
 
 @Component({
   selector: 'app-extras-plato-pedido',
@@ -13,7 +14,8 @@ import { PlatoPedido } from '../../model/platoPedido.model';
 })
 export class ExtrasPlatoPedidoComponent {
   constructor(private api: ApiService) {}
-
+@Input() idPlatoPedido!: number;
+@Output() extrasActualizados = new EventEmitter<void>();
   extrasPlatoPedido: extrasPlatoPedido[] = [];
   visible = false;
   nuevoRegistro = true;
@@ -77,12 +79,22 @@ export class ExtrasPlatoPedidoComponent {
     if (this.nuevoRegistro) {
       this.api.postExtrasPlatoPedido(this.extrasPlatoPedidoDialogo).subscribe(() => {
         this.obtenerExtrasPlatoPedido();
+        this.extrasActualizados.emit();
+         
+        
       });
     } else {
       this.api.putExtrasPlatoPedido(this.extrasPlatoPedidoDialogo).subscribe(() => {
         this.obtenerExtrasPlatoPedido();
+        this.extrasActualizados.emit();
       });
     }
     this.visible = false;
   }
+  calcularPrecioPersonalizacion() {
+  const cantidad = this.extrasPlatoPedidoDialogo.cantidad || 0;
+  const precioExtra = this.extraSeleccionado?.precioporPorcion|| 0;
+  this.extrasPlatoPedidoDialogo.precioPersonalizacion = cantidad * precioExtra;
+}
+
 }

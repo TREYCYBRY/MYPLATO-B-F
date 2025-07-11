@@ -62,6 +62,7 @@
             placeholder="Seleccione un extra"
             appendTo="body"
             class="w-full md:w-60"
+            (onChange)="calcularPrecioPersonalizacion()"
         />
     </div>
 
@@ -80,7 +81,7 @@
 
     <div class="flex items-center gap-4 mb-4">
         <label for="cantidad" class="font-semibold w-28">Cantidad</label>
-        <input pInputText type="number" id="cantidad" class="flex-auto" [(ngModel)]="extrasPlatoPedidoDialogo.cantidad" />
+        <input pInputText type="number" id="cantidad" class="flex-auto" [(ngModel)]="extrasPlatoPedidoDialogo.cantidad" (input)="calcularPrecioPersonalizacion()"/>
     </div>
 
     <div class="flex items-center gap-4 mb-4">

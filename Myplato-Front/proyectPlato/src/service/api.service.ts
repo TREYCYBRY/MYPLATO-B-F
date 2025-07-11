@@ -526,6 +526,11 @@ public deleteEmpleado(id: string): Observable<void> {
             this.httpOptions
         );
     }
+// ------------------------------------------------------------------------------------------------
+getExtrasPorPlatoPedido(): Observable<extrasPlatoPedido[]> {
+  return this.http.get<extrasPlatoPedido[]>(this.ApiUrl + 'extrasPlatoPedido/');
+}
+
 
 }
 

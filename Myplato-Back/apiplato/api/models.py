@@ -134,7 +134,7 @@ class PlatoPedido(models.Model):
     idpedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     idplato = models.ForeignKey(Plato, on_delete=models.CASCADE)
     precioBasePlato = models.DecimalField(max_digits=6, decimal_places=2)
-    precioFinalPlato = models.DecimalField(max_digits=6, decimal_places=2)
+    precioFinalPlato = models.DecimalField(max_digits=6, decimal_places=3)
     tipoPedido = models.CharField(max_length=50)
 
     def __str__(self):

@@ -7,6 +7,7 @@
 <p-table [value]="platoPedidos" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template #header>
         <tr>
+            <th style="width:15%">ID</th>
             <th style="width:15%">Pedido</th>
             <th style="width:15%">Plato</th>
             <th style="width:15%">Precio Base</th>
@@ -17,6 +18,7 @@
     </ng-template>
     <ng-template #body let-pp>
         <tr>
+            <td>{{ pp.id }}</td>
             <td>{{ pp.idpedido }}</td>
             <td>{{ pp.idplato }}</td>
             <td>{{ pp.precioBasePlato }}</td>
@@ -75,6 +77,7 @@
             placeholder="Seleccione un plato"
             appendTo="body"
             class="w-full md:w-60"
+            (onChange)="onChangePlato()"
         />
     </div>
 
@@ -92,6 +95,12 @@
         <label for="tipoPedido" class="font-semibold w-28">Tipo Pedido</label>
         <input pInputText type="text" id="tipoPedido" class="flex-auto" [(ngModel)]="platoPedidoDialogo.tipoPedido" />
     </div>
+      <app-extras-plato-pedido
+  *ngIf="platoPedidoDialogo.id"
+  [idPlatoPedido]="platoPedidoDialogo.id"
+  (extrasActualizados)="calcularPrecioFinal(platoPedidoDialogo.id!)">
+</app-extras-plato-pedido>
+
 
     <div class="flex justify-end gap-2">
         <p-button label="Cancelar" severity="secondary" (click)="visible = false" />

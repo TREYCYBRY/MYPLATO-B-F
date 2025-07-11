@@ -86,4 +86,12 @@ export class BebidaPedidoComponent {
     }
     this.visible = false;
   }
+  calcularPrecioFinal() {
+  if (this.bebidaSeleccionada && this.bebidaPedidoDialogo.cantidad != null) {
+    const precioUnitario = this.bebidaSeleccionada.precio || 0;
+    const cantidad = this.bebidaPedidoDialogo.cantidad;
+    this.bebidaPedidoDialogo.precioFinal = precioUnitario * cantidad;
+  }
+}
+
 }
