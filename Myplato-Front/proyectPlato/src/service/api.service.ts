@@ -18,6 +18,8 @@ import { mesa } from "../model/mesa.model";
 
 import { Pedido } from "../model/pedido.model";
 import { cliente } from "../model/cliente.model";
+import { PlatoPedido } from "../model/platoPedido.model";
+import { extrasPlatoPedido } from "../model/extrasPlatoPedido.model";
 
 @Injectable({
   providedIn: "root"
@@ -337,23 +339,23 @@ export class ApiService {
     public postExtraPlato(ep: extraPlato): Observable<extraPlato> {
         let body = JSON.stringify(ep);
         return this.http.post<extraPlato>(this.ApiUrl + 'extraPlato/', body, this.httpOptions);
-}
-    
-    public getEmpleados(): Observable<Empleado[]> {
-  return this.http.get<Empleado[]>(this.ApiUrl + 'empleados/');
-}
+    }
+        
+        public getEmpleados(): Observable<Empleado[]> {
+    return this.http.get<Empleado[]>(this.ApiUrl + 'empleados/');
+    }
 
-public postEmpleado(emp: Empleado): Observable<Empleado> {
-  return this.http.post<Empleado>(this.ApiUrl + 'empleados/', JSON.stringify(emp), this.httpOptions);
-}
+    public postEmpleado(emp: Empleado): Observable<Empleado> {
+    return this.http.post<Empleado>(this.ApiUrl + 'empleados/', JSON.stringify(emp), this.httpOptions);
+    }
 
-public putEmpleado(emp: Empleado): Observable<Empleado> {
-  return this.http.put<Empleado>(this.ApiUrl + 'empleados/' + emp.id + "/", JSON.stringify(emp), this.httpOptions);
-}
+    public putEmpleado(emp: Empleado): Observable<Empleado> {
+    return this.http.put<Empleado>(this.ApiUrl + 'empleados/' + emp.id + "/", JSON.stringify(emp), this.httpOptions);
+    }
 
-public deleteEmpleado(id: string): Observable<void> {
-  return this.http.delete<void>(this.ApiUrl + 'empleados/' + id + "/");
-}
+    public deleteEmpleado(id: string): Observable<void> {
+    return this.http.delete<void>(this.ApiUrl + 'empleados/' + id + "/");
+    }
 
 //Mesa
     public getMesas(): Observable<mesa[]> {
@@ -415,7 +417,7 @@ public deleteEmpleado(id: string): Observable<void> {
     public postPedido(ped: Pedido): Observable<Pedido> {
         let body = JSON.stringify(ped);
         return this.http.post<Pedido>(this.ApiUrl + 'pedidos/', body, this.httpOptions);
-}
+    }
 // GET Clientes
     public getClientes(): Observable<cliente[]> {
         return this.http.get<cliente[]>(this.ApiUrl + 'clientes/');
@@ -436,10 +438,58 @@ public deleteEmpleado(id: string): Observable<void> {
     public postCliente(cli: cliente): Observable<cliente> {
         let body = JSON.stringify(cli);
         return this.http.post<cliente>(this.ApiUrl + 'clientes/', body, this.httpOptions);
-}
+    }
+    //PLATO-PEDIDO --------------------------------------------------------------------------------------------
+    public getPlatoPedido(): Observable<PlatoPedido[]> {
+        return this.http.get<PlatoPedido[]>(this.ApiUrl + 'platoPedido/');
+    }
 
-}
+    //DELETE
+    public deletePlatoPedido(id: string): Observable<void> {
+        return this.http.delete<void>(this.ApiUrl + 'platoPedido/' + id + '/');
+    }
+
+    //PUT
+    public putPlatoPedido(pp: PlatoPedido): Observable<PlatoPedido> {
+        let body = JSON.stringify(pp);
+        return this.http.put<PlatoPedido>(this.ApiUrl + 'platoPedido/' + pp.id + '/', body, this.httpOptions);
+    }
+    //POST
+    public postPlatoPedido(pp: PlatoPedido): Observable<PlatoPedido> {
+        let body = JSON.stringify(pp);
+        return this.http.post<PlatoPedido>(this.ApiUrl + 'platoPedido/', body, this.httpOptions);
+    }
+   // EXTRAS-PLATO-PEDIDO --------------------------------------------------------------------------------------------
+
+    public getExtrasPlatoPedido(): Observable<extrasPlatoPedido[]> {
+        return this.http.get<extrasPlatoPedido[]>(this.ApiUrl + 'extrasPlatoPedido/');
+    }
+
+    // DELETE
+    public deleteExtrasPlatoPedido(id: string): Observable<void> {
+        return this.http.delete<void>(this.ApiUrl + 'extrasPlatoPedido/' + id + '/');
+    }
+
+    // PUT
+    public putExtrasPlatoPedido(epp: extrasPlatoPedido): Observable<extrasPlatoPedido> {
+        const body = JSON.stringify(epp);
+        return this.http.put<extrasPlatoPedido>(
+            this.ApiUrl + 'extrasPlatoPedido/' + epp.id + '/',
+            body,
+            this.httpOptions
+        );
+    }
+
+    // POST
+    public postExtrasPlatoPedido(epp: extrasPlatoPedido): Observable<extrasPlatoPedido> {
+        const body = JSON.stringify(epp);
+        return this.http.post<extrasPlatoPedido>(
+            this.ApiUrl + 'extrasPlatoPedido/',
+            body,
+            this.httpOptions
+        );
+    }
 
     
-
+}
 

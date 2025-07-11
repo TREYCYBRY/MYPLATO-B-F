@@ -124,6 +124,20 @@ export class AppComponent {
               this.router.navigate(['/pedido']);
             },
           },
+          {
+            label: 'Platos Pedidos',
+            icon: 'pi pi-fw pi-plus',
+            command: () => {
+              this.router.navigate(['/platoPedido']);
+            },
+          },
+          {
+            label: 'extras Platos Pedidos',
+            icon: 'pi pi-fw pi-plus',
+            command: () => {
+              this.router.navigate(['/extrasPedidoPlato']);
+            },
+          },
 
 
                     ]

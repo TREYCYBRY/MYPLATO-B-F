@@ -23,7 +23,8 @@ import { InicioUsuarioComponent } from './inicio-usuario/inicio-usuario.componen
 import { RegistroClienteComponent } from './registro-cliente/registro-cliente.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { MesaComponent } from './mesa/mesa.component';
-import { PedidoComponent } from './pedido/pedido.component';
+import { ExtrasPlatoPedidoComponent } from './extras-plato-pedido/extras-plato-pedido.component';
+
 
 
 const routes: Routes = [
@@ -36,23 +37,25 @@ const routes: Routes = [
   { path: 'categoriaPlato', component: CategoriaPlatoComponent},
   { path: 'categoriaCliente', component: CategoriaClienteComponent },
   {path: 'pedido', component: PedidoComponent},
-  { path: 'PlatoPedido', component: PlatoPedidoComponent},
+  {path: 'extraPlatoPedido', component: ExtraPlatoComponent},
+
 
   
   { path: 'bebida', component:BebidaComponent },
   { path: 'almacen', component:AlmacenComponent },  
   { path: 'rol', component: RolComponent },
   { path: 'stockComida', component:StockComidaComponent },
-  { path: 'stockBebida', component: StockBebidaComponent},
-  { path: 'extraPlato', component: ExtraPlatoComponent},
-  {path: 'admin-login', component: AdminLoginComponent},
-  {path: 'inicio-usuario',component:InicioUsuarioComponent},
-  {path: 'registro-cliente', component: RegistroClienteComponent},
-  {path: 'empleado', component: EmpleadoComponent},
-  {path: 'mesa', component: MesaComponent},
-  {path: 'pedido', component: PedidoComponent }, // Asegúrate de que el componente PedidoComponent esté importado correctamente
-  {path: '', redirectTo: '/login', pathMatch: 'full' },
-  {path: '**', redirectTo: '/login' } // Redirige cualquier ruta desconocida al login
+  { path: 'stockBebida', component: StockBebidaComponent },
+  { path: 'extraPlato', component: ExtraPlatoComponent },
+  { path: 'admin-login', component: AdminLoginComponent },
+  { path: 'registro-cliente', component: RegistroClienteComponent },
+  { path: 'inicio-usuario',component:InicioUsuarioComponent },
+  { path: 'empleado', component: EmpleadoComponent },
+  { path: 'mesa', component: MesaComponent },
+  { path: 'pedido', component: PedidoComponent }, // Asegúrate de que el componente PedidoComponent esté importado correctamente
+  { path: 'platoPedido', component: PlatoPedidoComponent }, // Asegúrate de que el componente PlatoPedidoComponent esté importado correctamente
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login' } // Redirige cualquier ruta desconocida al login
 
 ];
 
