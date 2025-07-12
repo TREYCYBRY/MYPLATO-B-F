@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser,BaseUserManager
 from django.conf import settings
+from django.db.models import Sum
 class UsuarioManager(BaseUserManager):
     def create_user(self,username,email,password=None,**extra_fields):
         #Creamos un usario en base a nombre de usuario, contraseña y correo
@@ -120,16 +121,29 @@ class Mesa(models.Model):
         return self.numeroMesa
 
 class Pedido(models.Model):
-    cantidadTotalPlatos = models.IntegerField()
-    cantidadTotalBebidas= models.IntegerField()
-    montoTotal = models.DecimalField(max_digits=8, decimal_places=2)
-    fecha = models.DateField()
+    cantidadTotalPlatos = models.IntegerField(default=0)
+    cantidadTotalBebidas = models.IntegerField(default=0)
+    montoTotal = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    fecha = models.DateField(auto_now_add=True)
     idcliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     idmesa = models.ForeignKey(Mesa, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'Pedido {self.id} - Cliente {self.idcliente.nombre}'
+    def actualizar_totales(self):
+        from .models import PlatoPedido, BebidaPedido
 
+        platos = PlatoPedido.objects.filter(idpedido=self)
+        bebidas = BebidaPedido.objects.filter(id_pedido=self)
+
+        self.cantidadTotalPlatos = platos.count()
+        self.cantidadTotalBebidas = sum(b.cantidad for b in bebidas)
+        
+        total_platos = sum(p.precioFinalPlato for p in platos)
+        total_bebidas = sum(b.precioFinal for b in bebidas)
+
+        self.montoTotal = total_platos + total_bebidas
+        self.save()
 class PlatoPedido(models.Model):
     idpedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     idplato = models.ForeignKey(Plato, on_delete=models.CASCADE)
@@ -140,25 +154,31 @@ class PlatoPedido(models.Model):
     def __str__(self):
         return f'Pedido {self.idpedido.id} - Plato {self.idplato.nombre}'
 
+    def save(self, *args, **kwargs):
+        if self.idplato:
+            self.precioBasePlato = self.idplato.precio
+        super().save(*args, **kwargs)
+
 
 class ExtrasPlatoPedido(models.Model):
     idextra = models.ForeignKey(Extra, on_delete=models.CASCADE)
-    idplato_pedido = models.ForeignKey(PlatoPedido, on_delete=models.CASCADE)
+    idplato_pedido = models.ForeignKey(
+        PlatoPedido, 
+        on_delete=models.CASCADE, 
+        related_name='extrasplatopedido_set'  # ✅ Esto es lo que te faltaba
+    )
     cantidad = models.IntegerField()
     precioPersonalizacion = models.DecimalField(max_digits=6, decimal_places=2)
+
     def __str__(self):
-        return (
-        f'Extra {self.idextra.nombre} - '
-        f'Pedido {self.idplato_pedido.idpedido.id} - '
-        f'{self.idplato_pedido.idplato.nombre} ID {self.idplato_pedido.id}'
-        )
+        return f"{self.idextra} x{self.cantidad}"
 
 
 class Pago(models.Model):
     montoPagado = models.DecimalField(max_digits=8, decimal_places=2)
     montoRestante = models.DecimalField(max_digits=8, decimal_places=2)
     montoTotal=models.DecimalField(max_digits=8, decimal_places=2)
-    fecha = models.DateField()
+    fecha = models.DateField(auto_now_add=True)
 
     METODO_CHOICES = [
         ('Billetera Virtual', 'Billetera Virtual'),

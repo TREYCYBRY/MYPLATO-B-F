@@ -94,6 +94,7 @@ class  PedidoSerializer(serializers.ModelSerializer):
     class Meta:
         model= models.Pedido
         fields='__all__'
+        read_only_fields = ['idcliente']
 
 class  PlatoPedidoSerializer(serializers.ModelSerializer):
     class Meta:
