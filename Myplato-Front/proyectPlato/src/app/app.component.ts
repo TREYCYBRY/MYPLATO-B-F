@@ -135,10 +135,10 @@ export class AppComponent {
             label: 'extras Platos Pedidos',
             icon: 'pi pi-fw pi-plus',
             command: () => {
-              this.router.navigate(['/extrasPedidoPlato']);
+              this.router.navigate(['/extraPlatoPedido']);
             },
           },
-
+ 
 
                     ]
       },
