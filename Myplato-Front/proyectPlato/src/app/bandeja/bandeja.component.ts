@@ -3,6 +3,8 @@ import { ApiService } from '../../service/api.service';
 import { Plato } from '../../model/plato.model';
 import { PlatoPedido } from '../../model/platoPedido.model';
 import { Pedido } from '../../model/pedido.model';
+import { bebidaPedido } from '../../model/bebidaPedido.model';
+import { bebida } from '../../model/bebida.model';
 
 @Component({
   selector: 'app-bandeja',
@@ -15,14 +17,19 @@ export class BandejaComponent {
   constructor(private api: ApiService) {}
 
   platos: Plato[] = [];
+  bebidas: bebida[] = [];
+
   bandeja: Plato[] = [];
+  bandejaBebidas: bebida[] = [];
+
   total: number = 0;
 
   resumenVisible: boolean = false;
-  pedidoResumen: Plato[] = [];
+  pedidoResumen: (Plato | bebida)[] = [];
 
   ngOnInit() {
     this.api.getPlatos().subscribe(res => this.platos = res);
+    this.api.getBebida().subscribe(res => this.bebidas = res);
   }
 
   agregarPlato(plato: Plato) {
@@ -35,15 +42,27 @@ export class BandejaComponent {
     this.calcularTotal();
   }
 
+  agregarBebida(bebida: bebida) {
+    this.bandejaBebidas.push(bebida);
+    this.calcularTotal();
+  }
+
+  eliminarBebida(index: number) {
+    this.bandejaBebidas.splice(index, 1);
+    this.calcularTotal();
+  }
+
   calcularTotal() {
-    this.total = this.bandeja.reduce((acc, p) => acc + Number(p.precio), 0);
+    const totalPlatos = this.bandeja.reduce((acc, p) => acc + Number(p.precio), 0);
+    const totalBebidas = this.bandejaBebidas.reduce((acc, b) => acc + Number(b.precio), 0);
+    this.total = totalPlatos + totalBebidas;
   }
 
   confirmarPedido() {
     const pedido: Pedido = {
       id: 0,
       cantidadTotalPlatos: this.bandeja.length,
-      cantidadTotalBebidas: 0,
+      cantidadTotalBebidas: this.bandejaBebidas.length,
       montoTotal: this.total,
       fecha: new Date(), // esto es correcto para tipo Date
       idcliente: 1, // ← actualizar según usuario logueado
@@ -51,6 +70,7 @@ export class BandejaComponent {
     };
 
     this.api.postPedido(pedido).subscribe(ped => {
+      // Enviar platos
       this.bandeja.forEach(plato => {
         const detalle: PlatoPedido = {
           id: 0,
@@ -62,14 +82,28 @@ export class BandejaComponent {
         };
         this.api.postPlatoPedido(detalle).subscribe();
       });
+
+      // Enviar bebidas
+      this.bandejaBebidas.forEach(bebida => {
+        const detalleBebida: bebidaPedido = {
+          id: 0,
+          id_bebida: bebida.id,
+          id_pedido: ped.id,
+          cantidad: 1,
+          precioFinal: bebida.precio
+        };
+        this.api.postbebidaPedidos(detalleBebida).subscribe();
+      });
+
       alert("✅ Pedido realizado exitosamente");
       this.bandeja = [];
+      this.bandejaBebidas = [];
       this.total = 0;
     });
   }
 
   mostrarResumen() {
-    this.pedidoResumen = [...this.bandeja]; // copia segura
+    this.pedidoResumen = [...this.bandeja, ...this.bandejaBebidas]; // copia segura
     this.resumenVisible = true;
   }
 

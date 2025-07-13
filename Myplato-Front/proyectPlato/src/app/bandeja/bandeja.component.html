@@ -1,14 +1,29 @@
-<h2>Menú</h2>
+<h2>Menú de Platos</h2>
 <div *ngFor="let pla of platos">
   {{ pla.nombre }} - S/ {{ pla.precio }}
   <button (click)="agregarPlato(pla)">Agregar</button>
 </div>
 
+<h2>Menú de Bebidas</h2>
+<div *ngFor="let bb of bebidas">
+  {{ bb.nombre }} - S/ {{ bb.precio }}
+  <button (click)="agregarBebida(bb)">Agregar</button>
+</div>
+
 <h2>Bandeja</h2>
+<h3>Platos</h3>
 <ul>
   <li *ngFor="let item of bandeja; let i = index">
     {{ item.nombre }} - S/ {{ item.precio }}
     <button (click)="eliminarPlato(i)">Eliminar</button>
+  </li>
+</ul>
+
+<h3>Bebidas</h3>
+<ul>
+  <li *ngFor="let b of bandejaBebidas; let i = index">
+    {{ b.nombre }} - S/ {{ b.precio }}
+    <button (click)="eliminarBebida(i)">Eliminar</button>
   </li>
 </ul>
 
@@ -19,8 +34,8 @@
 <p-dialog header="Resumen del Pedido" [(visible)]="resumenVisible" [modal]="true" [style]="{ width: '30rem' }">
   <div *ngIf="pedidoResumen.length > 0">
     <ul>
-      <li *ngFor="let pla of pedidoResumen">
-        {{ pla.nombre }} - S/ {{ pla.precio }}
+      <li *ngFor="let item of pedidoResumen">
+        {{ item.nombre }} - S/ {{ item.precio }}
       </li>
     </ul>
     <hr />
