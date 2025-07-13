@@ -1,5 +1,42 @@
-<h1>Pedidos</h1>
+<!-- INICIO BARRA --> 
+<div class="body">
+    <div class="menu">
+      <a class="titulo">Bienvenido Administrador</a>
+      <div class="centro">
+        <a class="nav-link menu-dropdown-toggle" routerLink="/inicio">MODULOS</a> 
+        <ul class="submenu">
+            <li><a class="category-btn" routerLink="/plato" routerLinkActive="active">Platos</a></li>
+            <li><a class="category-btn" routerLink="/categoriaExtra" routerLinkActive="active">Categorias Extras</a></li>
+            <li><a class="category-btn" routerLink="/unidad" routerLinkActive="active">Unidad de Medida</a></li>
+            <li><a class="category-btn" routerLink="/extra" routerLinkActive="active">Extras</a></li>
+            <li><a class="category-btn" routerLink="/categoriaPlato" routerLinkActive="active">Categoria Plato</a></li>
+            <li><a class="category-btn" routerLink="/categoriaCliente" routerLinkActive="active">Categoria Cliente</a></li>
+            <li><a class="category-btn" routerLink="/rol" routerLinkActive="active">Roles</a></li>
+            <li><a class="category-btn" routerLink="/bebida" routerLinkActive="active">Bebidas</a></li>
+            <li><a class="category-btn" routerLink="/almacen" routerLinkActive="active">Almacen</a></li>
+            <li><a class="category-btn" routerLink="/stockComida" routerLinkActive="active">Stock Comida</a></li>
+            <li><a class="category-btn" routerLink="/stockBebida" routerLinkActive="active">Stock Bebida</a></li>
+            <li><a class="category-btn" routerLink="/extraPlato" routerLinkActive="active">Extra Plato</a></li>
+            <li><a class="category-btn" routerLink="/empleado" routerLinkActive="active">Empleados</a></li>
+            <li><a class="category-btn" routerLink="/mesa" routerLinkActive="active">Mesas</a></li>
+            <li><a class="category-btn" routerLink="/pedido" routerLinkActive="active">Pedidos</a></li>
+            <li><a class="category-btn" routerLink="/platoPedido" routerLinkActive="active">Platos Pedidos</a></li>
+            <li><a class="category-btn" routerLink="/pago" routerLinkActive="active">Pagos</a></li>
+            <li><a class="category-btn" routerLink="/bebidaPedido" routerLinkActive="active">Bebidas Pedidos</a></li>
+            <li><a class="category-btn" routerLink="/extrasPlatoPedido" routerLinkActive="active">Extra Plato Pedido</a></li>
+        </ul> 
+      </div>
+      <div class="btn-der">
+        <button class="nav-link" routerLink="/login">Cerrar sesion</button>
+      </div>
+    </div>
+    <div class="content">
+      <router-outlet />
+    </div>
+</div>
+<!-- FIN BARRA --> 
 
+<h2>Pedidos</h2>
 <!-- CREATE: Botón -->
 <p-button label="Nuevo Pedido" icon="pi pi-plus" class="mr-2 mb-3" (onClick)="abrirDialogo()" />
 
