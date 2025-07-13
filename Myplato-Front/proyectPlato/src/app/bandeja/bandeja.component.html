@@ -11,18 +11,20 @@
     <button (click)="eliminarPlato(i)">Eliminar</button>
   </li>
 </ul>
-<h3>Total: S/ {{ total }}</h3>
+
+<h3>Total: S/ {{ total | number: '1.2-2' }}</h3>
+
 <p-button label="Confirmar Pedido" icon="pi pi-check" (onClick)="mostrarResumen()" />
 
 <p-dialog header="Resumen del Pedido" [(visible)]="resumenVisible" [modal]="true" [style]="{ width: '30rem' }">
   <div *ngIf="pedidoResumen.length > 0">
     <ul>
       <li *ngFor="let pla of pedidoResumen">
-        {{ pla.nombre }} - S/. {{ pla.precio }}
+        {{ pla.nombre }} - S/ {{ pla.precio }}
       </li>
     </ul>
     <hr />
-    <p><strong>Total: S/. {{ totalResumen }}</strong></p>
+    <p><strong>Total:</strong> S/ {{ total | number: '1.2-2' }}</p>
   </div>
   <div class="flex justify-end gap-2 mt-3">
     <p-button label="Cancelar" severity="secondary" (click)="resumenVisible = false" />

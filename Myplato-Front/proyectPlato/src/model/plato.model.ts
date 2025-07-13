@@ -3,7 +3,7 @@ export class Plato{
     nombre: string;
     descripcion: string;
     precio: number;
-    personalizable: boolean;
+    personalizable: boolean=false;
     idcategoria_plato: number;
     imagen: string;
 }

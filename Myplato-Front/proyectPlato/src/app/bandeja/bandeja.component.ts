@@ -12,11 +12,14 @@ import { Pedido } from '../../model/pedido.model';
   providers: [ApiService]
 })
 export class BandejaComponent {
-  constructor(private api: ApiService){}
+  constructor(private api: ApiService) {}
 
   platos: Plato[] = [];
   bandeja: Plato[] = [];
-  total = 0;
+  total: number = 0;
+
+  resumenVisible: boolean = false;
+  pedidoResumen: Plato[] = [];
 
   ngOnInit() {
     this.api.getPlatos().subscribe(res => this.platos = res);
@@ -24,12 +27,16 @@ export class BandejaComponent {
 
   agregarPlato(plato: Plato) {
     this.bandeja.push(plato);
-    this.total += plato.precio;
+    this.calcularTotal();
   }
 
   eliminarPlato(index: number) {
-    this.total -= this.bandeja[index].precio;
     this.bandeja.splice(index, 1);
+    this.calcularTotal();
+  }
+
+  calcularTotal() {
+    this.total = this.bandeja.reduce((acc, p) => acc + Number(p.precio), 0);
   }
 
   confirmarPedido() {
@@ -38,9 +45,9 @@ export class BandejaComponent {
       cantidadTotalPlatos: this.bandeja.length,
       cantidadTotalBebidas: 0,
       montoTotal: this.total,
-      fecha: new Date(),
-      idcliente: 1, // <- cambiar según sesión
-      idmesa: 1 // <- asignar según contexto
+      fecha: new Date(), // esto es correcto para tipo Date
+      idcliente: 1, // ← actualizar según usuario logueado
+      idmesa: 1     // ← actualizar según contexto
     };
 
     this.api.postPedido(pedido).subscribe(ped => {
@@ -55,29 +62,19 @@ export class BandejaComponent {
         };
         this.api.postPlatoPedido(detalle).subscribe();
       });
-      alert("Pedido realizado exitosamente");
+      alert("✅ Pedido realizado exitosamente");
       this.bandeja = [];
       this.total = 0;
     });
-    }
+  }
 
-    // NUEVO: controlar diálogo de resumen
-    resumenVisible: boolean = false;
-    pedidoResumen: Plato[] = [];
-    totalResumen: number = 0;
+  mostrarResumen() {
+    this.pedidoResumen = [...this.bandeja]; // copia segura
+    this.resumenVisible = true;
+  }
 
-    // Mostrar resumen
-    mostrarResumen() {
-      this.pedidoResumen = [...this.bandeja]; // copia segura
-      this.totalResumen = this.bandeja.reduce((acc, p) => acc + p.precio, 0);
-      this.resumenVisible = true;
-    }
-
-    // Confirmar desde resumen
-    confirmarDesdeResumen() {
-      this.confirmarPedido(); // ya existente
-      this.resumenVisible = false;
-    }
-
-
+  confirmarDesdeResumen() {
+    this.confirmarPedido();
+    this.resumenVisible = false;
+  }
 }

@@ -73,6 +73,8 @@ export class PlatoComponent {
     formDataPlato.append('descripcion', this.platoDialogo.descripcion);
     formDataPlato.append('precio', this.platoDialogo.precio.toString());
     formDataPlato.append('idcategoria_plato', this.platoDialogo.idcategoria_plato.toString());
+    formDataPlato.append('personalizable', this.platoDialogo.personalizable ? 'true' : 'false');
+
 
     if (this.imagenSeleccionada) {
       formDataPlato.append('imagen', this.imagenSeleccionada);
@@ -95,4 +97,3 @@ export class PlatoComponent {
     this.imagenSeleccionada = event.files[0];
   }
 }
-
