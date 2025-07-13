@@ -26,6 +26,7 @@ import { PlatoPedidoComponent } from './plato-pedido/plato-pedido.component';
 import { PagoComponent } from './pago/pago.component';
 import { BebidaPedidoComponent } from './bebida-pedido/bebida-pedido.component';
 import { ExtrasPlatoPedidoComponent } from './extras-plato-pedido/extras-plato-pedido.component';
+import { BandejaComponent } from './bandeja/bandeja.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -53,6 +54,8 @@ const routes: Routes = [
   {path:'pago',component: PagoComponent}, // Asegúrate de que este componente exista y sea correcto
   {path:'platoPedido', component: PlatoPedidoComponent},
   {path:'extrasPlatoPedido',component:ExtrasPlatoPedidoComponent}, // Asegúrate de que este componente exista y sea correcto
+
+  {path:'bandeja', component:BandejaComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: '**', redirectTo: '/login' } // Redirige cualquier ruta desconocida al login
 ];

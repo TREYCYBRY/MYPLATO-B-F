@@ -27,6 +27,15 @@ export class AppComponent {
           this.router.navigate(['/login']);
         }
       },
+
+      {
+        label: 'Bandeja',
+        icon: 'pi pi-shopping-cart',
+        command: () => {
+          this.router.navigate(['/bandeja']);
+        }
+      },
+
       {   label: 'Listados',
                 icon: 'pi pi-search',
                 items: [

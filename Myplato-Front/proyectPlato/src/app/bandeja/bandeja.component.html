@@ -1,0 +1,31 @@
+<h2>Menú</h2>
+<div *ngFor="let pla of platos">
+  {{ pla.nombre }} - S/ {{ pla.precio }}
+  <button (click)="agregarPlato(pla)">Agregar</button>
+</div>
+
+<h2>Bandeja</h2>
+<ul>
+  <li *ngFor="let item of bandeja; let i = index">
+    {{ item.nombre }} - S/ {{ item.precio }}
+    <button (click)="eliminarPlato(i)">Eliminar</button>
+  </li>
+</ul>
+<h3>Total: S/ {{ total }}</h3>
+<p-button label="Confirmar Pedido" icon="pi pi-check" (onClick)="mostrarResumen()" />
+
+<p-dialog header="Resumen del Pedido" [(visible)]="resumenVisible" [modal]="true" [style]="{ width: '30rem' }">
+  <div *ngIf="pedidoResumen.length > 0">
+    <ul>
+      <li *ngFor="let pla of pedidoResumen">
+        {{ pla.nombre }} - S/. {{ pla.precio }}
+      </li>
+    </ul>
+    <hr />
+    <p><strong>Total: S/. {{ totalResumen }}</strong></p>
+  </div>
+  <div class="flex justify-end gap-2 mt-3">
+    <p-button label="Cancelar" severity="secondary" (click)="resumenVisible = false" />
+    <p-button label="Confirmar Pedido" icon="pi pi-check" (click)="confirmarDesdeResumen()" />
+  </div>
+</p-dialog>

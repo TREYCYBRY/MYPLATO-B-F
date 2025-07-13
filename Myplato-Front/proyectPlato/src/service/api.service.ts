@@ -34,6 +34,16 @@ export class ApiService {
     };
     constructor(private http: HttpClient) {
     }
+    private getHttpOptions() {
+  const token = localStorage.getItem('token');
+  return {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`
+    })
+  };
+}
+
 
     //GET Plato
     public getPlatos(): Observable<Plato[]> {
@@ -413,10 +423,11 @@ public deleteEmpleado(id: string): Observable<void> {
     }
 
     // POST - crear nuevo pedido
-    public postPedido(ped: Pedido): Observable<Pedido> {
-        let body = JSON.stringify(ped);
-        return this.http.post<Pedido>(this.ApiUrl + 'pedidos/', body, this.httpOptions);
-    }
+public postPedido(ped: Pedido): Observable<Pedido> {
+  let body = JSON.stringify(ped);
+  return this.http.post<Pedido>(this.ApiUrl + 'pedidos/', body, this.getHttpOptions());
+}
+
 // GET Clientes
     public getClientes(): Observable<cliente[]> {
         return this.http.get<cliente[]>(this.ApiUrl + 'clientes/');
@@ -526,6 +537,11 @@ public deleteEmpleado(id: string): Observable<void> {
             this.httpOptions
         );
     }
+// ------------------------------------------------------------------------------------------------
+getExtrasPorPlatoPedido(): Observable<extrasPlatoPedido[]> {
+  return this.http.get<extrasPlatoPedido[]>(this.ApiUrl + 'extrasPlatoPedido/');
+}
+
 
 }
 

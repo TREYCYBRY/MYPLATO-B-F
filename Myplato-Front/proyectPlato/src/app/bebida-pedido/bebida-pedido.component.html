@@ -59,6 +59,7 @@
       id="id_bebida"
       [options]="bebidas"
       [(ngModel)]="bebidaSeleccionada"
+      (onChange)="calcularPrecioFinal()"
       optionLabel="nombre"
       placeholder="Seleccione una bebida"
       class="w-full md:w-56"
@@ -86,6 +87,7 @@
       class="flex-auto"
       autocomplete="off"
       [(ngModel)]="bebidaPedidoDialogo.cantidad"
+      (input)="calcularPrecioFinal()"
     />
   </div>
 

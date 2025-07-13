@@ -6,9 +6,18 @@ class APIKeyMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
+        # Rutas excluidas que no necesitan validación de API Key
+        rutas_excluidas = [
+            '/media/', 
+            '/api/registro-cliente/', 
+            '/api/login/',
+            '/admin/'
+        ]
+        if any(request.path.startswith(r) for r in rutas_excluidas):
+            return self.get_response(request)
+
         api_key = request.headers.get('x-api-key')
         if api_key != settings.API_KEY:
             return JsonResponse({'error': 'Invalid API Key'}, status=403)
+
         return self.get_response(request)
-# Middleware to check API key in request headers
-# This middleware checks for the presence of a valid API key in the request headers.

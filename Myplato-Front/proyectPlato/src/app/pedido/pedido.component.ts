@@ -68,7 +68,6 @@ export class PedidoComponent {
   }
 
   guardarPedido() {
-  this.pedidoDialogo.idcliente = this.clienteSeleccionado.id;
   this.pedidoDialogo.idmesa = this.mesaSeleccionada.id;
      console.log('Guardando pedido:', this.pedidoDialogo); // 👈
 

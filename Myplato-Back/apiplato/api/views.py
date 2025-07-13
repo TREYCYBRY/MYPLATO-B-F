@@ -6,14 +6,16 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate
 from django.conf import settings
-from rest_framework.decorators import action
+from rest_framework.decorators import action,api_view,permission_classes
 from rest_framework import permissions
 from rest_framework.response import Response
 from .models import Cliente, Usuario,Empleado
 from rest_framework.decorators import api_view
 from .serializers import EmpleadoSerializer
 from rest_framework import status
-
+from . import models, serializers as app_serializers
+from .models import Cliente, Pedido
+from rest_framework.permissions import IsAuthenticated
 
 class CategoriaExtraViewSet(viewsets.ModelViewSet):
     queryset = models.CategoriaExtra.objects.all()
@@ -79,9 +81,15 @@ class MesaViewSet(viewsets.ModelViewSet):
 
 
 class PedidoViewSet(viewsets.ModelViewSet):
-    queryset = models.Pedido.objects.all()
-    serializer_class = serializers.PedidoSerializer
-
+    queryset = Pedido.objects.all()
+    serializer_class = app_serializers.PedidoSerializer
+    permission_classes = [IsAuthenticated]
+    def perform_create(self, serializer):
+        try:
+            cliente = Cliente.objects.get(user=self.request.user)
+            serializer.save(idcliente=cliente)
+        except Cliente.DoesNotExist:
+            raise serializers.ValidationError("El usuario autenticado no está vinculado a un cliente.")
 
 class PlatoPedidoViewSet(viewsets.ModelViewSet):
     queryset = models.PlatoPedido.objects.all()
@@ -165,6 +173,7 @@ class StockBebidaViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def registro_cliente(request):
     data = request.data
     try:
