@@ -126,7 +126,8 @@ class Pedido(models.Model):
     montoTotal = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
     fecha = models.DateField(auto_now_add=True)
     idcliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    idmesa = models.ForeignKey(Mesa, on_delete=models.CASCADE)
+    idmesa = models.ForeignKey(Mesa, on_delete=models.CASCADE,default=1)
+    estado = models.BooleanField(default=False)  # True si el pedido está listo para servir, False si está en preparación   
 
     def __str__(self):
         return f'Pedido {self.id} - Cliente {self.idcliente.nombre}'
@@ -149,7 +150,7 @@ class PlatoPedido(models.Model):
     idplato = models.ForeignKey(Plato, on_delete=models.CASCADE)
     precioBasePlato = models.DecimalField(max_digits=6, decimal_places=2)
     precioFinalPlato = models.DecimalField(max_digits=6, decimal_places=3)
-    tipoPedido = models.CharField(max_length=50)
+    tipoPedido = models.CharField(max_length=50,default='Para servir')
 
     def __str__(self):
         return f'Pedido {self.idpedido.id} - Plato {self.idplato.nombre}'

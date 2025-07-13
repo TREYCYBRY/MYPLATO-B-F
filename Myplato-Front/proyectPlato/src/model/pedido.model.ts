@@ -6,4 +6,5 @@ export class Pedido {
     fecha: Date;
     idcliente: number;
     idmesa:number;
+    estado: boolean=false; // True si el pedido está listo para servir, False si está en preparación
 }

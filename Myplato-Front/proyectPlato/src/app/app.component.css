@@ -1,10 +1,10 @@
 /* Aplica al fondo de la barra */
 .p-menubar.custom-menubar {
-  background: rgb(246, 120, 3);
+  background: #f67803;
   border: none;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(62, 42, 36, 0.46);
   font-family: 'Poppins', sans-serif;
   padding: 0.3rem 1rem;
-  animation: slideDown 0.6s ease-out;
+  animation: slideDown 0.6s ease-out;
 }

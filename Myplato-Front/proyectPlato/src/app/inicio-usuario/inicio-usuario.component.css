@@ -1,31 +1,549 @@
-.usuario-inicio-container {
-  height: 100vh;
-  background-color: #FFF5F0;
+.body{
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.menu{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #ffffff;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.content{
+  height: 80%;
+}
+
+.centro{
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  padding: 5px 5px;
 }
 
-.welcome-box {
-  background-color: #f7a252fb;
-  color: #333;
-  padding: 3rem;
-  border-radius: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  text-align: center;
+.centro .nav-link { 
+    padding: 10px 20px; /* Mantén tu padding existente */
+    margin-right: 10px; /* Añade espaciado a la derecha */
+    text-decoration: none; /* Asegura que no haya subrayado si lo tenías antes */
+    color: inherit; /* Hereda el color del texto si no está definido */
 }
 
-.welcome-box h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+.centro .nav-link:hover { 
+    background-color: #f0f0f0;
+    border-radius: 5px; 
+    transition: background-color 0.3s ease;
+  }
+
+/* Para evitar un margen extra en el último elemento */
+.centro .nav-link:last-child {
+    margin-right: 0;
 }
 
-.welcome-box .brand {
-  color: #e82a2a;
-  font-weight: bold;
+
+.btn-der .nav-link{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+    background-color: #FF5722; /* Orange */
+    color: white;
 }
 
-.welcome-box p {
-  font-size: 1.2rem;
-  font-style: italic;
+.btn-der .nav-link:hover{
+    background-color: #E64A19;
+  }
+
+.titulo{
+  color: rgb(0, 0, 0);
+  font-weight: 100;
+  font-style: normal;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    padding: 140px 50px;
+    color: white;
+    text-align: center;
+    overflow: hidden; 
+    background-image: url('../../assets/Inicio-usuario.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; 
+}
+
+.welcome-message {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.welcome-message::before {
+    left: -70px; 
+}
+
+.welcome-message::after {
+    right: -70px; 
+}
+
+
+.hero-title {
+    font-size: 6em;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.hero-subtitle {
+    font-size: 5em; 
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.btn-hero {
+    background-color: #FF5722; /* Orange */
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none; /* If it's an <a> tag acting as a button */
+    display: inline-block; /* Essential for padding and margin if it's an <a> */
+    transition: background-color 0.3s ease;
+}
+
+.btn-hero:hover {
+    background-color: #E64A19; /* Darker orange on hover */
+}
+
+/* SEGUNDA SECCION */
+.create-dish-section {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; /* No es necesario si tienes el margen auto */
+    padding: 30px 40px; /* Reducido el padding vertical y horizontal */
+    background-color: #fff;
+    gap: 60px; /* Reducido el espacio entre la imagen y el contenido */
+    max-width: 1000px; /* Reducido el ancho máximo de la sección */
+    margin: 40px auto; /* Centra la sección y añade margen superior/inferior para separarla */
+    /*box-shadow: 0 4px 15px #ffffff00;*/ /* Sombra sutil para el contenedor principal */
+    border-radius: 12px; /* Bordes ligeramente redondeados para la sección */
+}
+
+.create-dish-image-container {
+    flex: 0 0 45%; /* La imagen toma aproximadamente el 45% del espacio */
+    max-width: 450px; /* Limita el ancho máximo del contenedor de imagen */
+    height: 450px; /* Altura fija para el contenedor de la imagen, ajusta según necesites */
+    background-image: url('../../assets/crearPlato.jpg'); /* La imagen de fondo */
+    background-size: cover; /* Cubre el área del contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra sutil para la imagen */
+    border-radius: 8px; /* Esquinas ligeramente redondeadas para la imagen */
+    overflow: hidden; /* Asegura que la imagen no se desborde si el radio de borde es diferente */
+}
+
+
+.create-dish-content {
+    flex: 1;
+    max-width: 500px; /* Reducido el ancho máximo del contenido de texto */
+}
+
+.create-dish-title {
+    font-size: 2.5em; /* Ligeramente reducido el tamaño del título */
+    color: #333;
+    margin-bottom: 25px; /* Ajustado el margen inferior */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.create-dish-paragraph {
+    font-size: 1em; /* Ligeramente reducido el tamaño del párrafo */
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px; /* Ajustado el margen inferior */
+}
+
+.create-dish-paragraph.bold-text {
+    font-weight: bold;
+    color: #333;
+}
+
+.create-dish-list {
+    list-style: none;
+    margin-bottom: 15px; /* Ajustado el margen inferior */
+    padding-left: 0;
+}
+
+.create-dish-list li {
+    font-size: 1em; /* Ligeramente reducido el tamaño de la lista */
+    color: #555;
+    margin-bottom: 8px; /* Ajustado el margen inferior */
+    position: relative;
+    padding-left: 25px;
+}
+
+/* Para agregar un punto o ícono personalizado a los elementos de la lista */
+.create-dish-list li::before {
+    content: '\2022'; /* Código Unicode para un punto */
+    color: #FF5722; /* Color de tu marca */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    position: absolute;
+    left: 0;
+}
+
+.btn-menu {
+    background-color: #FF5722;
+    color: white;
+    padding: 12px 30px; /* Reducido el padding del botón */
+    font-size: 1.1em; /* Reducido el tamaño de fuente del botón */
+    border: none;
+    border-radius: 8px; /* Ligeramente reducido el radio de borde */
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Añadido un margen superior para separarlo del texto */
+}
+
+.btn-menu:hover {
+    background-color: #e64a19; /* Un tono más oscuro para el hover */
+}
+
+
+/*TERCERA SECCION*/
+.why-choose-us-section {
+    position: relative;
+    width: 100%;
+    padding: 100px 50px;
+    color: white;
+    text-align: center;
+    overflow: hidden; 
+    background-image: url('../../assets/escogernos.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.why-choose-us-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.211); 
+    z-index: 1;
+}
+
+.why-choose-us-content {
+    position: relative;
+    z-index: 2; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.why-choose-us-title {
+    font-size: 3.5em;
+    margin-bottom: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.why-choose-us-description {
+    font-size: 1.2em;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    color: #eee;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.feature-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    backdrop-filter: blur(5px); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+}
+
+.feature-icon-container {
+    width: 70px;
+    height: 70px;
+    background-color: #FF5722; 
+    border-radius: 8px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto; 
+}
+
+.feature-icon-container .fas {
+    color: white;
+    font-size: 2.5em; 
+}
+
+.feature-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.feature-text {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+/* CUARTA SECCION */
+.comments-section {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    /*background-color: #af8f8f;*/
+}
+
+.comments-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.371);
+}
+
+.rating-summary h2 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.rating-summary .stars {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.rating-summary .star {
+    color: #FFC107; /* Color dorado para las estrellas */
+    font-size: 24px;
+    margin-right: 2px;
+}
+
+.rating-summary p {
+    color: #000000ad;
+    margin: 0;
+}
+
+.write-review-btn {
+    background-color: #FF5722; /* Color azul de Google */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.write-review-btn:hover {
+    background-color: #E64A19;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.review-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Imagen de usuario predeterminada */
+.reviewer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    background-size: cover;
+    background-position: center;
+    background-image: url('../../assets/user.jpg'); /* Ruta de imagen genérica */
+    border: 1px solid #eee; /* Borde sutil para avatares */
+}
+
+.reviewer-details h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.reviewer-details .stars {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.reviewer-details .star {
+    color: #ccc; /* Estrellas no rellenas */
+    font-size: 20px;
+}
+
+.reviewer-details .star.filled {
+    color: #FFC107; /* Estrellas rellenas */
+}
+
+.review-date {
+    font-size: 14px;
+    color: #888;
+    margin: 0;
+}
+
+.review-text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* FOOTER SECCION */
+.main-footer {
+    background-color: #000000; /* Dark background color from the image */
+    color: #f0f0f0; /* Light text color */
+    padding: 60px 50px 30px 50px; /* Top, right, bottom, left padding */
+    font-size: 0.95em;
+}
+
+.footer-content-wrapper {
+    display: flex;
+    justify-content: space-between; /* Distribute items with space between them */
+    align-items: flex-start; /* Align items to the top of the flex container */
+    max-width: 1200px; /* Limit content width */
+    margin: 0 auto; /* Center the content */
+    margin-bottom: 40px; /* Space above copyright */
+}
+
+.footer-logo h1 {
+    font-size: 2.2em; /* Adjust logo size */
+    color: #f0f0f0; /* Light color for the logo */
+    font-family: 'Georgia', serif; /* Or a more elegant font if desired */
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.footer-links-group {
+    flex: 1; /* Allow link groups to grow and shrink */
+    padding: 0 20px; /* Space between columns */
+    min-width: 150px; /* Minimum width to prevent squishing */
+}
+
+.footer-nav-list {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav-list li {
+    margin-bottom: 10px; /* Space between list items */
+}
+
+.footer-link {
+    text-decoration: none;
+    color: #f0f0f0;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #FF5722; /* Orange on hover */
+}
+
+.footer-social {
+    text-align: right; 
+    flex-shrink: 0; 
+    padding-left: 20px;
+}
+
+.follow-us-text {
+    font-size: 1em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #ccc;
+}
+
+.social-icons a {
+    color: #f0f0f0;
+    font-size: 1.4em;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #FF5722; /* Orange on hover */
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.copyright-text {
+    font-size: 0.85em;
+    color: #aaa;
 }
