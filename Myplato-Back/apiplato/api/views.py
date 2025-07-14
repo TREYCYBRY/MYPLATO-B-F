@@ -32,32 +32,28 @@ def obtener_o_crear_pedido_activo(request):
         return Response({'error': 'Cliente no encontrado'}, status=404)
 
     try:
-        mesa = Mesa.objects.get(id=1)  # Puedes modificarlo si manejas varias mesas
+        mesa = Mesa.objects.get(id=1)
     except Mesa.DoesNotExist:
         return Response({'error': 'Mesa con ID=1 no encontrada'}, status=404)
 
-    # Buscar el pedido activo más reciente
+    # ✅ Buscar cualquier pedido activo
     pedido = Pedido.objects.filter(idcliente=cliente, estado=False).order_by('-id').first()
 
-    # Si existe pedido activo, verificar si está vacío
+    # Si existe, se devuelve sin importar si tiene platos o bebidas
     if pedido:
-        tiene_platos = pedido.platopedido_set.exists()
-        tiene_bebidas = pedido.bebidapedido_set.exists()
+        serializer = PedidoSerializer(pedido)
+        return Response(serializer.data)
 
-        if tiene_platos or tiene_bebidas:
-            pedido = None  # No reutilizar si ya tiene datos
-
-    # Crear un nuevo pedido si no hay uno vacío reutilizable
-    if not pedido:
-        pedido = Pedido.objects.create(
-            idcliente=cliente,
-            estado=False,
-            cantidadTotalPlatos=0,
-            cantidadTotalBebidas=0,
-            montoTotal=0,
-            idmesa=mesa,
-            fecha=timezone.now().date()
-        )
+    # Si no hay, se crea uno nuevo
+    pedido = Pedido.objects.create(
+        idcliente=cliente,
+        estado=False,
+        cantidadTotalPlatos=0,
+        cantidadTotalBebidas=0,
+        montoTotal=0,
+        idmesa=mesa,
+        fecha=timezone.now().date()
+    )
 
     serializer = PedidoSerializer(pedido)
     return Response(serializer.data)

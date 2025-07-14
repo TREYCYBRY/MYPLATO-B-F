@@ -20,8 +20,13 @@ export class BandejaComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.obtenerPedidoActivo(this.idcliente).subscribe(pedido => {
-      if (pedido?.id) {
+      // Asegurarse que solo cargue el pedido con estado == false
+      if (pedido?.estado === false) {
         this.cargarPedido(pedido.id);
+      } else {
+        this.idpedido = null;
+        this.platos = [];
+        this.bebidas = [];
       }
     });
   }
@@ -31,13 +36,18 @@ export class BandejaComponent implements OnInit {
 
     // Obtener platos
     this.api.getPlatoPedidosPorPedido(id).subscribe(platos => {
-      this.platos = platos || [];
-      this.platos.forEach(p => {
-        this.api.getPlatoPorId(p.idplato).subscribe(plato => {
-          p.plato = plato;
-        });
-      });
+  console.log('PlatoPedidos recibidos:', platos); // 👈
+  this.platos = platos || [];
+
+  this.platos.forEach(p => {
+    console.log('ID del plato:', p.idplato); // 👈
+    this.api.getPlatoPorId(p.idplato).subscribe(plato => {
+      console.log('Plato obtenido por ID:', plato); // 👈
+      p.plato = plato;
     });
+  });
+});
+
 
     // Obtener bebidas
     this.api.getBebidaPedidosPorPedido(id).subscribe(bebidas => {
@@ -108,6 +118,7 @@ export class BandejaComponent implements OnInit {
         alert('✅ Pedido confirmado');
 
         // Limpiar visualmente bandeja
+        this.idpedido = null;
         this.platos = [];
         this.bebidas = [];
 
@@ -116,13 +127,10 @@ export class BandejaComponent implements OnInit {
         if (nuevoId != null) {
           this.cargarPedido(nuevoId);
         } else {
-          alert('⚠️ Error: No se recibió un nuevo ID de pedido.');
+          // Si no se crea un nuevo pedido, se queda sin cargar
+          console.warn('⚠️ No se recibió nuevo pedido activo.');
         }
       });
     }
   }
 }
-
-
-
-
