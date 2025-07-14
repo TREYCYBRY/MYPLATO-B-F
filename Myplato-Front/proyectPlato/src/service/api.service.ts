@@ -564,9 +564,12 @@ getPlatoPedidosPorPedido(idpedido: number): Observable<PlatoPedido[]> {
   return this.http.get<PlatoPedido[]>(this.ApiUrl + 'platoPedido/?idpedido=' + idpedido);
 }
 
-getBebidaPedidosPorPedido(idpedido: number): Observable<bebidaPedido[]> {
-  return this.http.get<bebidaPedido[]>(this.ApiUrl + 'bebidaPedido/?id_pedido=' + idpedido);
+getBebidaPedidosPorPedido(id_pedido: number) {
+  return this.http.get<bebidaPedido[]>(
+    `http://localhost:8000/api/bebidaPedido/?id_pedido=${id_pedido}&solo_activos=true`
+  );
 }
+
 getBebidaPorId(id: number): Observable<bebida> {
   return this.http.get<bebida>(`http://127.0.0.1:8000/api/bebidas/${id}/`);
 }

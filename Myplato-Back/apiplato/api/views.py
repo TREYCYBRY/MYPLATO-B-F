@@ -90,9 +90,11 @@ def confirmar_pedido(request, idpedido):
         serializer = PedidoSerializer(nuevo_pedido)
 
         return Response({
-            'mensaje': 'Pedido confirmado correctamente',
-            'nuevoPedido': serializer.data
-        })
+    'mensaje': 'Pedido confirmado correctamente',
+    'nuevoPedido': serializer.data,
+    'nuevoPedidoId': nuevo_pedido.id  # 👈 Añade esto
+})
+
 
     except Pedido.DoesNotExist:
         return Response({'error': 'Pedido no encontrado'}, status=404)
@@ -225,14 +227,25 @@ class BebidaViewSet(viewsets.ModelViewSet):
 
 
 class BebidaPedidoViewSet(viewsets.ModelViewSet):
-    queryset = BebidaPedido.objects.all()
     serializer_class = BebidaPedidoSerializer
+
+    def get_queryset(self):
+        id_pedido = self.request.query_params.get('id_pedido')
+        solo_activos = self.request.query_params.get('solo_activos')  # 👈 nuevo parámetro opcional
+
+        if id_pedido:
+            queryset = BebidaPedido.objects.filter(id_pedido=id_pedido)
+            if solo_activos == "true":
+                queryset = queryset.filter(id_pedido__estado=False)  # 👈 solo si se pide explícitamente
+            return queryset
+
+        # 🔁 Para mantenimiento, devolver todo
+        return BebidaPedido.objects.all()
 
     def create(self, request, *args, **kwargs):
         id_pedido = request.data.get('id_pedido')
         id_bebida = request.data.get('id_bebida')
 
-        # Verificar si ya existe una bebida con ese pedido
         bebida_existente = BebidaPedido.objects.filter(
             id_pedido=id_pedido,
             id_bebida=id_bebida
@@ -245,8 +258,9 @@ class BebidaPedidoViewSet(viewsets.ModelViewSet):
             bebida_existente.save()
             return Response(BebidaPedidoSerializer(bebida_existente).data, status=status.HTTP_200_OK)
 
-        # Si no existe, crea una nueva
         return super().create(request, *args, **kwargs)
+
+
 class ExtraPlatoViewSet(viewsets.ModelViewSet):
     queryset = models.ExtraPlato.objects.all()
     serializer_class = serializers.ExtraPlatoSerializer
