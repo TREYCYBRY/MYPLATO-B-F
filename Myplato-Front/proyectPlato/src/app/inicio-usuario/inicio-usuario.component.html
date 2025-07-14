@@ -1,6 +1,309 @@
-<div class="usuario-inicio-container">
-  <div class="welcome-box">
-    <h1>¡Bienvenido a <span class="brand">MyPlato</span>!</h1>
-    <p>Comida a tu medida, siempre para ti 🍽️</p>
+<div class="body">
+
+  <div class="menu">
+    <a class="titulo">MYPLATO</a>
+    
+    <div class="centro">
+      <a class="nav-link" routerLink="/inicio-usuario">INICIO</a>
+      <a class="nav-link" routerLink="/menu">CARTA</a>
+      <a class="nav-link" routerLink="/bandeja">BANDEJA</a>
+      <a class="nav-link" routerLink="/personalizar">PERSONALIZAR</a>
+      <a class="nav-link" routerLink="/sobre-nosotros">SOBRE NOSOTROS</a>
+    </div>
+  
+    <div class="btn-der">
+      <button class="nav-link" routerLink="/login">Cerrar sesion</button>
+    </div>
+
   </div>
+  <div class="content">
+    <router-outlet />
+  </div>
+  <main class="hero-section">
+        <div class="hero-content">
+            <p class="welcome-message">―     BIENVENIDO A MYPLATO   ―</p>
+            <h2 class="hero-title">Comida</h2>
+            <h2 class="hero-subtitle">a tu Medida</h2>
+            <button class="btn btn-hero">¡Arma tu Plato!</button>
+        </div>
+        <div class="hero-background-overlay"></div> 
+  </main>
+
+    <section class="create-dish-section">
+        <div class="create-dish-image-container">
+            </div>
+        <div class="create-dish-content">
+            <h2 class="create-dish-title">CREA TU PLATO PERFECTO</h2>
+            <p class="create-dish-paragraph">
+                ¿Alguna vez soñaste con un restaurante donde tú puedes decidir
+                exactamente lo que quieres comer? ¡Ese lugar ya existe! En MyPlato, tú eres
+                el chef de tu experiencia culinaria. Con nuestro concepto único de "Crea tu
+                plato perfecto", te damos el control total para armar tu comida como más te
+                guste.
+
+            </p>
+            <ul class="create-dish-list">
+                <li>¿Te apetece algo ligero y fresco?</li>
+                <li>¿O tal vez un plato bien contundente y lleno de sabor?</li>
+                <li>¿Te gustan las combinaciones atrevidas?</li>
+            </ul>
+            <p class="create-dish-paragraph bold-text">¡Aquí todo es posible!</p>
+            <p class="create-dish-paragraph">
+                Elige entre una amplia variedad de ingredientes frescos, proteínas,
+                guarniciones, salsas y toppings. Ya sea que prefieras algo tradicional o
+                quieras inventar tu propia receta, nuestro equipo estará listo para prepararlo
+                exactamente como tú lo imaginas.
+            </p>
+            <a class="btn-menu" routerLink="/menu">Conoce nuestra Carta</a>
+        </div>
+    </section>
+
+    <section class="why-choose-us-section">
+        <div class="why-choose-us-overlay"></div> <div class="why-choose-us-content">
+            <h2 class="why-choose-us-title">¿POR QUE ESCOGERNOS?</h2>
+            <p class="why-choose-us-description">
+                Porque no solo te damos comida, te damos libertad para elegir, calidad en cada bocado y una
+                experiencia hecha a tu medida. En cada visita, tú decides qué comer, cómo disfrutarlo y con quién
+                compartirlo ¡Ven y vive la diferencia!
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon-container">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="feature-title">Innovador Y Diferente</h3>
+                    <p class="feature-text">¡Tú eliges cada ingrediente y creas tu Plato Ideal!</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon-container">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="feature-title">Promociones y combos semanales</h3>
+                    <p class="feature-text">¡Siempre hay algo nuevo para probar!</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon-container">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3 class="feature-title">Wifi Gratis</h3>
+                    <p class="feature-text">Come, Disfruta, Navega y comparte tu experiencia.</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon-container">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="feature-title">Atención Rápida Y Amable</h3>
+                    <p class="feature-text">Sin largas esperas, sin perder el sabor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comments-section">
+      <div class="comments-header">
+          <div class="rating-summary">
+              <h2>Calificación</h2>
+              <div class="stars">
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span>4.9</span>
+              </div>
+              <p>Basado en 59 Reseñas</p>
+          </div>
+          <button class="write-review-btn">Escribir una Reseña</button>
+      </div>
+
+      <div class="reviews-grid">
+          <div class="review-card">
+              <div class="reviewer-info">
+                  <div class="reviewer-avatar provath-ghosh"></div>
+                  <div class="reviewer-details">
+                      <h3>Provath Ghosh</h3>
+                      <div class="stars">
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                      </div>
+                      <p class="review-date">Octubre 4, 2023</p>
+                  </div>
+              </div>
+              <p class="review-text">¡Me encantó poder armar mi plato exactamente como quería! Fresco y delicioso. ¡Volveré pronto!</p>
+          </div>
+
+          <div class="review-card">
+              <div class="reviewer-info">
+                  <div class="reviewer-avatar md-kamrul-alam"></div>
+                  <div class="reviewer-details">
+                      <h3>MD Kamrul Alam</h3>
+                      <div class="stars">
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                      </div>
+                      <p class="review-date">Agosto 4, 2023</p>
+                  </div>
+              </div>
+              <p class="review-text">Una experiencia diferente y muy divertida. La comida es excelente y las opciones infinitas. ¡Totalmente recomendado!</p>
+          </div>
+
+          <div class="review-card">
+              <div class="reviewer-info">
+                  <div class="reviewer-avatar rubel-mahmud"></div>
+                  <div class="reviewer-details">
+                      <h3>Rubel Mahmud</h3>
+                      <div class="stars">
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                      </div>
+                      <p class="review-date">Junio 11, 2023</p>
+                  </div>
+              </div>
+              <p class="review-text">Finalmente un lugar donde puedo comer sin preocuparme por ingredientes que no me gustan. Mi plato quedó perfecto.</p>
+          </div>
+
+          <div class="review-card">
+              <div class="reviewer-info">
+                  <div class="reviewer-avatar ashik-elahi"></div>
+                  <div class="reviewer-details">
+                      <h3>Ashik Elahi</h3>
+                      <div class="stars">
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                      </div>
+                      <p class="review-date">Marzo 30, 2023</p>
+                  </div>
+              </div>
+              <p class="review-text">La idea de personalizar mi comida es genial. Todo se veía fresco y el resultado fue increíblemente sabroso. ¡Un 10!</p>
+          </div>
+
+          <div class="review-card">
+              <div class="reviewer-info">
+                  <div class="reviewer-avatar rubel-miah"></div>
+                  <div class="reviewer-details">
+                      <h3>Rubel Miah</h3>
+                      <div class="stars">
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                      </div>
+                      <p class="review-date">Diciembre 9, 2022</p>
+                  </div>
+              </div>
+              <p class="review-text">Fui con amigos y todos armamos algo diferente. ¡Cada plato era una obra maestra! Sin duda, un concepto innovador.</p>
+          </div>
+
+          <div class="review-card">
+              <div class="reviewer-info">
+                  <div class="reviewer-avatar nishat-shahriyar"></div>
+                  <div class="reviewer-details">
+                      <h3>Nishat Shahriyar</h3>
+                      <div class="stars">
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                      </div>
+                      <p class="review-date">Diciembre 5, 2022</p>
+                  </div>
+              </div>
+              <p class="review-text">Soy muy exigente con mi comida, y este lugar superó mis expectativas. ¡Pude hacer un plato a mi medida y estuvo espectacular!</p>
+          </div>
+          <div class="review-card">
+              <div class="reviewer-info">
+                  <div class="reviewer-avatar catty-marlen"></div>
+                  <div class="reviewer-details">
+                      <h3>Catty Marlen</h3>
+                      <div class="stars">
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                      </div>
+                      <p class="review-date">Diciembre 5, 2022</p>
+                  </div>
+              </div>
+              <p class="review-text">Desde el primer momento supe que este restaurante era especial. La creatividad al poder elegir cada ingrediente es única. ¡Delicioso!</p>
+          </div>
+
+          <div class="review-card">
+              <div class="reviewer-info">
+                  <div class="reviewer-avatar merlin-mustafa"></div>
+                  <div class="reviewer-details">
+                      <h3>Merlin Mustafa</h3>
+                      <div class="stars">
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                          <span class="star filled">&#9733;</span>
+                      </div>
+                      <p class="review-date">Diciembre 5, 2022</p>
+                  </div>
+              </div>
+              <p class="review-text">Me sorprendió la calidad de los ingredientes y la libertad de crear mi propia combinación. ¡Una cena memorable!</p>
+          </div>
+        </div>
+    </section>
+    
+
+    <footer class="main-footer">
+        <div class="footer-content-wrapper">
+            <div class="footer-logo">
+                <h1>MYPLATO</h1>
+            </div>
+
+            <div class="footer-links-group">
+                <ul class="footer-nav-list">
+                    <li><a href="#" class="footer-link">Inicio</a></li>
+                    <li><a href="#" class="footer-link">About</a></li>
+                    <li><a href="#" class="footer-link">Menu</a></li>
+                    <li><a href="#" class="footer-link">Team</a></li>
+                    <li><a href="#" class="footer-link">Reviews</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links-group">
+                <ul class="footer-nav-list">
+                    <li><a href="#" class="footer-link">Contact</a></li>
+                    <li><a href="#" class="footer-link">My Account</a></li>
+                    <li><a href="#" class="footer-link">Return Policy</a></li>
+                    <li><a href="#" class="footer-link">Rewards</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <p class="follow-us-text">Follow Us</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon-link"><i class="fab fa-x-twitter"></i></a> </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright-text">Copyright &copy; 2004 - 2024 Qrispy</p>
+        </div>
+    </footer>
 </div>

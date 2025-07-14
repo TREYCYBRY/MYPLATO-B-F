@@ -68,7 +68,8 @@ export class PedidoComponent {
   }
 
   guardarPedido() {
-  this.pedidoDialogo.idmesa = this.mesaSeleccionada.id;
+  
+  this.pedidoDialogo.estado=this.pedidoDialogo.estado ? true : false; // Asegurar que estado sea booleano
      console.log('Guardando pedido:', this.pedidoDialogo); // 👈
 
     if (this.nuevoPedido) {

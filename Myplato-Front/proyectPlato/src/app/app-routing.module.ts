@@ -26,8 +26,9 @@ import { PlatoPedidoComponent } from './plato-pedido/plato-pedido.component';
 import { PagoComponent } from './pago/pago.component';
 import { BebidaPedidoComponent } from './bebida-pedido/bebida-pedido.component';
 import { ExtrasPlatoPedidoComponent } from './extras-plato-pedido/extras-plato-pedido.component';
+import { MenuComponent } from './menu/menu.component';
 import { BandejaComponent } from './bandeja/bandeja.component';
-import { PlatoPersonalizadoComponent } from './plato-personalizado/plato-personalizado.component';
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -51,14 +52,16 @@ const routes: Routes = [
   {path: 'empleado', component: EmpleadoComponent},
   {path: 'mesa', component: MesaComponent},
   {path: 'pedido', component: PedidoComponent },
+   {path:'menu',component:MenuComponent},
   {path:'bebidaPedido', component: BebidaPedidoComponent}, // Asegúrate de que este componente exista y sea correcto
   {path:'pago',component: PagoComponent}, // Asegúrate de que este componente exista y sea correcto
   {path:'platoPedido', component: PlatoPedidoComponent},
+  {path:'bandeja', component: BandejaComponent}, // Asegúrate de que este componente exista y sea correcto
   {path:'extrasPlatoPedido',component:ExtrasPlatoPedidoComponent}, // Asegúrate de que este componente exista y sea correcto
-  {path: 'platoPersonalizado', component: PlatoPersonalizadoComponent}, // Asegúrate de que este componente exista y sea correcto
   {path:'bandeja', component:BandejaComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full' },
-  {path: '**', redirectTo: '/login' } // Redirige cualquier ruta desconocida al login
+  {path: '**', redirectTo: '/login' },
+ // Redirige cualquier ruta desconocida al login
 ];
 
 

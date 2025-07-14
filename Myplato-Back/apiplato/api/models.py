@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser,BaseUserManager
 from django.conf import settings
 from django.db.models import Sum
+from decimal import Decimal
+
 class UsuarioManager(BaseUserManager):
     def create_user(self,username,email,password=None,**extra_fields):
         #Creamos un usario en base a nombre de usuario, contraseña y correo
@@ -126,7 +128,8 @@ class Pedido(models.Model):
     montoTotal = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
     fecha = models.DateField(auto_now_add=True)
     idcliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    idmesa = models.ForeignKey(Mesa, on_delete=models.CASCADE)
+    idmesa = models.ForeignKey(Mesa, on_delete=models.CASCADE,default=1)
+    estado = models.BooleanField(default=False)  # True si el pedido está listo para servir, False si está en preparación   
 
     def __str__(self):
         return f'Pedido {self.id} - Cliente {self.idcliente.nombre}'
@@ -136,20 +139,26 @@ class Pedido(models.Model):
         platos = PlatoPedido.objects.filter(idpedido=self)
         bebidas = BebidaPedido.objects.filter(id_pedido=self)
 
-        self.cantidadTotalPlatos = platos.count()
-        self.cantidadTotalBebidas = sum(b.cantidad for b in bebidas)
-        
-        total_platos = sum(p.precioFinalPlato for p in platos)
-        total_bebidas = sum(b.precioFinal for b in bebidas)
+        total_cant_platos = platos.aggregate(Sum('cantidad'))['cantidad__sum'] or 0
+        total_cant_bebidas = bebidas.aggregate(Sum('cantidad'))['cantidad__sum'] or 0
 
-        self.montoTotal = total_platos + total_bebidas
-        self.save()
+        total_monto_platos = platos.aggregate(Sum('precioFinalPlato'))['precioFinalPlato__sum'] or Decimal('0.00')
+        total_monto_bebidas = bebidas.aggregate(Sum('precioFinal'))['precioFinal__sum'] or Decimal('0.00')
+
+        self.cantidadTotalPlatos = total_cant_platos
+        self.cantidadTotalBebidas = total_cant_bebidas
+        self.montoTotal = total_monto_platos + total_monto_bebidas
+
+        self.save(update_fields=['cantidadTotalPlatos', 'cantidadTotalBebidas', 'montoTotal'])
+
+        self.save(update_fields=['cantidadTotalPlatos', 'cantidadTotalBebidas', 'montoTotal'])
 class PlatoPedido(models.Model):
     idpedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='platos')
     idplato = models.ForeignKey(Plato, on_delete=models.CASCADE)
     precioBasePlato = models.DecimalField(max_digits=6, decimal_places=2)
     precioFinalPlato = models.DecimalField(max_digits=6, decimal_places=3)
-    tipoPedido = models.CharField(max_length=50)
+    cantidad = models.IntegerField(default=1)
+    tipoPedido = models.CharField(max_length=50,default='Para servir')
 
     def __str__(self):
         return f'Pedido {self.idpedido.id} - Plato {self.idplato.nombre}'

@@ -89,14 +89,15 @@ export class PlatoPedidoComponent implements OnInit {
 
   obtenerPlatoPedidos() {
   this.api.getPlatoPedido().subscribe(res => {
+    console.log("🔍 PlatoPedidos obtenidos:", res);
     this.platoPedidos = res;
 
-    // Llama a calcularPrecioFinal para cada plato pedido
     for (const plato of this.platoPedidos) {
-      this.calcularPrecioFinal(plato.id);
+      this.calcularPrecioFinal(plato.id!);
     }
   });
 }
+
 
 
   private obtenerPedidos(): void {
@@ -134,8 +135,10 @@ export class PlatoPedidoComponent implements OnInit {
     if (!plato) return;
 
     const precioBase = Number(plato.precioBasePlato) || 0;
-    const precioFinal = Number((precioBase + totalExtras).toFixed(2));
-    plato.precioFinalPlato = precioFinal;
+const cantidad = plato.cantidad || 1; // Asegura que use la cantidad
+const precioFinal = Number((precioBase * cantidad + totalExtras).toFixed(2));
+plato.precioFinalPlato = precioFinal;
+
 
     console.log(`🧮 ID: ${idPlatoPedido}, Base: ${precioBase}, Extras: ${totalExtras}, Final: ${precioFinal}`);
 
