@@ -55,6 +55,7 @@ import { PagoComponent } from './pago/pago.component';
 import { BebidaPedidoComponent } from './bebida-pedido/bebida-pedido.component';
 import { ExtrasPlatoPedidoComponent } from './extras-plato-pedido/extras-plato-pedido.component';
 import { BandejaComponent } from './bandeja/bandeja.component';
+import { PlatoPersonalizadoComponent } from './plato-personalizado/plato-personalizado.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { BandejaComponent } from './bandeja/bandeja.component';
     BebidaPedidoComponent,
     ExtrasPlatoPedidoComponent,
     BandejaComponent,
+    PlatoPersonalizadoComponent,
     
   ],
   imports: [
