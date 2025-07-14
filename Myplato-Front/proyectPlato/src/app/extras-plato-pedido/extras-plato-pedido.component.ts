@@ -73,8 +73,8 @@ export class ExtrasPlatoPedidoComponent {
   }
 
   guardarExtrasPlatoPedido() {
-    this.extrasPlatoPedidoDialogo.idextra = this.extraSeleccionado.id;
-    this.extrasPlatoPedidoDialogo.idplato_pedido = this.platoPedidoSeleccionado.id;
+    this.extrasPlatoPedidoDialogo.idextra = this.extraSeleccionado.id!;
+    this.extrasPlatoPedidoDialogo.idplato_pedido = this.platoPedidoSeleccionado.id!;
 
     if (this.nuevoRegistro) {
       this.api.postExtrasPlatoPedido(this.extrasPlatoPedidoDialogo).subscribe(() => {

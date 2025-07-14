@@ -1,0 +1,209 @@
+/* Estilo general */
+.body{
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.menu{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #ffffff;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.content{
+  height: 80%;
+}
+
+.centro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 5px 5px;
+}
+
+.centro .nav-link { 
+    padding: 10px 20px; /* Mantén tu padding existente */
+    margin-right: 10px; /* Añade espaciado a la derecha */
+    text-decoration: none; /* Asegura que no haya subrayado si lo tenías antes */
+    color: inherit; /* Hereda el color del texto si no está definido */
+}
+
+.centro .nav-link:hover { 
+    background-color: #f0f0f0;
+    border-radius: 5px; 
+    transition: background-color 0.3s ease;
+  }
+
+/* Para evitar un margen extra en el último elemento */
+.centro .nav-link:last-child {
+    margin-right: 0;
+}
+
+
+.btn-der .nav-link{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+    background-color: #FF5722; /* Orange */
+    color: white;
+}
+
+.btn-der .nav-link:hover{
+    background-color: #E64A19;
+  }
+
+.titulo{
+  color: rgb(0, 0, 0);
+  font-weight: 100;
+  font-style: normal;
+  font-size: 30px;
+  text-decoration: none;
+}
+/* Contenedor principal del menú */
+.menu-container {
+  padding: 2rem;
+  padding-top: 20px; /* espacio por barra fija */
+}
+
+.menu-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Filtros */
+.menu-filters {
+  margin-bottom: 2rem;
+}
+
+.filter-button {
+  background-color: orange;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.filter-button.active {
+  background-color: rgb(115, 204, 60); /* Verde para el activo */
+  opacity: 1;
+}
+
+
+/* Estructura de contenido */
+.menu-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* Sección de platos */
+.menu-grid {
+  flex: 3;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.menu-card {
+  border: 2px solid #e79562;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.menu-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.menu-rating {
+  font-size: 0.8rem;
+  color: #ff9900;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+
+.menu-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0.5rem 0 0.2rem 0;
+}
+
+.menu-desc {
+  font-size: 0.85rem;
+  color: #555;
+  text-align: justify;
+  height: 80px;
+  overflow: hidden;
+}
+
+/* Botón añadir */
+.menu-add-button {
+  margin-top: auto;
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.menu-add-button:hover {
+  background-color: #cc7a00;
+}
+
+/* Bandeja lateral */
+.bandeja {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  border: 2px dashed #ccc;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.bandeja h2 {
+  margin-top: 0;
+}
+
+.bandeja ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.bandeja li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.9rem;
+}

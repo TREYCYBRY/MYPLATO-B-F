@@ -1,0 +1,69 @@
+<div class="body">
+  <div class="menu">
+    <a class="titulo" routerLink="/inicio-usuario">MYPLATO</a>
+
+    <div class="centro">
+      <a class="nav-link" routerLink="/inicio-usuario">INICIO</a>
+      <a class="nav-link" routerLink="/menu">CARTA</a>
+            <a class="nav-link" routerLink="/bandeja">BANDEJA</a>
+      <a class="nav-link" routerLink="/personalizar">PERSONALIZAR</a>
+      <a class="nav-link" routerLink="/sobre-nosotros">SOBRE NOSOTROS</a>
+    </div>
+
+    <div class="btn-der">
+      <a class="nav-link" routerLink="/login">Cerrar sesión</a>
+    </div>
+  </div>
+
+  <div class="menu-container">
+    <h1 class="menu-title">CARTA</h1>
+
+    <!-- Filtros -->
+    <div class="menu-filters">
+  <button class="filter-button" 
+          [class.active]="filtroActivo === 'Todo'" 
+          (click)="cambiarFiltro('Todo')">Todo</button>
+
+  <button class="filter-button" 
+          [class.active]="filtroActivo === 'Platillos'" 
+          (click)="cambiarFiltro('Platillos')">Platillos</button>
+
+  <button class="filter-button" 
+          [class.active]="filtroActivo === 'Sopas'" 
+          (click)="cambiarFiltro('Sopas')">Sopas</button>
+
+  <button class="filter-button" 
+          [class.active]="filtroActivo === 'Bebidas'" 
+          (click)="cambiarFiltro('Bebidas')">Bebidas</button>
+</div>
+
+
+    <div class="menu-flex">
+      <!-- Lista de Platos -->
+      <div class="menu-grid">
+        <div *ngFor="let plato of platosFiltrados" class="menu-card">
+          <img *ngIf="plato.imagen"
+               [src]="plato.imagen.startsWith('http') ? plato.imagen : 'http://127.0.0.1:8000' + plato.imagen"
+               alt="plato"
+               class="menu-img">
+          <div class="menu-rating">Rated({{ 4.5 }}) ⭐⭐⭐⭐✩</div>
+          <h3 class="menu-name">{{ plato.nombre }}</h3>
+          <p class="menu-desc">{{ plato.descripcion }}</p>
+          <button class="menu-add-button" (click)="anadirAlCarrito(plato)">Añadir</button>
+        </div>
+
+        <!-- Lista de Bebidas -->
+        <div *ngFor="let bebida of bebidasFiltradas" class="menu-card">
+          <img *ngIf="bebida.imagen"
+               [src]="bebida.imagen.startsWith('http') ? bebida.imagen : 'http://127.0.0.1:8000' + bebida.imagen"
+               alt="bebida"
+               class="menu-img">
+          <div class="menu-rating">Rated({{ 4.0 }}) ⭐⭐⭐⭐✩</div>
+          <h3 class="menu-name">{{ bebida.nombre }}</h3>
+          <p class="menu-desc">{{ bebida.descripcion }}</p>
+          <button class="menu-add-button" (click)="anadirBebida(bebida)">Añadir</button>
+        </div>
+      </div>
+
+      <!-- Bandeja -->
+</div>

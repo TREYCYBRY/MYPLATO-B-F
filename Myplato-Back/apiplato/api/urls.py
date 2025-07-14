@@ -15,11 +15,11 @@ router.register('roles', views.RolViewSet)
 router.register('empleados', views.EmpleadoViewSet)
 router.register('mesas', views.MesaViewSet)
 router.register('pedidos', views.PedidoViewSet)
-router.register('platoPedido', views.PlatoPedidoViewSet)
+router.register('platoPedido', views.PlatoPedidoViewSet,basename='platopedido')
 router.register('extrasPlatoPedido', views.ExtrasPlatoPedidoViewSet)
 router.register('pagos', views.PagoViewSet)
 router.register('bebidas', views.BebidaViewSet)
-router.register('bebidaPedido', views.BebidaPedidoViewSet)
+router.register('bebidaPedido', views.BebidaPedidoViewSet, basename='bebidapedido')
 router.register('extraPlato', views.ExtraPlatoViewSet)
 router.register('almacen', views.AlmacenViewSet)
 router.register('stockComida', views.StockComidaViewSet)
@@ -28,4 +28,6 @@ urlpatterns = [
     path('',include(router.urls)),
     path('login/',views.LoginView.as_view(),name='login'),
     path('registro-cliente/', views.registro_cliente),
+     path('pedido/activo/', views.obtener_o_crear_pedido_activo),
+    path('pedido/confirmar/<int:idpedido>/', views.confirmar_pedido),
 ] 
