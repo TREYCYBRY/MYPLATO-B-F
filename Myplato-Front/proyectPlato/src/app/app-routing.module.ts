@@ -28,6 +28,7 @@ import { BebidaPedidoComponent } from './bebida-pedido/bebida-pedido.component';
 import { ExtrasPlatoPedidoComponent } from './extras-plato-pedido/extras-plato-pedido.component';
 import { MenuComponent } from './menu/menu.component';
 import { BandejaComponent } from './bandeja/bandeja.component';
+import { BuffetComponent } from './buffet/buffet.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,7 @@ const routes: Routes = [
   {path:'bandeja', component: BandejaComponent}, // Asegúrate de que este componente exista y sea correcto
   {path:'extrasPlatoPedido',component:ExtrasPlatoPedidoComponent}, // Asegúrate de que este componente exista y sea correcto
   {path:'bandeja', component:BandejaComponent},
+  {path:'buffet', component:BuffetComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: '**', redirectTo: '/login' },
  // Redirige cualquier ruta desconocida al login

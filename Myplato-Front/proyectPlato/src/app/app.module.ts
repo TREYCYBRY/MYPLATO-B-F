@@ -56,6 +56,7 @@ import { BebidaPedidoComponent } from './bebida-pedido/bebida-pedido.component';
 import { ExtrasPlatoPedidoComponent } from './extras-plato-pedido/extras-plato-pedido.component';
 import { MenuComponent } from './menu/menu.component';
 import { BandejaComponent } from './bandeja/bandeja.component';
+import { BuffetComponent } from './buffet/buffet.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { BandejaComponent } from './bandeja/bandeja.component';
     ExtrasPlatoPedidoComponent,
     MenuComponent,
     BandejaComponent,
+    BuffetComponent,
     
   ],
   imports: [
