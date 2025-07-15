@@ -7,16 +7,23 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string) {
-  return this.http.post<{ token: string }>(this.loginUrl, { username, password })
+login(username: string, password: string) {
+  return this.http.post<{ token: string; cliente?: any }>(this.loginUrl, { username, password })
     .pipe(
       tap(res => {
-        localStorage.setItem('token', res.token); // 👈 Guarda el token
+        localStorage.setItem('token', res.token);
+        if(res.cliente){
+          localStorage.setItem('cliente', JSON.stringify(res.cliente));
+        }
       })
     );
 }
 
 
+getCliente(): any {
+  const cliente = localStorage.getItem('cliente');
+  return cliente ? JSON.parse(cliente) : null;
+}
   isAuthenticated(): boolean {
     return !!localStorage.getItem('token');
   }

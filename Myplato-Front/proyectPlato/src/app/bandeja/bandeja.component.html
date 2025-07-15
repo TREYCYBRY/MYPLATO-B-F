@@ -1,0 +1,88 @@
+<div class="body">
+  <div class="menu">
+    <a class="titulo" routerLink="/inicio-usuario">MYPLATO</a>
+    <div class="centro">
+      <a class="nav-link" routerLink="/inicio-usuario">INICIO</a>
+      <a class="nav-link" routerLink="/menu">CARTA</a>
+      <a class="nav-link" routerLink="/bandeja">BANDEJA</a>
+      <a class="nav-link" routerLink="/buffet">PERSONALIZAR</a>
+    </div>
+    <div class="btn-der">
+      <a class="nav-link" routerLink="/login">Cerrar sesión</a>
+    </div>
+  </div>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <div class="bandeja-container">
+    <h2 class="titulo-pedido">Detalles de su pedido</h2>
+
+    <!-- Mensaje si no hay nada en la bandeja -->
+    <div *ngIf="platos.length === 0 && bebidas.length === 0" class="vacio">
+      🛒 Su bandeja está vacía.
+    </div>
+
+    <!-- Lista de elementos -->
+    <div class="pedido-lista">
+
+      <!-- Platos -->
+      <ng-container *ngIf="platos.length > 0">
+        <div class="item" *ngFor="let p of platos">
+          <img *ngIf="p.plato?.imagen"
+            [src]="p.plato?.imagen?.startsWith('http') ? p.plato?.imagen : 'http://127.0.0.1:8000' + p.plato?.imagen"
+            alt="plato"
+            class="plato-img">
+
+          <div class="item-info">
+            <h3>{{ p.plato?.nombre || 'Plato #' + p.idplato }}</h3>
+            <div class="info-detalle">
+              <span>Precio: S/ {{ p.precioBasePlato }}</span>
+              <span>
+                Cantidad:
+                <button (click)="disminuirPlato(p)">−</button>
+                {{ p.cantidad }}
+                <button (click)="aumentarPlato(p)">+</button>
+              </span>
+              <span>Subtotal: S/ {{ p.precioFinalPlato }}</span>
+              <button class="btn-eliminar" (click)="eliminarPlato(p)">x</button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Bebidas -->
+      <ng-container *ngIf="bebidas.length > 0">
+        <div class="item" *ngFor="let b of bebidas">
+          <img *ngIf="b.bebida?.imagen"
+            [src]="b.bebida?.imagen?.startsWith('http') ? b.bebida?.imagen : 'http://127.0.0.1:8000' + b.bebida?.imagen"
+            alt="bebida"
+            class="bebida-img">
+
+          <div class="item-info">
+            <h3>{{ b.bebida?.nombre || 'Bebida #' + b.id_bebida }}</h3>
+            <div class="info-detalle">
+              <span>Precio: S/ {{ b.bebida?.precio }}</span>
+              <span>
+                Cantidad:
+                <button (click)="disminuirBebida(b)">−</button>
+                {{ b.cantidad }}
+                <button (click)="aumentarBebida(b)">+</button>
+              </span>
+              <span>Subtotal: S/ {{ b.precioFinal }}</span>
+              <button class="btn-eliminar" (click)="eliminarBebida(b)">x</button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+
+    <!-- Total y botón de pago -->
+    <div class="total" *ngIf="platos.length > 0 || bebidas.length > 0">
+      Total a pagar: <span>S/ {{ getTotal() }}</span>
+    </div>
+
+    <button class="btn-pagar" (click)="confirmarPedido()" *ngIf="platos.length > 0 || bebidas.length > 0">
+      Procesar con el pago
+    </button>
+  </div>
+</div>

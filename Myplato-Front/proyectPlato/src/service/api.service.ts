@@ -423,7 +423,6 @@ public deleteEmpleado(id: string): Observable<void> {
     }
 
     // POST - crear nuevo pedido
-    // POST - crear nuevo pedido
 public postPedido(ped: Pedido): Observable<Pedido> {
   let body = JSON.stringify(ped);
   return this.http.post<Pedido>(this.ApiUrl + 'pedidos/', body, this.getHttpOptions());
@@ -543,9 +542,44 @@ getExtrasPorPlatoPedido(): Observable<extrasPlatoPedido[]> {
   return this.http.get<extrasPlatoPedido[]>(this.ApiUrl + 'extrasPlatoPedido/');
 }
 
-
+obtenerPedidoActivo(idcliente: number) {
+  return this.http.post<Pedido>(`${this.ApiUrl}pedido/activo/`, { idcliente });
 }
 
+confirmarPedido(idpedido: number) {
+  return this.http.post<any>(`http://127.0.0.1:8000/api/pedido/confirmar/${idpedido}/`, {});
+}
+
+
+
+ 
+updateBebidaPedido(id: number, data: bebidaPedido) {
+  return this.http.put(`http://127.0.0.1:8000/api/bebidaPedido/${id}/`, data);
+}
+
+// En api.service.ts
+
+getPlatoPedidosPorPedido(idpedido: number): Observable<PlatoPedido[]> {
+  return this.http.get<PlatoPedido[]>(this.ApiUrl + 'platoPedido/?idpedido=' + idpedido);
+}
+
+getBebidaPedidosPorPedido(id_pedido: number) {
+  return this.http.get<bebidaPedido[]>(
+    `http://localhost:8000/api/bebidaPedido/?id_pedido=${id_pedido}&solo_activos=true`
+  );
+}
+
+getBebidaPorId(id: number): Observable<bebida> {
+  return this.http.get<bebida>(`http://127.0.0.1:8000/api/bebidas/${id}/`);
+}
+getPlatoPorId(id: number) {
+  return this.http.get<any>(`http://127.0.0.1:8000/api/platos/${id}/`);
+}
+updatePlatoPedido(id: number, platoPedido: PlatoPedido) {
+  return this.http.put<PlatoPedido>(`${this.ApiUrl}/platoPedido/${id}/`, platoPedido);
+}
+
+}
     
 
 

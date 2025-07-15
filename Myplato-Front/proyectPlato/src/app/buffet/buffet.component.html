@@ -1,0 +1,77 @@
+<div class="body">
+  <div class="menu">
+    <a class="titulo" routerLink="/inicio-usuario">MYPLATO</a>
+    <div class="centro">
+      <a class="nav-link" routerLink="/inicio-usuario">INICIO</a>
+      <a class="nav-link" routerLink="/menu">CARTA</a>
+      <a class="nav-link" routerLink="/bandeja">BANDEJA</a>
+      <a class="nav-link" routerLink="/buffet">PERSONALIZAR</a>
+    </div>
+    <div class="btn-der">
+      <a class="nav-link" routerLink="/login">Cerrar sesión</a>
+    </div>
+  </div>
+
+<div class="container">
+  <!-- TÍTULO -->
+  <h2 class="menu-title">PERSONALIZA TU PLATO</h2>
+
+  <!-- SLIDER DE PLATOS PERSONALIZABLES -->
+  <div *ngIf="platos.length > 0" class="mb-8">
+    <div class="flex items-center justify-between slider-container">
+      <button (click)="anteriorPlato()">&lt;</button>
+      <div class="text-center">
+        <img
+          [src]="platos[platoSeleccionadoIndex].imagen"
+          class="menu-img"
+        />
+        <h3>{{ platos[platoSeleccionadoIndex].nombre }}</h3>
+        <p>S/ {{ platos[platoSeleccionadoIndex].precio }}</p>
+        <button (click)="elegirPlato(platos[platoSeleccionadoIndex])">Elegir Plato</button>
+      </div>
+      <button (click)="siguientePlato()">&gt;</button>
+    </div>
+  </div>
+
+<!-- CATEGORÍAS -->
+<h3 class="text-xl font-bold mb-2">CATEGORIA</h3>
+<div class="flex flex-wrap gap-2 mb-4">
+  <button *ngFor="let cat of categorias"
+          class="categoria-btn"
+          [ngClass]="{ 'active': categoriaActiva === cat.id }"
+          (click)="seleccionarCategoria(cat)">
+    {{ cat.nombre }}
+  </button>
+</div>
+
+  <!-- EXTRAS DISPONIBLES -->
+  <div class="grid">
+    <div *ngFor="let extra of extrasFiltrados" class="menu-card">
+      <img [src]="extra.imagen" class="menu-img" />
+      <p class="font-medium">{{ extra.nombre }}</p>
+      <p class="text-sm">S/ {{ extra.precioporPorcion }}</p>
+      <div class="flex justify-center items-center gap-2 mt-2">
+        <button (click)="reducirCantidad(extra)" class="bg-gray-300">-</button>
+        <span>{{ obtenerCantidad(extra) }}</span>
+        <button (click)="aumentarCantidad(extra)" class="bg-orange-500 text-white">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUMEN Y FINALIZAR -->
+  <div class="mt-6 border-t pt-4">
+    <h4 class="text-lg font-semibold">Resumen del Plato</h4>
+    <ul class="list-disc list-inside text-sm mb-2">
+      <li *ngIf="platoSeleccionado">
+        Plato base: {{ platoSeleccionado.nombre }} - S/ {{ platoSeleccionado.precio }}
+      </li>
+      <li *ngFor="let e of extrasSeleccionados">
+        {{ e.extra.nombre }} x {{ e.cantidad }} - S/ {{ e.extra.precioporPorcion * e.cantidad | number:'1.2-2' }}
+      </li>
+    </ul>
+    <p class="font-bold text-lg">Total: S/ {{ calcularTotal() | number:'1.2-2' }}</p>
+    <button (click)="finalizarPlatoPersonalizado()" class="bg-black text-white mt-2" >
+      Finalizar Pedido
+    </button>
+  </div>
+</div>
