@@ -9,4 +9,5 @@ export class PlatoPedido {
   tipoPedido: string;
   cantidad?: number; // Añadido para manejar la cantidad
   plato?:Plato
+  precioUnitario?: number; 
 }

@@ -5,6 +5,7 @@ import { extra } from '../../model/extra.model';
 import { ApiService } from '../../service/api.service';
 import { PlatoPedido } from '../../model/platoPedido.model';
 import { extrasPlatoPedido } from '../../model/extrasPlatoPedido.model';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-buffet',
@@ -14,7 +15,7 @@ import { extrasPlatoPedido } from '../../model/extrasPlatoPedido.model';
 })
 export class BuffetComponent implements OnInit {
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private authService: AuthService) {}
 
   platosBase: Plato[] = [];
   categorias: categoriaExtra[] = [];
@@ -25,11 +26,20 @@ export class BuffetComponent implements OnInit {
   platoSeleccionado: Plato | null = null;
   categoriaActiva: number | null = null;
   totalPlato: number = 0;
-  idcliente: number = 1;
+  idcliente: number | null = null;
 
   platoSeleccionadoIndex: number = 0;
 
   ngOnInit(): void {
+
+    const cliente = this.authService.getCliente();
+    if (!cliente) {
+      console.warn('No cliente logueado');
+      // Aquí podrías redirigir a login o mostrar mensaje al usuario
+      return;
+    }
+    this.idcliente = cliente.id;
+
     this.api.getPlatos().subscribe(res => {
       this.platosBase = res.filter(p => p.personalizable);
     });
@@ -110,9 +120,9 @@ export class BuffetComponent implements OnInit {
   }
 
   finalizarPlatoPersonalizado() {
-    this.api.obtenerPedidoActivo(this.idcliente).subscribe(pedido => {
+    this.api.obtenerPedidoActivo(this.idcliente!).subscribe(pedido => {
       const platopedido: PlatoPedido = {
-        idplato: this.platoSeleccionado ? this.platoSeleccionado.id : 1,
+        idplato: this.platoSeleccionado ? this.platoSeleccionado.id : 4,
         idpedido: pedido.id,
         precioBasePlato: this.platoSeleccionado ? this.platoSeleccionado.precio : 0,
         precioFinalPlato: this.totalPlato,

@@ -5,6 +5,7 @@ import { bebida } from '../../model/bebida.model';
 import { Pedido } from '../../model/pedido.model';
 import { PlatoPedido } from '../../model/platoPedido.model';
 import { bebidaPedido } from '../../model/bebidaPedido.model';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -17,7 +18,8 @@ export class MenuComponent implements OnInit {
   platos: Plato[] = [];
   bebidas: bebida[] = [];
   pedidoActual: Pedido | null = null;
-  idcliente: number = 1;
+  idcliente: number | null = null;
+
 
   bandejaPlato: PlatoPedido[] = [];
   bandejaBebida: bebidaPedido[] = [];
@@ -25,9 +27,17 @@ export class MenuComponent implements OnInit {
   filtroActivo: string = 'Todo';
   
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private authService: AuthService) {}
 
-  ngOnInit(): void {
+   ngOnInit(): void {
+    const cliente = this.authService.getCliente();
+    if (!cliente) {
+      console.warn('No cliente logueado');
+      // Aquí podrías redirigir a login o mostrar mensaje al usuario
+      return;
+    }
+    this.idcliente = cliente.id;
+
     this.api.getPlatos().subscribe(res => {
       this.platos = res;
     });
@@ -36,6 +46,7 @@ export class MenuComponent implements OnInit {
       this.bebidas = res;
     });
   }
+
 
   // Filtrados dinámicos
   get platosFiltrados(): Plato[] {
@@ -57,7 +68,7 @@ export class MenuComponent implements OnInit {
 
   anadirAlCarrito(plato: Plato) {
     if (!this.pedidoActual) {
-      this.api.obtenerPedidoActivo(this.idcliente).subscribe(res => {
+      this.api.obtenerPedidoActivo(this.idcliente!).subscribe(res => {
         this.pedidoActual = res;
         this.agregarPlato(plato);
       });
@@ -83,7 +94,7 @@ export class MenuComponent implements OnInit {
 
   anadirBebida(bebida: bebida) {
     if (!this.pedidoActual) {
-      this.api.obtenerPedidoActivo(this.idcliente).subscribe(res => {
+      this.api.obtenerPedidoActivo(this.idcliente!).subscribe(res => {
         this.pedidoActual = res;
         this.agregarBebida(bebida);
       });
