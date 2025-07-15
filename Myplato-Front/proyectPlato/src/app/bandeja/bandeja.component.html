@@ -44,6 +44,8 @@
               </span>
               <span>Subtotal: S/ {{ p.precioFinalPlato }}</span>
               <button class="btn-eliminar" (click)="eliminarPlato(p)">x</button>
+              <button *ngIf="extrasPorPlato[p.id!]" (click)="mostrarExtras(p)">Detalles</button>
+
             </div>
           </div>
         </div>
@@ -84,5 +86,20 @@
     <button class="btn-pagar" (click)="confirmarPedido()" *ngIf="platos.length > 0 || bebidas.length > 0">
       Procesar con el pago
     </button>
+
+    <!-- MODAL DETALLES DE EXTRAS -->
+<div *ngIf="platoExtrasVisible !== null" class="modal-overlay">
+  <div class="modal-content">
+    <h3>Extras del Plato Personalizado</h3>
+    <ul>
+      <li *ngFor="let extra of extrasPorPlato[platoExtrasVisible]">
+        {{ extra.id || ('Extra #' + extra.idextra) }} - {{ extra.cantidad }} x S/ {{ extra.precioPersonalizacion / extra.cantidad }} = S/ {{ extra.precioPersonalizacion }}
+      </li>
+    </ul>
+    <button (click)="cerrarModal()">Cerrar</button>
   </div>
+</div>
+  </div>
+
+
 </div>
