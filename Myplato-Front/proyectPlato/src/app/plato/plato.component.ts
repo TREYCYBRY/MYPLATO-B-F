@@ -97,4 +97,3 @@ export class PlatoComponent {
     this.imagenSeleccionada = event.files[0];
   }
 }
-

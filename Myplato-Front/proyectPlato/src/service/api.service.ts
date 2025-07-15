@@ -423,7 +423,6 @@ public deleteEmpleado(id: string): Observable<void> {
     }
 
     // POST - crear nuevo pedido
-    // POST - crear nuevo pedido
 public postPedido(ped: Pedido): Observable<Pedido> {
   let body = JSON.stringify(ped);
   return this.http.post<Pedido>(this.ApiUrl + 'pedidos/', body, this.getHttpOptions());
@@ -581,7 +580,6 @@ updatePlatoPedido(id: number, platoPedido: PlatoPedido) {
 }
 
 }
-
     
 
 
