@@ -11,7 +11,7 @@ import { bebidaPedido } from '../../model/bebidaPedido.model';
   providers: [ApiService]
 })
 export class BandejaComponent implements OnInit {
-  idcliente: number = 1; // Cambia esto si lo traes del login
+  idcliente: number | null = null;// Cambia esto si lo traes del login
   idpedido: number | null = null;
   platos: PlatoPedido[] = [];
   bebidas: bebidaPedido[] = [];
@@ -19,17 +19,33 @@ export class BandejaComponent implements OnInit {
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    this.api.obtenerPedidoActivo(this.idcliente).subscribe(pedido => {
-      // Asegurarse que solo cargue el pedido con estado == false
-      if (pedido?.estado === false) {
-        this.cargarPedido(pedido.id);
-      } else {
-        this.idpedido = null;
-        this.platos = [];
-        this.bebidas = [];
-      }
-    });
+  const clienteJson = localStorage.getItem('cliente');
+
+  if (clienteJson && clienteJson !== "undefined") {
+    try {
+      const cliente = JSON.parse(clienteJson);
+      this.idcliente = cliente.id;
+
+      this.api.obtenerPedidoActivo(this.idcliente!).subscribe(pedido => {
+        if (pedido?.estado === false) {
+          this.cargarPedido(pedido.id);
+        } else {
+          this.idpedido = null;
+          this.platos = [];
+          this.bebidas = [];
+        }
+      }, error => {
+        console.error('Error obteniendo pedido activo:', error);
+      });
+    } catch (e) {
+      console.error('❌ Error al parsear JSON de cliente:', e);
+    }
+  } else {
+    console.warn('⚠️ No hay cliente logueado o JSON mal guardado.');
   }
+}
+
+
 
   cargarPedido(id: number) {
     this.idpedido = id;
@@ -67,28 +83,59 @@ export class BandejaComponent implements OnInit {
   }
 
   aumentarPlato(p: any) {
-    p.cantidad = (p.cantidad || 1) + 1;
-    p.precioFinalPlato = p.precioBasePlato * p.cantidad;
+  // Si no existe precioUnitario, lo inicializamos con precioFinalPlato / cantidad o con precioFinalPlato si cantidad es 0
+  if (!p.precioUnitario) {
+    p.precioUnitario = p.precioFinalPlato / (p.cantidad || 1);
   }
 
-  disminuirPlato(p: any) {
-    if (p.cantidad > 1) {
-      p.cantidad--;
-      p.precioFinalPlato = p.precioBasePlato * p.cantidad;
+  p.cantidad = (p.cantidad || 1) + 1;
+  p.precioFinalPlato = p.precioUnitario * p.cantidad;
+
+  this.api.putPlatoPedido(p).subscribe({
+    next: () => console.log('Plato actualizado correctamente'),
+    error: err => console.error('Error actualizando plato', err)
+  });
+}
+
+disminuirPlato(p: any) {
+  if (p.cantidad > 1) {
+    if (!p.precioUnitario) {
+      p.precioUnitario = p.precioFinalPlato / p.cantidad;
     }
+
+    p.cantidad--;
+    p.precioFinalPlato = p.precioUnitario * p.cantidad;
+
+    this.api.putPlatoPedido(p).subscribe({
+      next: () => console.log('Plato actualizado correctamente'),
+      error: err => console.error('Error actualizando plato', err)
+    });
   }
+}
+
 
   aumentarBebida(b: any) {
-    b.cantidad = (b.cantidad || 1) + 1;
-    b.precioFinal = b.bebida.precio * b.cantidad;
-  }
+  b.cantidad = (b.cantidad || 1) + 1;
+  b.precioFinal = b.bebida.precio * b.cantidad;
 
-  disminuirBebida(b: any) {
-    if (b.cantidad > 1) {
-      b.cantidad--;
-      b.precioFinal = b.bebida.precio * b.cantidad;
-    }
+  this.api.putbebidaPedidos(b).subscribe({
+    next: () => console.log('Bebida actualizada correctamente'),
+    error: err => console.error('Error actualizando bebida', err)
+  });
+}
+
+disminuirBebida(b: any) {
+  if (b.cantidad > 1) {
+    b.cantidad--;
+    b.precioFinal = b.bebida.precio * b.cantidad;
+
+    this.api.putbebidaPedidos(b).subscribe({
+      next: () => console.log('Bebida actualizada correctamente'),
+      error: err => console.error('Error actualizando bebida', err)
+    });
   }
+}
+
 
   eliminarPlato(p: any) {
     this.api.deletePlatoPedido(p.id).subscribe({
@@ -128,7 +175,7 @@ export class BandejaComponent implements OnInit {
           this.cargarPedido(nuevoId);
         } else {
           // Si no se crea un nuevo pedido, se queda sin cargar
-          console.warn('⚠️ No se recibió nuevo pedido activo.');
+          console.warn('⚠ No se recibió nuevo pedido activo.');
         }
       });
     }

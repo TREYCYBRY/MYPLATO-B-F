@@ -19,7 +19,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Pedido, Cliente,Mesa,PlatoPedido,BebidaPedido,Bebida
-from .serializers import PedidoSerializer,PlatoPedidoSerializer,BebidaPedidoSerializer
+from .serializers import PedidoSerializer,PlatoPedidoSerializer,BebidaPedidoSerializer,ClienteSerializer
 from django.utils import timezone
 
 @api_view(['POST'])
@@ -270,19 +270,27 @@ class LoginView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        """api_key = request.headers.get('x-api-key')
-        if api_key != settings.API_KEY:
-            return Response({"error": "API Key Inválida"}, status=403)"""
-
         username = request.data.get("username")
         password = request.data.get("password")
+
         user = authenticate(username=username, password=password)
+
         if user is not None:
             token, _ = Token.objects.get_or_create(user=user)
-            return Response({"token": token.key})
-        else:
-            return Response({"error": "Credenciales Inválidas"}, status=400)
-        
+
+            cliente_data = None
+            try:
+                cliente = Cliente.objects.get(user=user)
+                cliente_data = ClienteSerializer(cliente).data
+            except Cliente.DoesNotExist:
+                pass  # No es cliente, no pasa nada
+
+            return Response({
+                "token": token.key,
+                "cliente": cliente_data  # Será null si no es cliente
+            })
+
+        return Response({"error": "Credenciales inválidas"}, status=status.HTTP_400_BAD_REQUEST)
 
 class AlmacenViewSet(viewsets.ModelViewSet):
     queryset = models.Almacen.objects.all()
