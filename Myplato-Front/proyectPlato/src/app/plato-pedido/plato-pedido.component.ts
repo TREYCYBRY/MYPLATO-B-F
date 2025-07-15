@@ -123,7 +123,7 @@ export class PlatoPedidoComponent implements OnInit {
   }
 
   public calcularPrecioFinal(idPlatoPedido: number): void {
-  this.api.getExtrasPorPlatoPedido().subscribe((extras: extrasPlatoPedido[]) => {
+  this.api.getExtraPorPlatoPedido().subscribe((extras: extrasPlatoPedido[]) => {
     const extrasFiltrados = extras.filter(ex => ex.idplato_pedido === idPlatoPedido);
     const totalExtras = extrasFiltrados.reduce((sum, e) => {
       const precio = parseFloat(String(e.precioPersonalizacion));

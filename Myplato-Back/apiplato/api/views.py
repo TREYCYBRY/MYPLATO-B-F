@@ -210,9 +210,23 @@ class PlatoPedidoViewSet(viewsets.ModelViewSet):
         except PlatoPedido.DoesNotExist:
             # Si no existe, se crea normalmente
             return super().create(request, *args, **kwargs)
+        
 class ExtrasPlatoPedidoViewSet(viewsets.ModelViewSet):
-    queryset = models.ExtrasPlatoPedido.objects.all()
     serializer_class = serializers.ExtrasPlatoPedidoSerializer
+
+    def get_queryset(self):
+        return models.ExtrasPlatoPedido.objects.all()
+
+    @action(detail=False, methods=['get'], url_path='por-plato/(?P<plato_pedido_id>[^/.]+)')
+    def por_plato(self, request, plato_pedido_id=None):
+        try:
+            queryset = self.get_queryset().filter(idplato_pedido_id=plato_pedido_id)
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            print(f"❌ Error en por_plato: {e}")
+            return Response({'error': str(e)}, status=500)
+
   
 
 class PagoViewSet(viewsets.ModelViewSet):

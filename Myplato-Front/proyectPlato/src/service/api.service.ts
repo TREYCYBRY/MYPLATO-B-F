@@ -538,7 +538,7 @@ public postPedido(ped: Pedido): Observable<Pedido> {
         );
     }
 // ------------------------------------------------------------------------------------------------
-getExtrasPorPlatoPedido(): Observable<extrasPlatoPedido[]> {
+getExtraPorPlatoPedido(): Observable<extrasPlatoPedido[]> {
   return this.http.get<extrasPlatoPedido[]>(this.ApiUrl + 'extrasPlatoPedido/');
 }
 
@@ -550,6 +550,9 @@ confirmarPedido(idpedido: number) {
   return this.http.post<any>(`http://127.0.0.1:8000/api/pedido/confirmar/${idpedido}/`, {});
 }
 
+getExtrasPorPlatoPedido(idplato_pedido: number): Observable<extrasPlatoPedido[]> {
+  return this.http.get<extrasPlatoPedido[]>(`${this.ApiUrl}extrasPlatoPedido/por-plato/${idplato_pedido}/`);
+}
 
 
  
