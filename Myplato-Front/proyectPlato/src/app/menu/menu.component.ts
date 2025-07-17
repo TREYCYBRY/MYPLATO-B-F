@@ -43,8 +43,9 @@ export class MenuComponent implements OnInit {
     this.idcliente = cliente.id;
 
     this.api.getPlatos().subscribe(res => {
-      this.platos = res;
-    });
+  this.platos = res.filter(p => !p.personalizable); // Solo platos no personalizables
+});
+
 
     this.api.getBebida().subscribe(res => {
       this.bebidas = res;

@@ -95,13 +95,13 @@
     <h3>Extras del Plato Personalizado</h3>
     <ul>
       <li *ngFor="let extra of extrasPorPlato[platoExtrasVisible]">
-        {{ extra.id || ('Extra #' + extra.idextra) }} - {{ extra.cantidad }} x S/ {{ extra.precioPersonalizacion / extra.cantidad }} = S/ {{ extra.precioPersonalizacion }}
+        {{ getNombreExtra(extra.idextra) }} - {{ extra.cantidad }} x S/ {{ (extra.precioPersonalizacion / extra.cantidad).toFixed(2) }} = S/ {{ extra.precioPersonalizacion }}
       </li>
     </ul>
     <button (click)="cerrarModal()">Cerrar</button>
   </div>
 </div>
-  </div>
+
 
 
 </div>

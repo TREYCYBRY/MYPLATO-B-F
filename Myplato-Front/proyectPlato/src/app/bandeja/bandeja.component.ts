@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { PlatoPedido } from '../../model/platoPedido.model';
 import { bebidaPedido } from '../../model/bebidaPedido.model';
-import { extrasPlatoPedido } from '../../model/extrasPlatoPedido.model';
-import { Router } from '@angular/router';
+import { extrasPlatoPedido } from '../../model/extrasPlatoPedido.model'; // Asegúrate de importar el modelo correcto
 import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bandeja',
@@ -20,12 +20,14 @@ export class BandejaComponent implements OnInit {
   bebidas: bebidaPedido[] = [];
   extrasPorPlato: { [idplatoPedido: number]: extrasPlatoPedido[] } = {};
   platoExtrasVisible: number | null = null;
+  extras: any[] = []; // Almacena todos los extras disponibles
 
-  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  constructor(private api: ApiService, private authService: AuthService, private router: Router) {}
+
   logout() {
     this.authService.logout();
   }
-  
+
   ngOnInit(): void {
     const clienteJson = localStorage.getItem('cliente');
 
@@ -33,6 +35,13 @@ export class BandejaComponent implements OnInit {
       try {
         const cliente = JSON.parse(clienteJson);
         this.idcliente = cliente.id;
+
+        // Obtener todos los extras disponibles
+        this.api.getExtra().subscribe(data => {
+          this.extras = data;
+        }, err => {
+          console.error('Error cargando extras:', err);
+        });
 
         this.api.obtenerPedidoActivo(this.idcliente!).subscribe(pedido => {
           if (pedido?.estado === false) {
@@ -167,13 +176,11 @@ export class BandejaComponent implements OnInit {
     if (this.idpedido !== null) {
       this.api.confirmarPedido(this.idpedido).subscribe(res => {
         alert('✅ Pedido confirmado');
-
         this.idpedido = null;
         this.platos = [];
         this.bebidas = [];
 
         const nuevoId = res?.nuevoPedidoId;
-
         if (nuevoId != null) {
           this.cargarPedido(nuevoId);
         } else {
@@ -189,5 +196,11 @@ export class BandejaComponent implements OnInit {
 
   cerrarModal() {
     this.platoExtrasVisible = null;
+  }
+
+  // ✅ Función para mostrar el nombre del extra
+  getNombreExtra(idextra: number): string {
+    const extra = this.extras.find(e => e.id === idextra);
+    return extra ? extra.nombre : 'Extra #' + idextra;
   }
 }
