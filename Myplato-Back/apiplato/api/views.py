@@ -194,22 +194,24 @@ class PlatoPedidoViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         idpedido = request.data.get('idpedido')
         idplato = request.data.get('idplato')
+        tipoPedido = request.data.get('tipoPedido')
 
-        if not idpedido or not idplato:
+        if not idpedido or not idplato or not tipoPedido:
             return Response({'error': 'Faltan campos obligatorios'}, status=status.HTTP_400_BAD_REQUEST)
 
-        try:
-            # Buscar si ya existe uno con el mismo plato y pedido
-            plato_existente = PlatoPedido.objects.get(idpedido=idpedido, idplato=idplato)
-            plato_existente.cantidad += request.data.get('cantidad', 1)
-            plato_existente.save()
+        if tipoPedido == 'Para servir':
+            try:
+                plato_existente = PlatoPedido.objects.get(idpedido=idpedido, idplato=idplato, tipoPedido='Para servir')
+                plato_existente.cantidad += request.data.get('cantidad', 1)
+                plato_existente.save()
+                serializer = self.get_serializer(plato_existente)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            except PlatoPedido.DoesNotExist:
+                pass  # Se creará uno nuevo
 
-            serializer = self.get_serializer(plato_existente)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+    # Si es tipo 'Personalizado' o no se encontró uno existente
+        return super().create(request, *args, **kwargs)
 
-        except PlatoPedido.DoesNotExist:
-            # Si no existe, se crea normalmente
-            return super().create(request, *args, **kwargs)
         
 class ExtrasPlatoPedidoViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.ExtrasPlatoPedidoSerializer

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { PlatoPedido } from '../../model/platoPedido.model';
 import { bebidaPedido } from '../../model/bebidaPedido.model';
-import { extrasPlatoPedido } from '../../model/extrasPlatoPedido.model'; // Asegúrate de importar el modelo correcto
+import { extrasPlatoPedido } from '../../model/extrasPlatoPedido.model';
 import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
 
@@ -20,7 +20,7 @@ export class BandejaComponent implements OnInit {
   bebidas: bebidaPedido[] = [];
   extrasPorPlato: { [idplatoPedido: number]: extrasPlatoPedido[] } = {};
   platoExtrasVisible: number | null = null;
-  extras: any[] = []; // Almacena todos los extras disponibles
+  extras: any[] = [];
 
   constructor(private api: ApiService, private authService: AuthService, private router: Router) {}
 
@@ -36,12 +36,7 @@ export class BandejaComponent implements OnInit {
         const cliente = JSON.parse(clienteJson);
         this.idcliente = cliente.id;
 
-        // Obtener todos los extras disponibles
-        this.api.getExtra().subscribe(data => {
-          this.extras = data;
-        }, err => {
-          console.error('Error cargando extras:', err);
-        });
+        this.api.getExtra().subscribe(data => this.extras = data);
 
         this.api.obtenerPedidoActivo(this.idcliente!).subscribe(pedido => {
           if (pedido?.estado === false) {
@@ -51,14 +46,10 @@ export class BandejaComponent implements OnInit {
             this.platos = [];
             this.bebidas = [];
           }
-        }, error => {
-          console.error('Error obteniendo pedido activo:', error);
         });
       } catch (e) {
         console.error('❌ Error al parsear JSON de cliente:', e);
       }
-    } else {
-      console.warn('⚠️ No hay cliente logueado o JSON mal guardado.');
     }
   }
 
@@ -69,14 +60,9 @@ export class BandejaComponent implements OnInit {
       this.platos = platos || [];
 
       this.platos.forEach(p => {
-        this.api.getPlatoPorId(p.idplato).subscribe(plato => {
-          p.plato = plato;
-        });
-
+        this.api.getPlatoPorId(p.idplato).subscribe(plato => p.plato = plato);
         this.api.getExtrasPorPlatoPedido(p.id!).subscribe(extras => {
-          if (extras.length > 0) {
-            this.extrasPorPlato[p.id!] = extras;
-          }
+          if (extras.length > 0) this.extrasPorPlato[p.id!] = extras;
         });
       });
     });
@@ -84,91 +70,63 @@ export class BandejaComponent implements OnInit {
     this.api.getBebidaPedidosPorPedido(id).subscribe(bebidas => {
       this.bebidas = bebidas || [];
       this.bebidas.forEach(b => {
-        this.api.getBebidaPorId(b.id_bebida).subscribe(bebida => {
-          b.bebida = bebida;
-        });
+        this.api.getBebidaPorId(b.id_bebida).subscribe(bebida => b.bebida = bebida);
       });
     });
   }
 
   getTotal() {
-    const totalPlatos = this.platos.reduce((t, p) => t + Number(p.precioFinalPlato), 0);
-    const totalBebidas = this.bebidas.reduce((t, b) => t + Number(b.precioFinal), 0);
+    const totalPlatos = this.platos.reduce((t, p) => t + Number(p.precioFinalPlato || 0), 0);
+    const totalBebidas = this.bebidas.reduce((t, b) => t + Number(b.precioFinal || 0), 0);
     return totalPlatos + totalBebidas;
   }
 
   aumentarPlato(p: any) {
-    if (!p.precioUnitario) {
-      p.precioUnitario = p.precioFinalPlato / (p.cantidad || 1);
-    }
-
+    p.precioUnitario ??= Number(p.precioFinalPlato || 0) / (p.cantidad || 1);
     p.cantidad = (p.cantidad || 1) + 1;
     p.precioFinalPlato = p.precioUnitario * p.cantidad;
 
-    this.api.putPlatoPedido(p).subscribe({
-      next: () => console.log('Plato actualizado correctamente'),
-      error: err => console.error('Error actualizando plato', err)
-    });
+    this.api.putPlatoPedido(p).subscribe();
   }
 
   disminuirPlato(p: any) {
     if (p.cantidad > 1) {
-      if (!p.precioUnitario) {
-        p.precioUnitario = p.precioFinalPlato / p.cantidad;
-      }
-
+      p.precioUnitario ??= Number(p.precioFinalPlato || 0) / p.cantidad;
       p.cantidad--;
       p.precioFinalPlato = p.precioUnitario * p.cantidad;
 
-      this.api.putPlatoPedido(p).subscribe({
-        next: () => console.log('Plato actualizado correctamente'),
-        error: err => console.error('Error actualizando plato', err)
-      });
+      this.api.putPlatoPedido(p).subscribe();
     }
   }
 
   aumentarBebida(b: any) {
+    const precio = Number(b.bebida?.precio || 0);
     b.cantidad = (b.cantidad || 1) + 1;
-    b.precioFinal = b.bebida.precio * b.cantidad;
+    b.precioFinal = precio * b.cantidad;
 
-    this.api.putbebidaPedidos(b).subscribe({
-      next: () => console.log('Bebida actualizada correctamente'),
-      error: err => console.error('Error actualizando bebida', err)
-    });
+    this.api.putbebidaPedidos(b).subscribe();
   }
 
   disminuirBebida(b: any) {
     if (b.cantidad > 1) {
+      const precio = Number(b.bebida?.precio || 0);
       b.cantidad--;
-      b.precioFinal = b.bebida.precio * b.cantidad;
+      b.precioFinal = precio * b.cantidad;
 
-      this.api.putbebidaPedidos(b).subscribe({
-        next: () => console.log('Bebida actualizada correctamente'),
-        error: err => console.error('Error actualizando bebida', err)
-      });
+      this.api.putbebidaPedidos(b).subscribe();
     }
   }
 
   eliminarPlato(p: any) {
-    this.api.deletePlatoPedido(p.id).subscribe({
-      next: () => {
-        this.platos = this.platos.filter(plato => plato.id !== p.id);
-        delete this.extrasPorPlato[p.id];
-      },
-      error: err => {
-        console.error('Error eliminando plato', err);
-      }
+    this.api.deletePlatoPedido(p.id).subscribe(() => {
+      this.platos = this.platos.filter(plato => plato.id !== p.id);
+      delete this.extrasPorPlato[p.id];
     });
   }
 
   eliminarBebida(b: any) {
-    this.api.deletebebidaPedidos(b.id).subscribe({
-      next: () => {
-        this.bebidas = this.bebidas.filter(bebida => bebida.id !== b.id);
-      },
-      error: err => {
-        console.error('Error eliminando bebida', err);
-      }
+    this.api.deletebebidaPedidos(b.id).subscribe(() => {
+      this.bebidas = this.bebidas.filter(bebida => bebida.id !== b.id);
     });
   }
 
@@ -181,11 +139,7 @@ export class BandejaComponent implements OnInit {
         this.bebidas = [];
 
         const nuevoId = res?.nuevoPedidoId;
-        if (nuevoId != null) {
-          this.cargarPedido(nuevoId);
-        } else {
-          console.warn('⚠ No se recibió nuevo pedido activo.');
-        }
+        if (nuevoId != null) this.cargarPedido(nuevoId);
       });
     }
   }
@@ -198,9 +152,12 @@ export class BandejaComponent implements OnInit {
     this.platoExtrasVisible = null;
   }
 
-  // ✅ Función para mostrar el nombre del extra
   getNombreExtra(idextra: number): string {
     const extra = this.extras.find(e => e.id === idextra);
     return extra ? extra.nombre : 'Extra #' + idextra;
+  }
+
+  formatPrecio(valor: any): string {
+    return (+valor || 0).toFixed(2);
   }
 }
