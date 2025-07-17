@@ -51,8 +51,8 @@ export class MenuComponent implements OnInit {
   // Filtrados dinámicos
   get platosFiltrados(): Plato[] {
   if (this.filtroActivo === 'Todo') return this.platos;
-  if (this.filtroActivo === 'Platillos') return this.platos.filter(p => p.idcategoria_plato !== 3);
-  if (this.filtroActivo === 'Sopas') return this.platos.filter(p => p.idcategoria_plato === 3);
+  if (this.filtroActivo === 'Platillos') return this.platos.filter(p => p.idcategoria_plato !== 4);
+  if (this.filtroActivo === 'Sopas') return this.platos.filter(p => p.idcategoria_plato === 4);
   return [];
 }
 

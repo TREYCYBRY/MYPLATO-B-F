@@ -48,6 +48,7 @@
           <div class="menu-rating">Rated({{ 4.5 }}) ⭐⭐⭐⭐✩</div>
           <h3 class="menu-name">{{ plato.nombre }}</h3>
           <p class="menu-desc">{{ plato.descripcion }}</p>
+          <p class="menu-pre">{{ plato.precio }}</p>
           <button class="menu-add-button" (click)="anadirAlCarrito(plato)">Añadir</button>
         </div>
 
@@ -60,6 +61,7 @@
           <div class="menu-rating">Rated({{ 4.0 }}) ⭐⭐⭐⭐✩</div>
           <h3 class="menu-name">{{ bebida.nombre }}</h3>
           <p class="menu-desc">{{ bebida.descripcion }}</p>
+          <p class="menu-pre">{{ bebida.precio }}</p>
           <button class="menu-add-button" (click)="anadirBebida(bebida)">Añadir</button>
         </div>
       </div>

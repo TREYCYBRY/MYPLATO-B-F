@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
+from .views import logout_cliente
 from . import views
 router = DefaultRouter()
 router.register('unidadDeMedida', views.UnidadMedidaViewSet)
@@ -30,4 +31,5 @@ urlpatterns = [
     path('registro-cliente/', views.registro_cliente),
      path('pedido/activo/', views.obtener_o_crear_pedido_activo),
     path('pedido/confirmar/<int:idpedido>/', views.confirmar_pedido),
+    path('api/logout/', logout_cliente, name='logout'),
 ] 

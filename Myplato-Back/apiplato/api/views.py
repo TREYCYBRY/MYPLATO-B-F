@@ -235,6 +235,7 @@ class PagoViewSet(viewsets.ModelViewSet):
 
 
 class BebidaViewSet(viewsets.ModelViewSet):
+    
     queryset = models.Bebida.objects.all()
     serializer_class = serializers.BebidaSerializer
 
@@ -372,3 +373,10 @@ def login_cliente(request):
             return Response({'token': token.key})
         return Response({'error': 'Este usuario no es cliente'}, status=403)
     return Response({'error': 'Credenciales incorrectas'}, status=400)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def logout_cliente(request):
+    # Elimina el token actual del usuario
+    Token.objects.filter(user=request.user).delete()
+    return Response({'detail': 'Logout exitoso'})

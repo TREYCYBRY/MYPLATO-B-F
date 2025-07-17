@@ -11,7 +11,7 @@
     </div>
   
     <div class="btn-der">
-      <button class="nav-link" routerLink="/login">Cerrar sesion</button>
+      <button class="nav-link" (click)="logout()">Cerrar sesion</button>
     </div>
 
   </div>
@@ -23,7 +23,7 @@
             <p class="welcome-message">―     BIENVENIDO A MYPLATO   ―</p>
             <h2 class="hero-title">Comida</h2>
             <h2 class="hero-subtitle">a tu Medida</h2>
-            <button class="btn btn-hero">¡Arma tu Plato!</button>
+            <button class="btn btn-hero" routerLink="/buffet">¡Arma tu Plato!</button>
         </div>
         <div class="hero-background-overlay"></div> 
   </main>
