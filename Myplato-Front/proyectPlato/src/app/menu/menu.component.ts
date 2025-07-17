@@ -6,6 +6,7 @@ import { Pedido } from '../../model/pedido.model';
 import { PlatoPedido } from '../../model/platoPedido.model';
 import { bebidaPedido } from '../../model/bebidaPedido.model';
 import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -27,7 +28,10 @@ export class MenuComponent implements OnInit {
   filtroActivo: string = 'Todo';
   
 
-  constructor(private api: ApiService, private authService: AuthService) {}
+  constructor(private api: ApiService, private authService: AuthService, private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
 
    ngOnInit(): void {
     const cliente = this.authService.getCliente();

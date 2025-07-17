@@ -6,6 +6,7 @@ import { ApiService } from '../../service/api.service';
 import { PlatoPedido } from '../../model/platoPedido.model';
 import { extrasPlatoPedido } from '../../model/extrasPlatoPedido.model';
 import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buffet',
@@ -15,7 +16,10 @@ import { AuthService } from '../../service/auth.service';
 })
 export class BuffetComponent implements OnInit {
 
-  constructor(private api: ApiService, private authService: AuthService) {}
+  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
 
   platosBase: Plato[] = [];
   categorias: categoriaExtra[] = [];

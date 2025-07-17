@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { mesa } from '../../model/mesa.model';
 import { Empleado } from '../../model/empleado.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mesa',
@@ -11,7 +13,10 @@ import { Empleado } from '../../model/empleado.model';
   providers: [ApiService]
 })
 export class MesaComponent {
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
 
   mesas: mesa[] = [];
   visible = false;

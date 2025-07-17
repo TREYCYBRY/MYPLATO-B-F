@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { Pago } from '../../model/pago.model';
 import { Pedido } from '../../model/pedido.model';
-
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pago',
@@ -12,7 +13,10 @@ import { Pedido } from '../../model/pedido.model';
   providers: [ApiService]
 })
 export class PagoComponent {
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
 
   pagos: Pago[] = [];
   visible = false;

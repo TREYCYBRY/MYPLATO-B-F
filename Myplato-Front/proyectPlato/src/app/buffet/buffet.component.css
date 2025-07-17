@@ -47,6 +47,7 @@
 
 
 .btn-der .nav-link{
+    font-size: 15px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -60,7 +61,7 @@
 
 .btn-der .nav-link:hover{
     background-color: #E64A19;
-  }
+}
 
 .titulo{
   color: rgb(0, 0, 0);

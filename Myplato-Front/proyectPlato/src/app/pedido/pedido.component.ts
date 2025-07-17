@@ -3,6 +3,8 @@ import { ApiService } from '../../service/api.service';
 import { mesa } from '../../model/mesa.model';
 import { cliente } from '../../model/cliente.model';
 import { Pedido } from '../../model/pedido.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +15,11 @@ import { Pedido } from '../../model/pedido.model';
   providers: [ApiService]
 })
 export class PedidoComponent {
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
+
   pedidos: Pedido[];
   visible: boolean = false;
   nuevoPedido: boolean = true;

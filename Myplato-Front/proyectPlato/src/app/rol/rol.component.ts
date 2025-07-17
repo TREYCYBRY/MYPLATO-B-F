@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { rol } from '../../model/rol.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rol',
@@ -11,7 +13,10 @@ import { rol } from '../../model/rol.model';
 })
 
 export class RolComponent {
-  constructor(private api:ApiService) {}
+  constructor(private api:ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
 
   roles:rol[];
   tituloDialogo:string = "Nuevo Tipo";

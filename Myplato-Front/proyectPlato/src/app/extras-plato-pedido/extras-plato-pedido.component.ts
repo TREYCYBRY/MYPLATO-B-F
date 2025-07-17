@@ -4,6 +4,8 @@ import { extrasPlatoPedido } from '../../model/extrasPlatoPedido.model';
 import { extra } from '../../model/extra.model';
 import { PlatoPedido } from '../../model/platoPedido.model';
 import { EventEmitter, Output,Input } from '@angular/core';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-extras-plato-pedido',
@@ -13,7 +15,11 @@ import { EventEmitter, Output,Input } from '@angular/core';
   providers: [ApiService]
 })
 export class ExtrasPlatoPedidoComponent {
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
+
 @Input() idPlatoPedido!: number;
 @Output() extrasActualizados = new EventEmitter<void>();
   extrasPlatoPedido: extrasPlatoPedido[] = [];

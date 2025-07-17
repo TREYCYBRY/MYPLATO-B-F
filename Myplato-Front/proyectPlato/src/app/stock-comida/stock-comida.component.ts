@@ -3,6 +3,8 @@ import { ApiService } from '../../service/api.service';
 import { almacen } from '../../model/almacen.model';
 import { extra } from '../../model/extra.model';
 import { stockComida } from '../../model/stockComida.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stock-comida',
@@ -13,7 +15,10 @@ import { stockComida } from '../../model/stockComida.model';
 })
 
 export class StockComidaComponent {
-  constructor(private api:ApiService) {}
+  constructor(private api:ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
 
   stockComidas:stockComida[] = [];
   

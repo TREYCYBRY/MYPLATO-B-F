@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { categoriaPlato } from '../../model/categoriaPlato.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categoria-plato',
@@ -10,7 +12,10 @@ import { categoriaPlato } from '../../model/categoriaPlato.model';
   providers: [ApiService]
 })
 export class CategoriaPlatoComponent {
-  constructor(private api:ApiService){}
+  constructor(private api:ApiService, private authService: AuthService,private router:Router){}
+  logout() {
+    this.authService.logout();
+  }
 
   categoria_Plato: categoriaPlato [];
   tituloDialogo:string = "Nuevo Tipo";

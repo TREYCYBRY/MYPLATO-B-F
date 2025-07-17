@@ -26,9 +26,11 @@
             <li><a class="category-btn" routerLink="/extrasPlatoPedido" routerLinkActive="active">Extra Plato Pedido</a></li>
         </ul> 
       </div>
-      <div class="btn-der">
-        <button class="nav-link" routerLink="/login">Cerrar sesion</button>
-      </div>
+      
+    <div class="btn-der">
+      <button class="nav-link" (click)="logout()">Cerrar sesion</button>
+    </div>
+    
     </div>
     <div class="content">
       <router-outlet />

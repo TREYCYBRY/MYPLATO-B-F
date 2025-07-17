@@ -3,6 +3,8 @@ import { ApiService } from '../../service/api.service';
 import { PlatoPedido } from '../../model/platoPedido.model';
 import { bebidaPedido } from '../../model/bebidaPedido.model';
 import { extrasPlatoPedido } from '../../model/extrasPlatoPedido.model';
+import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-bandeja',
@@ -19,8 +21,11 @@ export class BandejaComponent implements OnInit {
   extrasPorPlato: { [idplatoPedido: number]: extrasPlatoPedido[] } = {};
   platoExtrasVisible: number | null = null;
 
-  constructor(private api: ApiService) {}
-
+  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
+  
   ngOnInit(): void {
     const clienteJson = localStorage.getItem('cliente');
 

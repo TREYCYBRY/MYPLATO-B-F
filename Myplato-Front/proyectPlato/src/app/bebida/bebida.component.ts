@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { unidadMedida } from '../../model/unidadMedida.model';
 import { bebida } from '../../model/bebida.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bebida',
@@ -11,8 +13,11 @@ import { bebida } from '../../model/bebida.model';
   providers: [ApiService]
 })
 export class BebidaComponent {
-  constructor(private api: ApiService) {}
-
+  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
+  
   bebidas: bebida[] = [];
   visible: boolean = false;
   nuevoBebida: boolean = true;
