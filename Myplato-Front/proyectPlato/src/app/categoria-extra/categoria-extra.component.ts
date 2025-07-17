@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { categoriaExtra } from '../../model/categoriaExtra.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categoria-extra',
@@ -10,7 +12,10 @@ import { categoriaExtra } from '../../model/categoriaExtra.model';
   providers: [ApiService]
 })
 export class CategoriaExtraComponent {
-  constructor(private api:ApiService){}
+  constructor(private api:ApiService, private authService: AuthService,private router:Router){}
+  logout() {
+    this.authService.logout();
+  }
 
   categoria_Extra: categoriaExtra [];
   tituloDialogo:string = "Nuevo Tipo";

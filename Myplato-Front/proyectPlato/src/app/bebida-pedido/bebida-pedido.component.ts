@@ -3,6 +3,9 @@ import { ApiService } from '../../service/api.service';
 import { bebidaPedido } from '../../model/bebidaPedido.model';
 import { bebida } from '../../model/bebida.model';
 import { Pedido } from '../../model/pedido.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-bebida-pedido',
   standalone: false,
@@ -11,8 +14,11 @@ import { Pedido } from '../../model/pedido.model';
   providers: [ApiService]
 })
 export class BebidaPedidoComponent {
-  constructor(private api: ApiService) {}
-
+  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
+  
   bebidaPedidos: bebidaPedido[] = [];
   visible = false;
   nuevoRegistro = true;

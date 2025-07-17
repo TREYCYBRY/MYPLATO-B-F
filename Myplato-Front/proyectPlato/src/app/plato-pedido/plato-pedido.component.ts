@@ -4,6 +4,8 @@ import { PlatoPedido } from '../../model/platoPedido.model';
 import { Pedido } from '../../model/pedido.model';
 import { Plato } from '../../model/plato.model';
 import { extrasPlatoPedido } from '../../model/extrasPlatoPedido.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-plato-pedido',
@@ -27,7 +29,10 @@ export class PlatoPedidoComponent implements OnInit {
   pedidoSeleccionado!: Pedido; 
   platoSeleccionado!: Plato;
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
 
   ngOnInit(): void {
     this.obtenerPlatoPedidos();
@@ -123,7 +128,7 @@ export class PlatoPedidoComponent implements OnInit {
   }
 
   public calcularPrecioFinal(idPlatoPedido: number): void {
-  this.api.getExtrasPorPlatoPedido().subscribe((extras: extrasPlatoPedido[]) => {
+  this.api.getExtraPorPlatoPedido().subscribe((extras: extrasPlatoPedido[]) => {
     const extrasFiltrados = extras.filter(ex => ex.idplato_pedido === idPlatoPedido);
     const totalExtras = extrasFiltrados.reduce((sum, e) => {
       const precio = parseFloat(String(e.precioPersonalizacion));

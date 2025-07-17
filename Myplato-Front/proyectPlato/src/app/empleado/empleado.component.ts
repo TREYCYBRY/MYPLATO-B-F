@@ -3,6 +3,9 @@ import { ApiService } from '../../service/api.service';
 import { Empleado } from '../../model/empleado.model';
 import { HttpClientModule } from '@angular/common/http';
 import { rol } from '../../model/rol.model';  
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-empleado',
   standalone: false,
@@ -11,7 +14,10 @@ import { rol } from '../../model/rol.model';
   providers: [ApiService]
 })
 export class EmpleadoComponent {
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
 
   empleados: Empleado[] = [];
   visible: boolean = false;

@@ -3,6 +3,8 @@ import { ApiService } from '../../service/api.service';
 import { extra } from '../../model/extra.model';
 import { categoriaExtra } from '../../model/categoriaExtra.model';
 import { unidadMedida } from '../../model/unidadMedida.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-extra',
@@ -12,7 +14,10 @@ import { unidadMedida } from '../../model/unidadMedida.model';
   providers: [ApiService]
 })
 export class ExtraComponent {
-  constructor(private api:ApiService) {}
+  constructor(private api:ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
 
   extras:extra[];
   visible:boolean = false;

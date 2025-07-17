@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { almacen } from '../../model/almacen.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-almacen',
@@ -11,8 +13,11 @@ import { almacen } from '../../model/almacen.model';
 })
 
 export class AlmacenComponent {
-  constructor(private api:ApiService) {}
-
+  constructor(private api:ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
+  
   almacenes : almacen[];
   tituloDialogo:string = "Nuevo Tipo";
   visible:boolean = false;

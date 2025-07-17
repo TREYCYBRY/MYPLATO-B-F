@@ -3,6 +3,8 @@ import { ApiService } from '../../service/api.service';
 import { extraPlato } from '../../model/extraPlato.model';
 import { Plato } from '../../model/plato.model';
 import { extra } from '../../model/extra.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-extra-plato',
@@ -12,7 +14,10 @@ import { extra } from '../../model/extra.model';
   providers: [ApiService]
 })
 export class ExtraPlatoComponent {
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
 
   extraPlatos: extraPlato[] = [];
   visible = false;

@@ -6,6 +6,7 @@ import { Pedido } from '../../model/pedido.model';
 import { PlatoPedido } from '../../model/platoPedido.model';
 import { bebidaPedido } from '../../model/bebidaPedido.model';
 import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -27,7 +28,10 @@ export class MenuComponent implements OnInit {
   filtroActivo: string = 'Todo';
   
 
-  constructor(private api: ApiService, private authService: AuthService) {}
+  constructor(private api: ApiService, private authService: AuthService, private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
 
    ngOnInit(): void {
     const cliente = this.authService.getCliente();
@@ -39,8 +43,9 @@ export class MenuComponent implements OnInit {
     this.idcliente = cliente.id;
 
     this.api.getPlatos().subscribe(res => {
-      this.platos = res;
-    });
+  this.platos = res.filter(p => !p.personalizable); // Solo platos no personalizables
+});
+
 
     this.api.getBebida().subscribe(res => {
       this.bebidas = res;
@@ -51,8 +56,8 @@ export class MenuComponent implements OnInit {
   // Filtrados dinámicos
   get platosFiltrados(): Plato[] {
   if (this.filtroActivo === 'Todo') return this.platos;
-  if (this.filtroActivo === 'Platillos') return this.platos.filter(p => p.idcategoria_plato !== 3);
-  if (this.filtroActivo === 'Sopas') return this.platos.filter(p => p.idcategoria_plato === 3);
+  if (this.filtroActivo === 'Platillos') return this.platos.filter(p => p.idcategoria_plato !== 4);
+  if (this.filtroActivo === 'Sopas') return this.platos.filter(p => p.idcategoria_plato === 4);
   return [];
 }
 

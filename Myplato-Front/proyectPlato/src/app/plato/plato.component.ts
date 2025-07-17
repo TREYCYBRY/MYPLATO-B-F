@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { Plato } from '../../model/plato.model';
 import { categoriaPlato } from '../../model/categoriaPlato.model';
-
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-plato',
@@ -12,8 +13,11 @@ import { categoriaPlato } from '../../model/categoriaPlato.model';
   providers: [ApiService]
 })
 export class PlatoComponent {
-  constructor(private api: ApiService) {}
-
+  constructor(private api: ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
+  
   platos: Plato[] = [];
   visible: boolean = false;
   nuevoPlato: boolean = true;

@@ -34,33 +34,32 @@ import { BuffetComponent } from './buffet/buffet.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard] },
-  { path: 'plato', component: PlatoComponent },
-  { path: 'categoriaExtra', component: CategoriaExtraComponent },
-  { path: 'extra', component: ExtraComponent },  
-  { path: 'unidad', component: UnidadComponent},  
-  { path: 'categoriaPlato', component: CategoriaPlatoComponent},
-  { path: 'categoriaCliente', component: CategoriaClienteComponent },
+  { path: 'plato', component: PlatoComponent, canActivate: [AuthGuard]},
+  { path: 'categoriaExtra', component: CategoriaExtraComponent, canActivate: [AuthGuard]},
+  { path: 'extra', component: ExtraComponent , canActivate: [AuthGuard]},  
+  { path: 'unidad', component: UnidadComponent, canActivate: [AuthGuard]},  
+  { path: 'categoriaPlato', component: CategoriaPlatoComponent, canActivate: [AuthGuard]},
+  { path: 'categoriaCliente', component: CategoriaClienteComponent , canActivate: [AuthGuard]},
 
-  { path: 'bebida', component:BebidaComponent },
-  { path: 'almacen', component:AlmacenComponent },  
-  { path: 'rol', component: RolComponent },
-  { path: 'stockComida', component:StockComidaComponent },
-  { path: 'stockBebida', component: StockBebidaComponent},
-  { path: 'extraPlato', component: ExtraPlatoComponent},
+  { path: 'bebida', component:BebidaComponent , canActivate: [AuthGuard]},
+  { path: 'almacen', component:AlmacenComponent , canActivate: [AuthGuard]},  
+  { path: 'rol', component: RolComponent , canActivate: [AuthGuard]},
+  { path: 'stockComida', component:StockComidaComponent , canActivate: [AuthGuard]},
+  { path: 'stockBebida', component: StockBebidaComponent, canActivate: [AuthGuard]},
+  { path: 'extraPlato', component: ExtraPlatoComponent, canActivate: [AuthGuard]},
   {path: 'admin-login', component: AdminLoginComponent},
-  {path: 'inicio-usuario',component:InicioUsuarioComponent},
+  {path: 'inicio-usuario',component:InicioUsuarioComponent, canActivate: [AuthGuard]},
   {path: 'registro-cliente', component: RegistroClienteComponent},
-  {path: 'empleado', component: EmpleadoComponent},
-  {path: 'mesa', component: MesaComponent},
-  {path: 'pedido', component: PedidoComponent },
-   {path:'menu',component:MenuComponent},
-  {path:'bebidaPedido', component: BebidaPedidoComponent}, // Asegúrate de que este componente exista y sea correcto
-  {path:'pago',component: PagoComponent}, // Asegúrate de que este componente exista y sea correcto
-  {path:'platoPedido', component: PlatoPedidoComponent},
-  {path:'bandeja', component: BandejaComponent}, // Asegúrate de que este componente exista y sea correcto
-  {path:'extrasPlatoPedido',component:ExtrasPlatoPedidoComponent}, // Asegúrate de que este componente exista y sea correcto
-  {path:'bandeja', component:BandejaComponent},
-  {path:'buffet', component:BuffetComponent},
+  {path: 'empleado', component: EmpleadoComponent, canActivate: [AuthGuard]},
+  {path: 'mesa', component: MesaComponent, canActivate: [AuthGuard]},
+  {path: 'pedido', component: PedidoComponent , canActivate: [AuthGuard]},
+   {path:'menu',component:MenuComponent, canActivate: [AuthGuard]},
+  {path:'bebidaPedido', component: BebidaPedidoComponent, canActivate: [AuthGuard]}, // Asegúrate de que este componente exista y sea correcto
+  {path:'pago',component: PagoComponent, canActivate: [AuthGuard]}, // Asegúrate de que este componente exista y sea correcto
+  {path:'platoPedido', component: PlatoPedidoComponent, canActivate: [AuthGuard]}, // Asegúrate de que este componente exista y sea correcto
+  {path:'extrasPlatoPedido',component:ExtrasPlatoPedidoComponent, canActivate: [AuthGuard]}, // Asegúrate de que este componente exista y sea correcto
+  {path:'bandeja', component:BandejaComponent, canActivate: [AuthGuard]},
+  {path:'buffet', component:BuffetComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: '**', redirectTo: '/login' },
  // Redirige cualquier ruta desconocida al login

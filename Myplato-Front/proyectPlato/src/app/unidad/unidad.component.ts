@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { unidadMedida } from '../../model/unidadMedida.model';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-unidad',
@@ -11,7 +13,10 @@ import { unidadMedida } from '../../model/unidadMedida.model';
 })
 
 export class UnidadComponent {
-  constructor(private api:ApiService) {}
+  constructor(private api:ApiService, private authService: AuthService,private router:Router) {}
+  logout() {
+    this.authService.logout();
+  }
 
   unidades:unidadMedida[];
   tituloDialogo:string = "Nuevo Tipo";
